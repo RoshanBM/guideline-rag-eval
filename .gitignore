@@ -1,0 +1,10 @@
+# Raw source documents (PDFs/HTML) are not redistributed
+data/raw/*
+!data/raw/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
