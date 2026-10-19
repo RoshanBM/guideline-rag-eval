@@ -1,6 +1,9 @@
-# Raw source documents (PDFs/HTML) are not redistributed
+# Raw source documents (WHO PDFs/EPUB) are not redistributed.
+# `data/raw/*` ignores everything in data/raw/ while keeping the folder (.gitkeep)
+# and the provenance manifest with SHA-256 hashes (MANIFEST.md).
 data/raw/*
 !data/raw/.gitkeep
+!data/raw/MANIFEST.md
 
 # Python
 __pycache__/
@@ -8,3 +11,7 @@ __pycache__/
 .venv/
 venv/
 .env
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/

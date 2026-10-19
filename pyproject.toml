@@ -1,0 +1,13 @@
+[project]
+name = "guideline-rag-eval"
+version = "0.1.0"
+description = "Citation-grounded RAG over WHO clinical guidelines, with retrieval, faithfulness, dosing-accuracy and refusal evaluation."
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+filterwarnings = [
+    # pymupdf_layout imports the deprecated `fitz` alias; not our code.
+    "ignore:The `fitz` API is deprecated:FutureWarning",
+]
