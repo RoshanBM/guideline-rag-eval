@@ -13,23 +13,22 @@ from pathlib import Path
 
 import pytest
 
+from src.parse.schema import quote_verifies, validate_record
 from src.parse.sources import SOURCES
-from src.parse.text_utils import normalise_text, quote_in_text
+from src.parse.text_utils import normalise_text
 
 CHUNKS_PATH = Path(__file__).resolve().parents[1] / "data" / "chunks" / "hypertension.jsonl"
 PDF_PATH = SOURCES["hypertension_pdf"].path
 
-SCHEMA_KEYS = [
-    "chunk_id", "collection", "doc", "doc_id", "section_path", "rec_id", "rec_part", "parent_rec_id",
-    "chunk_type", "index_default", "strength", "strength_as_printed", "certainty", "source_discrepancy", "text",
-    "pdf_page_start", "pdf_page_end", "printed_page_start", "printed_page_end", "source_url", "licence",
-]
 CONSTANTS = {
     "collection": "cardiometabolic",
     "doc": "WHO Guideline for the pharmacological treatment of hypertension in adults (2021)",
     "doc_id": "who-htn-2021",
     "source_url": "https://iris.who.int/handle/10665/344424",
     "licence": "CC BY-NC-SA 3.0 IGO",
+    # AWaRe-only fields of the unified schema: always null here.
+    "infection": None, "population": None, "population_raw": None,
+    "context_header": None, "aware_category_note": None,
 }
 CHUNK_TYPES = {"recommendation", "prose", "table", "pico"}
 STRENGTHS = {"strong", "conditional"}
@@ -77,19 +76,15 @@ def by_id(chunks: list[dict]) -> dict[str, dict]:
 def test_every_line_matches_schema(chunks: list[dict]) -> None:
     for c in chunks:
         cid = c.get("chunk_id")
-        assert list(c) == SCHEMA_KEYS, cid
+        assert validate_record(c) == [], cid  # unified schema, src/parse/schema.py
         for key, value in CONSTANTS.items():
             assert c[key] == value, (cid, key)
+        # No parser-added text in this collection: the retrieval text is the source text.
+        assert c["text"] == c["source_text"], cid
         assert re.fullmatch(r"who-htn-2021-[a-z0-9]+(-[a-z0-9]+)*", c["chunk_id"])
-        assert isinstance(c["section_path"], list) and c["section_path"]
-        assert all(isinstance(p, str) and p and p.strip() == p for p in c["section_path"])
+        assert all(p.strip() == p for p in c["section_path"])
         assert c["chunk_type"] in CHUNK_TYPES
         assert c["index_default"] is (c["chunk_type"] != "pico"), cid
-        assert isinstance(c["text"], str)
-        for key in ("pdf_page_start", "pdf_page_end"):
-            assert isinstance(c[key], int), (cid, key)
-        for key in ("printed_page_start", "printed_page_end"):
-            assert c[key] is None or isinstance(c[key], int), (cid, key)
         assert c["strength"] is None or c["strength"] in STRENGTHS
         assert c["certainty"] is None or CERTAINTY_RE.match(c["certainty"])
         assert c["strength_as_printed"] is None or c["strength_as_printed"] in STRENGTHS
@@ -232,13 +227,13 @@ def test_text_is_normalised_and_clean(chunks: list[dict]) -> None:
 
 
 def test_quotes_round_trip(chunks: list[dict]) -> None:
-    """Any exact substring of a chunk must match back to it after normalisation."""
+    """Any exact substring of a chunk's source text must verify against the chunk."""
     for c in chunks:
-        text = c["text"]
+        text = c["source_text"]
         for start in range(0, len(text), max(1, len(text) // 5)):
             quote = text[start : start + 80]
             if quote.strip():
-                assert quote_in_text(quote, text), (c["chunk_id"], quote)
+                assert quote_verifies(quote, c), (c["chunk_id"], quote)
 
 
 TABLE_QUOTE = (
@@ -253,26 +248,26 @@ BULLET_QUOTE = (
 
 
 def test_quote_from_table_chunk_with_pipes(by_id: dict[str, dict]) -> None:
-    text = by_id["who-htn-2021-table-1"]["text"]
-    assert "|" in text and TABLE_QUOTE in text  # the quote really is verbatim
-    assert quote_in_text(TABLE_QUOTE, text)
+    chunk = by_id["who-htn-2021-table-1"]
+    assert "|" in chunk["source_text"] and TABLE_QUOTE in chunk["source_text"]  # the quote really is verbatim
+    assert quote_verifies(TABLE_QUOTE, chunk)
     # The same quote as a model would typically emit it: line break flattened to a space.
-    assert quote_in_text(TABLE_QUOTE.replace("\n", " "), text)
+    assert quote_verifies(TABLE_QUOTE.replace("\n", " "), chunk)
     # Paraphrases and altered wording must not match.
-    assert not quote_in_text("High | We are very sure that the true effect is close to the estimate of effect.", text)
-    assert not quote_in_text("High: We are very confident that the true effect lies close to that of the estimate of effect.", text)
+    assert not quote_verifies("High | We are very sure that the true effect is close to the estimate of effect.", chunk)
+    assert not quote_verifies("High: We are very confident that the true effect lies close to that of the estimate of effect.", chunk)
 
 
 def test_quote_from_bulleted_chunk(by_id: dict[str, dict]) -> None:
-    text = by_id["who-htn-2021-s3-1-implementation-remarks"]["text"]
-    assert "•" in text and BULLET_QUOTE in text
-    assert quote_in_text(BULLET_QUOTE, text)
-    assert quote_in_text(BULLET_QUOTE.replace("\n", " "), text)
+    chunk = by_id["who-htn-2021-s3-1-implementation-remarks"]
+    assert "•" in chunk["source_text"] and BULLET_QUOTE in chunk["source_text"]
+    assert quote_verifies(BULLET_QUOTE, chunk)
+    assert quote_verifies(BULLET_QUOTE.replace("\n", " "), chunk)
     # The bullet item quoted without its marker is still a verbatim substring.
-    assert quote_in_text("Initiation of pharmacological hypertension (HTN) treatment should start", text)
+    assert quote_verifies("Initiation of pharmacological hypertension (HTN) treatment should start", chunk)
     # Paraphrase, and a quote with one number changed, are rejected.
-    assert not quote_in_text("• HTN treatment should begin within four weeks of the diagnosis of HTN.", text)
-    assert not quote_in_text("If blood pressure level is high (e.g. systolic ≥150 mmHg or diastolic ≥100 mmHg)", text)
+    assert not quote_verifies("• HTN treatment should begin within four weeks of the diagnosis of HTN.", chunk)
+    assert not quote_verifies("If blood pressure level is high (e.g. systolic ≥150 mmHg or diastolic ≥100 mmHg)", chunk)
 
 
 def test_known_content_survives(by_id: dict[str, dict], chunks: list[dict]) -> None:

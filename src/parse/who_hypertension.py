@@ -41,6 +41,7 @@ from pathlib import Path
 import pymupdf
 
 from src.parse.pdf_utils import Line, Span, extract_spans, group_lines, type3_pua_glyph_hashes
+from src.parse.schema import build_record
 from src.parse.sources import CHUNKS_DIR, LICENCE, get_source
 from src.parse.text_utils import build_vocabulary, join_lines, normalise_text
 
@@ -196,30 +197,35 @@ class Chunk:
         return self.chunk_type != "pico"
 
     def to_record(self) -> dict[str, object]:
-        """Return the record in the exact key order of the project schema (see README)."""
-        return {
-            "chunk_id": self.chunk_id,
-            "collection": COLLECTION,
-            "doc": DOC_TITLE,
-            "doc_id": DOC_ID,
-            "section_path": self.section_path,
-            "rec_id": self.rec_id,
-            "rec_part": self.rec_part,
-            "parent_rec_id": self.parent_rec_id,
-            "chunk_type": self.chunk_type,
-            "index_default": self.index_default,
-            "strength": self.strength,
-            "strength_as_printed": self.strength_as_printed,
-            "certainty": self.certainty,
-            "source_discrepancy": self.source_discrepancy,
-            "text": self.text,
-            "pdf_page_start": self.page_start,
-            "pdf_page_end": self.page_end,
-            "printed_page_start": self.printed_page_start,
-            "printed_page_end": self.printed_page_end,
-            "source_url": SOURCE_URL,
-            "licence": LICENCE,
-        }
+        """Return the record in the unified schema (src/parse/schema.py).
+
+        The guideline has no parser-added header, footnotes or category note, so
+        ``source_text`` and ``text`` are identical; the AWaRe-only fields are null.
+        """
+        return build_record(
+            chunk_id=self.chunk_id,
+            collection=COLLECTION,
+            doc=DOC_TITLE,
+            doc_id=DOC_ID,
+            section_path=self.section_path,
+            rec_id=self.rec_id,
+            rec_part=self.rec_part,
+            parent_rec_id=self.parent_rec_id,
+            chunk_type=self.chunk_type,
+            index_default=self.index_default,
+            strength=self.strength,
+            strength_as_printed=self.strength_as_printed,
+            certainty=self.certainty,
+            source_discrepancy=self.source_discrepancy,
+            source_text=self.text,
+            text=self.text,
+            pdf_page_start=self.page_start,
+            pdf_page_end=self.page_end,
+            printed_page_start=self.printed_page_start,
+            printed_page_end=self.printed_page_end,
+            source_url=SOURCE_URL,
+            licence=LICENCE,
+        )
 
 
 @dataclass

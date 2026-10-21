@@ -185,6 +185,20 @@ def type3_pua_glyph_hashes(doc: pymupdf.Document) -> dict[tuple[int, str], str]:
     return result
 
 
+def page_label_map(doc: pymupdf.Document) -> dict[str, int]:
+    """Map each page label defined in the PDF (e.g. printed page "290") to its 1-based PDF page.
+
+    Uses the document's own ``/PageLabels``, so no page offset is assumed. Pages
+    without a label are omitted; if a label occurs twice, the first page wins.
+    """
+    labels: dict[str, int] = {}
+    for page in doc:
+        label = page.get_label()
+        if label and label not in labels:
+            labels[label] = page.number + 1
+    return labels
+
+
 def _font_xref(font_name: str) -> int | None:
     match = _FONT_XREF_RE.search(font_name)
     return int(match.group(1)) if match else None
