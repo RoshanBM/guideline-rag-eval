@@ -648,14 +648,165 @@ Caveats to handle:
 """
 
 
+def inspect_hearts_d(lines: list[str]) -> None:
+    """HEARTS-D (type 2 diabetes): structure, tables, doses and extraction problems."""
+    from src.parse import who_hearts_d as hd  # the measured style constants live in the parser
+    from src.parse.pdf_utils import extract_spans, page_label_map
+    from src.parse.text_utils import TEXT_CORRECTIONS
+
+    src = get_source("hearts_d_pdf")
+    doc = pymupdf.open(src.path)
+    printed = hd.printed_page_numbers(doc)
+    spans_by_page = {p.number + 1: [s for s in extract_spans(p, {}, {}) if s.text.strip()] for p in doc}
+    meta = doc.metadata
+    lines.append("## 5. HEARTS-D (diagnosis and management of type 2 diabetes) – PDF\n")
+    lines.append(
+        f"File: `data/raw/{src.filename}`, {doc.page_count} pages, A4 portrait: **WHO's original**, creator "
+        f"*{meta.get('creator')}*, producer *{meta.get('producer')}*, created {meta.get('creationDate', '')[2:10]}. "
+        f"No outline, {'no' if not page_label_map(doc) else 'has'} page labels. Copyright page (PDF p. 4): "
+        "*WHO/UCN/NCD/20.1 © World Health Organization 2020*, licence CC BY-NC-SA 3.0 IGO, suggested citation "
+        "*Diagnosis and management of type 2 diabetes (HEARTS-D). Geneva]: World Health Organization; 2020 "
+        "(WHO/UCN/NCD/20.1)* (the stray `]` is printed). No ISBN. The Fig. 2 poster is dated *19 February 2018*.\n\n"
+        "An earlier copy of this file was a Firefox re-print (Skia/PDF) whose text layer encoded ligatures as "
+        "Private Use Area code points (meaning depending on the font) and dropped the space after word-final "
+        "ligatures. It was replaced by the original on 2026-10-23. After adapting the parser (colours, doubled "
+        "bullets, spacing at footnote markers), the original gives exactly the same chunks, page numbers and text, "
+        "so the re-print workarounds were removed.\n"
+    )
+
+    # 5.1 structure
+    lines.append("### 5.1 Page range and structure\n")
+    headings: list[tuple[int, str]] = []
+    for n, spans in spans_by_page.items():
+        big = [s for s in spans if s.size >= 29 and s.color == hd.BLUE]
+        if big:
+            headings.append((n, squash(" ".join(s.text for s in sorted(big, key=lambda s: (s.y0, s.x0))))))
+    lines.append(
+        md_table(["PDF page", "printed page", "chapter heading (30 pt, blue #324099)"],
+                 [[n, printed.get(n) or "–", t] for n, t in headings])
+    )
+    numbered = sum(1 for n, v in printed.items() if v == n)
+    lines.append(
+        f"\nPrinted page numbers are in the footer of every page from p. 8 and equal the PDF page number on "
+        f"{numbered} pages (p. 15 prints the number without the running title). PDF pp. 1–7 are cover, "
+        "copyright, contents, acknowledgements and abbreviations. **Substantive content: PDF pp. 8–35** "
+        "(printed 8–35), minus the reference list *6 Resources* (p. 28) and the closing *Resources* list of "
+        "Annex 2 (p. 35, below *Get your feet examined regularly*). Annex 2 (pp. 30–35) contains nine "
+        "photographs (Figs 3–11); only their captions are text.\n"
+    )
+
+    # 5.2 presentation
+    lines.append("### 5.2 How recommendations and key points are presented\n")
+    lines.append(
+        "There are **no numbered or graded recommendations** (no strength, no certainty of evidence). Guidance "
+        "is given as imperative bullet lists (*Refer to hospital all patients with suspected DKA or HHS*, "
+        "*Infuse isotonic saline ...*), prose with modal verbs (*is recommended*, *should be*), side boxes of "
+        "risk factors and contraindications (*Metformin is contraindicated in:*), and three **decision "
+        "flowcharts**: Fig. 1 (p. 16, blood glucose protocol), Fig. 2 (p. 25, the WHO-PEN protocol with "
+        "screening, acute complications and a glycaemic goal table) and Annex 1 (p. 29, insulin protocol). "
+        "Two kinds of side box: grey *Risk factors for ...* boxes beside the body text (pp. 9, 10, 20, 21, 22, "
+        "24, 31) and full-width boxes (*Metformin*, *Glibenclamide*, p. 15).\n"
+    )
+
+    # 5.3 tables and doses
+    lines.append("### 5.3 Tables, and where the doses are\n")
+    captions: list[list[object]] = []
+    for n, spans in spans_by_page.items():
+        for s in spans:
+            if s.color == hd.BOX_GREY and hd.is_bold(s) and s.text.strip().startswith(("Table ", "Fig. ")):
+                captions.append([n, s.text.strip()])
+    lines.append(md_table(["PDF page", "caption (first line)"], captions))
+    dose_re = re.compile(r"\b\d+(?:–\d+)?\s*(?:mg|g|mL|mI|units|litre)\b(?!/)")
+    dose_pages = {n: c for n, spans in spans_by_page.items() if (c := sum(len(dose_re.findall(s.text)) for s in spans))}
+    lines.append(
+        "\nThe eight tables cover classification, symptoms and signs, **diagnostic thresholds (Table 3)**, DKA "
+        "and HHS (Table 5), albuminuria categories (Table 6), service indicators (Table 7) and foot risk "
+        "stratification (Table 8). All are drawn with horizontal ruling lines per column (no vertical lines), "
+        "which give the row and column boundaries; cell text is 9 pt, header text sometimes white on blue. "
+        "Table 1 has one ruled row holding two sub-rows (a and b) with no rule between them. Table 3's notes "
+        "use `*`, `**`, `***`; the `*` note has no marker in the table.\n\n"
+        "**There is no medicine dose table.** Dose amounts (pattern *number + mg/g/mL/units/litre*, not "
+        "followed by `/`) occur on PDF pages "
+        + ", ".join(f"{p} ({c})" for p, c in sorted(dose_pages.items()))
+        + ": metformin and gliclazide titration steps and NPH insulin in the flowcharts (pp. 16, 25, 29), "
+        "hypoglycaemia treatment (oral glucose 15–20 g; 20–50 mL of 50% glucose IV, p. 19 and Fig. 2), "
+        "isotonic saline volumes (p. 20) and acetylsalicylic acid 75–100 mg daily (p. 24). Other matches are "
+        "not doses (e.g. the 10 g monofilament). The dose statements are exported to "
+        "`data/interim/hearts_d_doses.csv`.\n"
+    )
+
+    # 5.4 extraction problems, measured
+    glyph_bullets = text_bullets = deco = breaks = supers = 0
+    for spans in spans_by_page.values():
+        for s in spans:
+            if s.font == "StoneSans" and s.text.strip() == "•":
+                glyph_bullets += 1
+            elif s.text.strip() == "•":
+                text_bullets += 1
+            if s.font in hd.DECORATION_FONTS:
+                deco += 1
+            if re.search(r"[\r\n  ]", s.text):
+                breaks += 1
+            if s.size < 8 and s.text.strip().isdigit():
+                supers += 1
+    fonts = Counter(s.font for spans in spans_by_page.values() for s in spans)
+    lines.append("### 5.4 Extraction problems\n")
+    lines.append(
+        f"The text layer is clean Unicode: no Private Use Area code points; fonts "
+        + ", ".join(f"{f} ({n})" for f, n in fonts.most_common())
+        + " (span counts). Real ligature characters (ﬁ, ﬀ) are expanded by `normalise_text`.\n\n"
+        f"1. **Every bullet is present twice**: a drawn StoneSans glyph ({glyph_bullets} spans) and a \"•\" in the "
+        f"text font ({text_bullets} spans), so naive extraction gives \"••\". Sub-bullets are a StoneSans \"o\" "
+        f"plus a Wingdings3 decoration ({deco} spans), giving \"oo\".\n"
+        f"2. **Line-break characters inside spans**: {breaks} spans (mostly table cells, e.g. \"≥7.0 mmol/L\\n\") "
+        "end in a line-break character, which would split table rows.\n"
+        "3. **Side boxes and narrow text beside images.** Risk-factor boxes sit beside body paragraphs on the "
+        "same lines (e.g. p. 21 *Diabetic kidney disease is a* | *Risk factors for diabetic kidney disease*), "
+        "so naive line extraction interleaves them. They are separable by colour (box text #58595B, body "
+        "#231F20). In Annex 2 body text runs beside photographs and their bold grey captions (pp. 30–32, 34–35).\n"
+        f"4. **Superscripts** ({supers} spans under 8 pt) are separate spans, sometimes wedged into the gap "
+        "between two words (*human insulin*¹ *to oral*), and bullet glyphs are offset vertically, so lines must "
+        "be grouped by vertical centre. A superscript *2* after *m* is an exponent (*1.73 m²*), not a footnote "
+        "marker. The text layer keeps a space before one marker (*unsuitable ², a*).\n"
+        "5. **Flowcharts** (Figs 1, 2, Annex 1) are MyriadPro text inside rounded rectangles; extracted line by "
+        "line, the parallel branches interleave (*REVIEW IN 3 MONTHS ... Urine ketones ≥2+ Urine ketones <2+*). "
+        "The rectangles are vector drawings, so text can be assigned to its box; **the arrows are drawings "
+        "only**, so the decision logic (which box leads where) is not in the text layer at all.\n"
+        "6. **Footers** (*N HEARTS – D Diagnosis and management of Type 2 diabetes*) are removed by position "
+        "(y ≥ 790).\n"
+    )
+
+    # 5.5 typos
+    raw = "\n".join(s.text for spans in spans_by_page.values() for s in spans)
+    lines.append("### 5.5 Typos in the text layer\n")
+    lines.append(
+        "Present in WHO's original text layer (not extraction errors). They are kept verbatim in "
+        "`source_text`; `text_utils.TEXT_CORRECTIONS` corrects them in the retrieval `text` only.\n"
+    )
+    lines.append(md_table(
+        ["printed", "corrected", "occurrences in the text layer"],
+        [[f"`{printed}`", f"`{corrected}`", len(pattern.findall(raw))] for pattern, printed, corrected in TEXT_CORRECTIONS],
+    ))
+    lines.append(
+        "\n`to to` is counted within single spans only (it occurs once, on p. 19). Other oddities are kept "
+        "uncorrected: *halluces* (p. 31), *disbalance* (p. 20), *hypoglycemia* beside *hypoglycaemia* (p. 14).\n"
+    )
+
+    # 5.6 inconsistencies
+    lines.append("### 5.6 Internal inconsistencies (recorded as `source_discrepancy`, values not corrected)\n")
+    for d in hd.DISCREPANCIES:
+        lines.append(f"- **{d.key}**: {d.description}")
+    lines.append("")
+
+
 def main() -> None:
     lines: list[str] = [
         "# Source inspection report",
         "",
         "_Generated by `scripts/inspect_sources.py`. Do not edit by hand; re-run the script instead._",
         "",
-        "Sources inspected: the WHO AWaRe antibiotic book (EPUB and PDF, primary care chapters only) and the "
-        "WHO hypertension guideline (PDF). Page numbers are 1-based PDF page indices unless stated as *printed*.",
+        "Sources inspected: the WHO AWaRe antibiotic book (EPUB and PDF, primary care chapters only), the "
+        "WHO hypertension guideline (PDF) and WHO HEARTS-D (type 2 diabetes, PDF; section 5). Page numbers are 1-based PDF page indices unless stated as *printed*.",
         "",
     ]
     epub_facts = inspect_epub(lines)
@@ -666,6 +817,7 @@ def main() -> None:
     inspect_aware_pdf(lines, epub_facts)
     inspect_hypertension(lines)
     lines.append(RECOMMENDATION)
+    inspect_hearts_d(lines)
     REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
     REPORT_PATH.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
     print(f"Wrote {REPORT_PATH.relative_to(ROOT)} ({len(lines)} lines)")

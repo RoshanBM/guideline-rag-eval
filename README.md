@@ -20,6 +20,7 @@ guidelines do not support an answer. Each of those properties is measured, not a
 | Source inspection ([notes/source_inspection.md](notes/source_inspection.md)) | done |
 | Hypertension guideline parser (`src/parse/who_hypertension.py`) | done |
 | AWaRe parser, primary health care chapters (`src/parse/who_aware.py`) | done; dosing sample manually cross-checked against the PDF (see [Manual verification](#manual-verification)) |
+| HEARTS-D type 2 diabetes parser (`src/parse/who_hearts_d.py`), from WHO's original PDF | done; `flow_text` checked by an independent LLM pass, `hearts_d_doses.csv` rows not yet checked (see [Manual verification](#manual-verification)) |
 | Retrieval, generation, evaluation, app | not started |
 
 ## Manual verification
@@ -31,6 +32,8 @@ output are checked by hand against the PDFs.
 |---|---|---|
 | AWaRe dosing sample: 15 rows of `aware_dosing.csv` drawn with `random.Random(42)`, each compared with the printed table on the PDF page given ([notes/aware_verification_sample.md](notes/aware_verification_sample.md)) | project owner, 2026-10-21 | cross-checked against the PDF; no errors reported |
 | Same 15 rows with the later columns (`dose_basis`, `resolved_*`, `population_raw`, `dose_unit_note`) ([notes/aware_verification_sample_v2.md](notes/aware_verification_sample_v2.md)) | – | not yet checked |
+| HEARTS-D `flow_text` of Fig. 1, Fig. 2 and Annex 1, compared with PDF pages 16, 25 and 29 | independent LLM pass, 2026-10-23 | checked; not a substitute for a human check |
+| HEARTS-D `data/interim/hearts_d_doses.csv` (29 rows) | – | not yet checked |
 
 The tick boxes (`verified: [ ]`) in the sample files have not been filled in; ticking them records
 which rows were checked. The parser never rewrites a sample file: new samples are written only with
@@ -74,6 +77,7 @@ py -3.11 -m venv .venv
 .venv/Scripts/python scripts/inspect_sources.py              # regenerates notes/source_inspection.md
 .venv/Scripts/python -m src.parse.who_hypertension           # writes data/chunks/hypertension.jsonl
 .venv/Scripts/python -m src.parse.who_aware                  # writes data/chunks/aware.jsonl, data/interim/aware_*.csv
+.venv/Scripts/python -m src.parse.who_hearts_d               # writes data/chunks/hearts_d.jsonl, data/interim/hearts_d_doses.csv
 #   add --sample notes/<new file>.md to write a new verification sample (never overwrites an existing file)
 .venv/Scripts/python -m pytest
 ```
@@ -98,19 +102,21 @@ Each line of a `data/chunks/*.jsonl` file is one JSON object with exactly these 
 | `infection` | string or null | *AWaRe.* The chapter's condition, e.g. `Lower urinary tract infection`. |
 | `population` | string or null | *AWaRe.* Normalised population: `adults`, `adults_adolescents`, `children`, `neonates`, `pregnant` or `all` (adults and children), where a table column, in-table heading, row label or caption names one (a label naming pregnancy, e.g. "Syphilis in pregnancy", maps to `pregnant`); otherwise null. |
 | `population_raw` | string or null | *AWaRe.* The verbatim label `population` was derived from, e.g. `Adults`, `Neonates and children`, `adults, adolescents`, `ophthalmia neonatorum`, `Infants`. Null exactly when `population` is null. |
-| `context_header` | string or null | *AWaRe.* Parser-written one-line header for dosing-table and `no_antibiotic` chunks, so they make sense when retrieved alone, e.g. `Lower urinary tract infection - adults - antibiotic treatment (equal options):`. **Not source text.** |
+| `context_header` | string or null | Parser-written one-line header so a chunk makes sense when retrieved alone. *AWaRe:* dosing-table and `no_antibiotic` chunks, e.g. `Lower urinary tract infection - adults - antibiotic treatment (equal options):`. *HEARTS-D:* every chunk, built from its section path, e.g. `HEARTS-D - 5 Monitoring of processes and outcomes:`; flowchart headers also state the box reading order. **Not source text.** |
 | `rec_id` | string or null | Recommendation label (`"Recommendation 1"`) on recommendation chunks; null otherwise. |
 | `rec_part` | int or null | 1-based position of the statement within its recommendation box (a box can hold several statements, each with its own grading); null for non-recommendation chunks. |
 | `parent_rec_id` | string or null | On implementation-remark chunks, the `rec_id` the remarks belong to; null otherwise. |
-| `chunk_type` | string | `recommendation`, `prose`, `table` or `pico` (PICO question tables from the guideline's methods annex). AWaRe adds `no_antibiotic`: passages stating that antibiotics are not needed or not recommended (safety content). |
+| `chunk_type` | string | `recommendation`, `prose`, `table` or `pico` (PICO question tables from the guideline's methods annex). AWaRe adds `no_antibiotic`: passages stating that antibiotics are not needed or not recommended (safety content). HEARTS-D adds `flowchart`: a decision flowchart, one box per line in a documented reading order (arrows are not reproduced). |
 | `index_default` | bool | `false` for `pico` chunks, `true` otherwise; retrieval indexes only `true` chunks unless asked otherwise. |
 | `strength` | string or null | Resolved strength, `strong` or `conditional`. Equals `strength_as_printed` unless `source_discrepancy` records a reviewed resolution; null for non-recommendation chunks, and for any unresolved conflict. |
 | `strength_as_printed` | string or null | Strength exactly as printed in the grading line beneath the statement; null for non-recommendation chunks. |
 | `certainty` | string or null | `high`, `moderate`, `low`, `very low`, or a range such as `moderate to high`, as printed; null for non-recommendation chunks. |
 | `source_discrepancy` | string or null | When the source contradicts itself about this chunk: what each part says, the evidence checked, and how it was resolved. Null everywhere else. |
-| `source_text` | string | Verbatim source content only (see below). Quotes are verified against this plus the chunk's footnotes. |
+| `source_text` | string | Verbatim source content only (see below), typos included. Quotes are verified against this plus the chunk's footnotes. |
+| `flow_text` | string or null | *HEARTS-D flowchart chunks.* **Derived, not source text:** the flowchart rewritten as one explicit `condition → action` line per decision or step, side branches included, following the arrows (which are drawings, so `source_text` cannot show them), e.g. `If urine ketones <2+ → give metformin 1000 mg 2 x daily and gliclazide 80 g 2 x daily [as printed; 80 mg elsewhere in this document, see source_discrepancy]; ...`. Values are copied as printed; a printed value that conflicts with the rest of the document is followed by a bracketed editorial note (shown here), which therefore also appears in `text`. Hand-transcribed in `src/parse/hearts_d_derived.py`; never used to verify quotes. Null elsewhere. |
 | `aware_category_note` | string or null | *AWaRe dosing chunks.* The Access/Watch/Reserve category of each antibiotic in the chunk, e.g. `AWaRe category (derived from the colour coding in the source): Nitrofurantoin – ACCESS`. The book shows the category **only by colour** (green = ACCESS, orange = WATCH, red = RESERVE, per the legend under each table); this note is derived from that colour coding and is **not source text**. |
-| `text` | string | Retrieval text: `context_header` (if any), newline, `source_text`, then `Notes:` followed by the verbatim footnotes the chunk uses (if any), then `aware_category_note` (if any). For the hypertension guideline `text` equals `source_text`. |
+| `text` | string | Retrieval text: `context_header` (if any), newline, `flow_text` (flowcharts) or `source_text`, then `Notes:` followed by the footnotes the chunk uses (if any), then `aware_category_note` (if any). The documented typo corrections are applied here only (see `text_corrections`). For the hypertension guideline `text` equals `source_text`. |
+| `text_corrections` | list | Typo corrections applied to `text`, each `{"printed", "corrected", "count"}`, e.g. `{"printed": "NaCI", "corrected": "NaCl", "count": 1}`; empty when none. |
 | `pdf_page_start`, `pdf_page_end` | int | 1-based page numbers in the source PDF file. |
 | `printed_page_start`, `printed_page_end` | int or null | Page numbers printed on those pages, read from each page itself; null if the page prints none. |
 | `source_url` | string | Canonical source record. |
@@ -139,6 +145,29 @@ each footnote a chunk uses is appended under `Notes:` (the colour legend is repl
 checks only `source_text` and the footnotes, never `context_header` or `aware_category_note`; it uses
 `text_utils.quote_in_text`, which normalises both sides and also folds curly quotes and dash variants.
 
+Typographical errors that are genuinely in a source's text layer (checked against WHO's original PDF) are
+listed, with their correction, in `TEXT_CORRECTIONS` in `src/parse/text_utils.py`: `mI`→`ml`, `NaCI`→`NaCl`,
+`Iimited`→`limited`, `to to`→`to`, `iscaemia`→`ischaemia` (all HEARTS-D). `source_text` keeps the printed
+form; `text` gets the correction and the chunk lists it in `text_corrections`. Quote matching treats the
+printed and the corrected spelling as equivalent, so a quote in either spelling verifies.
+
+HEARTS-D has no dose table; its dose statements (flowcharts and prose) are exported to
+`data/interim/hearts_d_doses.csv`, one row per statement:
+
+- `drug` (normalised lower-case name: `metformin`, `gliclazide`, `insulin`, `nph insulin`, `glucose 50%`,
+  `sodium chloride 0.9%`, ...), `drug_as_printed` (verbatim; empty when the statement names no drug) and
+  `drug_source` (`printed`, or `inferred_from_sequence` when the drug follows from the preceding flowchart
+  box or sentence, e.g. Fig. 2 "increase dose to 1000 mg 1x daily");
+- `dose` (verbatim, typos and the printed "80 g" included) and `dose_corrected` (the typo corrections
+  applied, e.g. `20–50 mI` → `20–50 ml`);
+- `dose_basis`: `per_dose`, `daily_total_reference` (a daily total mentioned to identify patients, e.g. Fig. 1
+  "2000 mg metformin and 160 mg gliclazide"), `titration_step` or `infusion_rate`;
+- `route` (`oral` or `IV`, only when the statement says so), `frequency` (e.g. "2 x daily", "at bedtime") and
+  `timing` (e.g. "over 1–3 minutes", "morning", "in 2 hours"), split from the verbatim `dosing_as_printed`;
+- `figure_or_section`, `step` (position on the branch and the action as printed), `branch`, `condition`
+  (verbatim), `chunk_id`, `pdf_page`, `printed_page`, `source_discrepancy` (keys of the discrepancies that
+  apply).
+
 Where the source contradicts itself, the conflict is resolved by review, never silently: the printed
 value stays in `strength_as_printed`, the resolved value goes in `strength`, and the reasoning and
 evidence go in `source_discrepancy`. Resolutions are listed in `GRADING_RESOLUTIONS` in
@@ -160,10 +189,12 @@ the same licence. They are for non-commercial use only.
 |---|---|---|
 | `aware` (EPUB) | `9789240069374-eng.epub` | The WHO AWaRe (Access, Watch, Reserve) antibiotic book. Geneva: World Health Organization; 2022. Licence: CC BY-NC-SA 3.0 IGO. ISBN 978-92-4-006937-4 (ePub version). |
 | `aware` (PDF) | `9789240062382-eng.pdf` | The WHO AWaRe (Access, Watch, Reserve) antibiotic book. Geneva: World Health Organization; 2022. Licence: CC BY-NC-SA 3.0 IGO. ISBN 978-92-4-006238-2 (electronic version). |
+| `hearts_d` | `WHO-UCN-NCD-20.1-eng.pdf` | Diagnosis and management of type 2 diabetes (HEARTS-D). Geneva: World Health Organization; 2020 (WHO/UCN/NCD/20.1). Licence: CC BY-NC-SA 3.0 IGO. |
 | `hypertension` | `Bookshelf_NBK573631.pdf` | Guideline for the pharmacological treatment of hypertension in adults. Geneva: World Health Organization; 2021. Licence: CC BY-NC-SA 3.0 IGO. ISBN 978-92-4-003398-6 (electronic version). Copy obtained via NCBI Bookshelf (NBK573631). |
 
 Only the *Primary health care* chapters (4. Bronchitis to 23. Lower urinary tract infection) of the
-AWaRe antibiotic book are used.
+AWaRe antibiotic book are used. From HEARTS-D, PDF pp. 8–35 are used, without the reference lists and
+the photographs of Annex 2.
 
 Changes made to the source material: text was extracted, cleaned (ligatures, hyphenation and
 whitespace normalised; running headers, footers and page numbers removed) and split into

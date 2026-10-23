@@ -8,7 +8,8 @@ from pathlib import Path
 import pytest
 
 from src.parse.schema import (
-    FIELD_NAMES, build_record, compose_text, quote_verifies, split_text, validate_record, verifiable_text,
+    FIELD_NAMES, build_record, compose_corrected_text, compose_text, quote_verifies, split_text, validate_record,
+    verifiable_text,
 )
 
 CHUNK_FILES = sorted((Path(__file__).resolve().parents[1] / "data" / "chunks").glob("*.jsonl"))
@@ -79,3 +80,20 @@ def test_validation_catches_problems() -> None:
     assert validate_record(_record(chunk_type="dosing"))
     bad_order = dict(reversed(list(_record().items())))
     assert validate_record(bad_order)
+
+
+def test_flow_text_is_the_body_but_not_verifiable() -> None:
+    source = "IF goal not achieved BEGIN METFORMIN 500 mg daily\nGIVE 20–50 mI"
+    flow = "At the 1-month review, if goal not achieved → begin metformin 500 mg daily\nIf unconscious → give 20–50 mI"
+    header = "HEARTS-D - 2 Management of diabetes: flowchart"
+    text, corrections = compose_corrected_text(flow, header, ["* Derived from WHO-PEN 2013"])
+    rec = _record(collection="cardiometabolic", infection=None, population=None, population_raw=None,
+                  aware_category_note=None, chunk_type="flowchart", context_header=header, source_text=source,
+                  flow_text=flow, text=text, text_corrections=corrections)
+    assert validate_record(rec) == []
+    assert "give 20–50 ml" in rec["text"] and corrections == [{"printed": "mI", "corrected": "ml", "count": 1}]
+    assert verifiable_text(rec) == f"{source}\n* Derived from WHO-PEN 2013"
+    assert quote_verifies("BEGIN METFORMIN 500 mg daily", rec)
+    assert not quote_verifies("if goal not achieved → begin metformin", rec)  # derived flow_text
+    assert validate_record(_record(flow_text="x → y"))  # flow_text only on flowchart chunks
+    assert validate_record(_record(text_corrections=[{"printed": "mI", "corrected": "ml", "count": 1}]))  # not in text

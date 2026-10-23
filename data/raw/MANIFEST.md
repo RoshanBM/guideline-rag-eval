@@ -7,7 +7,7 @@ that anyone can obtain the same files and check them byte for byte:
 sha256sum data/raw/*.pdf data/raw/*.epub
 ```
 
-The three WHO works are © World Health Organization, licensed under
+The four WHO works are © World Health Organization, licensed under
 [CC BY-NC-SA 3.0 IGO](https://creativecommons.org/licenses/by-nc-sa/3.0/igo) (licence statement
 printed on each work's copyright page). The journal article (`hyp-79-293.pdf`) is © 2021 The Authors,
 open access under a Creative Commons Attribution licence; it is used only as a reference to check
@@ -24,6 +24,7 @@ page could be opened to confirm a handle directly.
 | `9789240062382-eng.pdf` | The WHO AWaRe (Access, Watch, Reserve) antibiotic book (2022), PDF, ISBN 978-92-4-006238-2 (electronic version) | `4960ecc4fa5bab8281feda656a0da3176dafa1fd21971d87e3b2092d7dac562f` | 10 323 301 |
 | `9789240069374-eng.epub` | The WHO AWaRe (Access, Watch, Reserve) antibiotic book (2022), ePub, ISBN 978-92-4-006937-4 (ePub version) | `a8fe9be6e6501de39be459fb672ff775f651125955e31c929c06f28d43952faf` | 81 748 862 |
 | `Bookshelf_NBK573631.pdf` | Guideline for the pharmacological treatment of hypertension in adults (2021), ISBN 978-92-4-003398-6 (electronic version) | `1b773f8fb46f4d0e545cee79e21e830633fa131ee36894c4cb18481e830f1ee6` | 3 202 038 |
+| `WHO-UCN-NCD-20.1-eng.pdf` | HEARTS D: diagnosis and management of type 2 diabetes, WHO/UCN/NCD/20.1 (published 22 April 2020; no ISBN) | `71b216b19a227e73e0e624274974571a3530e30a0db37a3d10b6d179eefac008` | 1 248 098 |
 | `hyp-79-293.pdf` | Al-Makki A, et al. Hypertension pharmacological treatment in adults: a World Health Organization guideline executive summary. *Hypertension* 2022;79:293–301. doi:10.1161/HYPERTENSIONAHA.121.18192 | `942ede105d82e2bfc9251022697c0625d8e92d50b07a47aa7e41841be78097c9` | 1 930 584 |
 
 ## `9789240062382-eng.pdf`
@@ -71,3 +72,21 @@ page could be opened to confirm a handle directly.
   so not in the text layer) lists every recommendation with its grading and was used to resolve
   the Recommendation 1 grading discrepancy (see `source_discrepancy` in the chunk files).
 - **Local file timestamp:** 2026-10-19 17:13 +05:30.
+
+## `WHO-UCN-NCD-20.1-eng.pdf`
+
+- **Source URL (canonical record):** https://www.who.int/publications/i/item/WHO-UCN-NCD-20.1 (verified by
+  the project owner). Published 22 April 2020.
+- **Downloaded from:** https://iris.who.int/server/api/core/bitstreams/2a0b4f68-7155-4ad1-b543-945791e31830/content
+  (WHO IRIS bitstream, as given by the project owner).
+- **File:** WHO's original. PDF metadata: creator *Adobe InDesign CS6 (Macintosh)*, producer *Adobe PDF
+  Library 10.0.1*, created 2020-04-21 10:12 +01:00, modified 2020-04-21 13:14 +02:00; 35 pages.
+- **Licence:** CC BY-NC-SA 3.0 IGO (copyright page, PDF p. 4: "WHO/UCN/NCD/20.1 © World Health
+  Organization 2020 Some rights reserved. This work is available under the Creative Commons
+  Attribution-NonCommercial-ShareAlike 3.0 IGO licence (CC BY-NC-SA 3.0 IGO ...)").
+- **Year:** 2020 (copyright page, suggested citation and publication date); chunk `doc_id` `who-hearts-d-2020`.
+- **Local file timestamp:** 2026-10-23 18:44 +05:30.
+- **Replaced file:** until 2026-10-23 this name held a Firefox re-print of the same document (creator
+  *Firefox*, producer *Skia/PDF m149*; SHA-256
+  `67ac38bd24d77d6cb80b40341e0b954891896cc95b69cd309449635fea639633`, 2 244 132 bytes). Parsing the original
+  gives identical chunks and page numbers.

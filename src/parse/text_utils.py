@@ -13,6 +13,11 @@ Two levels of normalisation are provided:
     and collapses all whitespace, including newlines, to single spaces. An
     exact quote copied from a chunk therefore always matches, and a quote
     that differs only in quote style, dash style or line breaks still does.
+    It also applies the documented typo corrections (``TEXT_CORRECTIONS``),
+    so the printed and the corrected spelling of a known typo are equivalent.
+
+``apply_corrections``
+    Applied by parsers to the retrieval ``text`` only (never ``source_text``).
 
 Hyphenation at line ends is resolved while lines are joined
 (:func:`join_lines`), because that decision needs the line structure.
@@ -76,16 +81,62 @@ def normalise_text(text: str) -> str:
     return text.strip()
 
 
+# Typographical errors that are genuinely in a source's text layer (checked against the original
+# PDFs), with the reading they stand for. ``source_text`` always keeps the printed form; parsers
+# apply these corrections only to the retrieval ``text`` and list them in ``text_corrections``.
+# Each pattern matches whole words only and is case-sensitive, so it cannot touch a correct word.
+#   pattern, printed form, corrected form, where it occurs
+TEXT_CORRECTIONS: list[tuple[re.Pattern[str], str, str]] = [
+    # HEARTS-D Fig. 2: capital I printed for lower-case l ("20–50 mI of 50% glucose")
+    (re.compile(r"\bmI\b"), "mI", "ml"),
+    # HEARTS-D Fig. 2: "0.9% NaCI" (capital I for l)
+    (re.compile(r"\bNaCI\b"), "NaCI", "NaCl"),
+    # HEARTS-D Fig. 2 note †: "Iimited life expectancy" (capital I for l)
+    (re.compile(r"\bIimited\b"), "Iimited", "limited"),
+    # HEARTS-D p. 19: "unable to to ingest" (repeated word)
+    (re.compile(r"\bto to\b"), "to to", "to"),
+    # HEARTS-D Table 8: "critical limb iscaemia" (missing h)
+    (re.compile(r"\biscaemia\b"), "iscaemia", "ischaemia"),
+]
+
+
+def apply_corrections(text: str) -> tuple[str, list[dict[str, object]]]:
+    """Apply :data:`TEXT_CORRECTIONS` to ``text``.
+
+    Returns the corrected text and one ``{"printed", "corrected", "count"}`` entry per
+    correction that changed something, in ``TEXT_CORRECTIONS`` order.
+    """
+    applied: list[dict[str, object]] = []
+    for pattern, printed, corrected in TEXT_CORRECTIONS:
+        text, count = pattern.subn(corrected, text)
+        if count:
+            applied.append({"printed": printed, "corrected": corrected, "count": count})
+    return text, applied
+
+
+def merge_corrections(*lists: list[dict[str, object]]) -> list[dict[str, object]]:
+    """Combine correction lists from several parts of one chunk, summing counts per correction."""
+    counts: dict[tuple[str, str], int] = {}
+    for entries in lists:
+        for e in entries:
+            key = (str(e["printed"]), str(e["corrected"]))
+            counts[key] = counts.get(key, 0) + int(e["count"])  # type: ignore[arg-type]
+    order = [(printed, corrected) for _, printed, corrected in TEXT_CORRECTIONS]
+    return [{"printed": p, "corrected": c, "count": counts[(p, c)]} for p, c in order if (p, c) in counts]
+
+
 def normalise_for_match(text: str) -> str:
     """Return the form used to compare quotes against chunks.
 
     Applies :func:`normalise_text`, folds curly quotes and dash variants to
-    ASCII, and collapses all whitespace (including newlines) to single spaces.
-    Case is preserved, because a change of case can change clinical meaning
-    (e.g. drug names, units).
+    ASCII, collapses all whitespace (including newlines) to single spaces and
+    applies :data:`TEXT_CORRECTIONS`, so a quote using either the printed or the
+    corrected spelling matches text in either spelling. Case is preserved,
+    because a change of case can change clinical meaning (e.g. drug names, units).
     """
     text = normalise_text(text).translate(_MATCH_TRANS)
-    return re.sub(r"\s+", " ", text).strip()
+    text = re.sub(r"\s+", " ", text).strip()
+    return apply_corrections(text)[0]
 
 
 def quote_in_text(quote: str, text: str) -> bool:

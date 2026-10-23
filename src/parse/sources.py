@@ -25,7 +25,8 @@ class Source:
     filename: str
     title: str
     year: int
-    isbn: str
+    isbn: str | None  # None for works published with a WHO document number only
+    reference: str | None = None  # WHO document number, e.g. "WHO/UCN/NCD/20.1"
 
     @property
     def path(self) -> Path:
@@ -54,6 +55,14 @@ SOURCES: dict[str, Source] = {
         title="Guideline for the pharmacological treatment of hypertension in adults",
         year=2021,
         isbn="978-92-4-003398-6",
+    ),
+    "hearts_d_pdf": Source(
+        source_id="hearts_d_pdf",
+        filename="WHO-UCN-NCD-20.1-eng.pdf",
+        title="HEARTS D: diagnosis and management of type 2 diabetes",
+        year=2020,  # "© World Health Organization 2020" on the copyright page (PDF p. 4)
+        isbn=None,
+        reference="WHO/UCN/NCD/20.1",
     ),
 }
 

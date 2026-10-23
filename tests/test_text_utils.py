@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from src.parse.text_utils import build_vocabulary, join_lines, normalise_for_match, normalise_text, quote_in_text
+from src.parse.text_utils import (
+    apply_corrections, build_vocabulary, join_lines, normalise_for_match, normalise_text, quote_in_text,
+)
 
 
 def test_normalise_text_is_idempotent_and_tidies_whitespace() -> None:
@@ -36,3 +38,23 @@ def test_quote_matching_folds_typography_but_not_case() -> None:
     assert quote_in_text("a target of\n<140/90 mmHg", chunk)
     assert not quote_in_text("who recommends", chunk)
     assert normalise_for_match("a\n b") == "a b"
+
+
+def test_corrections_map_applies_whole_words_only() -> None:
+    text, applied = apply_corrections("give 20–50 mI of 0.9% NaCI; Iimited; unable to to ingest; limb iscaemia")
+    assert text == "give 20–50 ml of 0.9% NaCl; limited; unable to ingest; limb ischaemia"
+    assert [(e["printed"], e["corrected"], e["count"]) for e in applied] == [
+        ("mI", "ml", 1), ("NaCI", "NaCl", 1), ("Iimited", "limited", 1), ("to to", "to", 1), ("iscaemia", "ischaemia", 1),
+    ]
+    # Correct words and other words containing the patterns are untouched.
+    assert apply_corrections("mIU/L, NaCl, limited, ischaemia, go to town") == (
+        "mIU/L, NaCl, limited, ischaemia, go to town", [])
+
+
+def test_quote_matching_treats_corrections_as_equivalent() -> None:
+    printed = "give 20–50 mI of 50% glucose; drip 0.9% NaCI; unable to to ingest"
+    corrected = "give 20–50 ml of 50% glucose; drip 0.9% NaCl; unable to ingest"
+    assert quote_in_text("20–50 ml of 50% glucose", printed)  # corrected quote, printed text
+    assert quote_in_text("20–50 mI of 50% glucose", corrected)  # printed quote, corrected text
+    assert quote_in_text("unable to ingest", printed) and quote_in_text("unable to to ingest", corrected)
+    assert not quote_in_text("20–50 mg of 50% glucose", printed)
