@@ -21,7 +21,8 @@ guidelines do not support an answer. Each of those properties is measured, not a
 | Hypertension guideline parser (`src/parse/who_hypertension.py`) | done |
 | AWaRe parser, primary health care chapters (`src/parse/who_aware.py`) | done; dosing sample manually cross-checked against the PDF (see [Manual verification](#manual-verification)) |
 | HEARTS-D type 2 diabetes parser (`src/parse/who_hearts_d.py`), from WHO's original PDF | done; `flow_text` checked by an independent LLM pass, `hearts_d_doses.csv` rows not yet checked (see [Manual verification](#manual-verification)) |
-| Retrieval, generation, evaluation, app | not started |
+| Eval tooling: item schema (`src/evaluate/eval_schema.py`), span finder (`scripts/find_span.py`), validator (`scripts/validate_eval.py`), gold-span relevance (`src/evaluate/relevance.py`) | done; `eval/questions.jsonl` still empty |
+| Retrieval, generation, evaluation metrics, app | not started |
 
 ## Manual verification
 
@@ -79,6 +80,8 @@ py -3.11 -m venv .venv
 .venv/Scripts/python -m src.parse.who_aware                  # writes data/chunks/aware.jsonl, data/interim/aware_*.csv
 .venv/Scripts/python -m src.parse.who_hearts_d               # writes data/chunks/hearts_d.jsonl, data/interim/hearts_d_doses.csv
 #   add --sample notes/<new file>.md to write a new verification sample (never overwrites an existing file)
+.venv/Scripts/python scripts/find_span.py "cefalexin 375 mg"  # find a verbatim span to cite in an eval item
+.venv/Scripts/python scripts/validate_eval.py               # check eval/questions.jsonl; --strict once complete
 .venv/Scripts/python -m pytest
 ```
 
