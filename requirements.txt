@@ -1,4 +1,6 @@
-# Parsing and testing dependencies only (retrieval / LLM dependencies come later).
+# Parsing, retrieval and testing dependencies (LLM dependencies come later).
+# torch: for GPU, install the CUDA build first, e.g.
+#   pip install torch --index-url https://download.pytorch.org/whl/cu126
 # Python 3.11
 pdfplumber>=0.11
 pymupdf>=1.24
@@ -7,3 +9,9 @@ beautifulsoup4>=4.12
 lxml>=5.0
 tqdm>=4.66
 pytest>=8.0
+bm25s==0.3.16
+PyStemmer==3.1.0
+torch==2.14.1
+transformers==5.22.1
+sentence-transformers==6.2.0
+faiss-cpu==1.15.1

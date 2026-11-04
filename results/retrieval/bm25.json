@@ -1,0 +1,5329 @@
+{
+ "retriever": "bm25",
+ "date": "2026-11-04T14:23:35+05:30",
+ "git_commit": "68ba420",
+ "questions": "eval/questions.jsonl",
+ "questions_sha256": "cb32df0f608756e4b416640ea5887c177323f8010fb540c4db95438e8aa88182",
+ "n_items": 62,
+ "n_answerable": 47,
+ "n_unanswerable": 15,
+ "n_indexed_chunks": 401,
+ "depth": 50,
+ "metrics_definition": "v2: recall@k per gold source; hit@k, mrr@10, ndcg@k over relevant chunks",
+ "device": "cpu",
+ "config": {
+  "params": {
+   "method": "lucene",
+   "k1": 1.5,
+   "b": 0.75
+  },
+  "stem": true,
+  "index_dir": "C:/Users/Dell/Documents/Personal Projects/guideline-rag-eval/data/index/bm25"
+ },
+ "index_build_s": 0.2946,
+ "latency_median_ms": 0.284,
+ "latency_p95_ms": 0.426,
+ "summary": {
+  "overall": {
+   "n": 47,
+   "hit@1": 0.3829787234042553,
+   "hit@3": 0.723404255319149,
+   "hit@5": 0.7872340425531915,
+   "hit@10": 0.8723404255319149,
+   "recall@1": 0.3404255319148936,
+   "recall@3": 0.6382978723404256,
+   "recall@5": 0.7340425531914894,
+   "recall@10": 0.8297872340425532,
+   "mrr@10": 0.5633823032759202,
+   "ndcg@1": 0.3829787234042553,
+   "ndcg@3": 0.540776771808515,
+   "ndcg@5": 0.5847592360112542,
+   "ndcg@10": 0.6171941898348549,
+   "ci95": {
+    "hit@1": [
+     0.2553,
+     0.5319
+    ],
+    "recall@5": [
+     0.617,
+     0.8407
+    ],
+    "recall@10": [
+     0.7234,
+     0.9255
+    ],
+    "mrr@10": [
+     0.45,
+     0.6703
+    ],
+    "ndcg@10": [
+     0.5152,
+     0.7135
+    ]
+   }
+  },
+  "by_category": {
+   "combined": {
+    "n": 8,
+    "hit@1": 0.25,
+    "hit@3": 0.75,
+    "hit@5": 0.875,
+    "hit@10": 0.875,
+    "recall@1": 0.1875,
+    "recall@3": 0.4375,
+    "recall@5": 0.625,
+    "recall@10": 0.6875,
+    "mrr@10": 0.5041666666666667,
+    "ndcg@1": 0.25,
+    "ndcg@3": 0.38503490135647656,
+    "ndcg@5": 0.48070164609578636,
+    "ndcg@10": 0.5080025756980568,
+    "ci95": {
+     "hit@1": [
+      0.0,
+      0.5
+     ],
+     "recall@5": [
+      0.375,
+      0.875
+     ],
+     "recall@10": [
+      0.4375,
+      0.9375
+     ],
+     "mrr@10": [
+      0.2792,
+      0.7292
+     ],
+     "ndcg@10": [
+      0.2877,
+      0.7183
+     ]
+    }
+   },
+   "conflicting_source": {
+    "n": 3,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.6666666666666666,
+    "recall@3": 0.8333333333333334,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 0.8442893273045486,
+    "ndcg@5": 0.9323120348287457,
+    "ndcg@10": 0.9323120348287457,
+    "ci95": {
+     "hit@1": [
+      1.0,
+      1.0
+     ],
+     "recall@5": [
+      1.0,
+      1.0
+     ],
+     "recall@10": [
+      1.0,
+      1.0
+     ],
+     "mrr@10": [
+      1.0,
+      1.0
+     ],
+     "ndcg@10": [
+      0.8772,
+      1.0
+     ]
+    }
+   },
+   "dose_lookup": {
+    "n": 12,
+    "hit@1": 0.4166666666666667,
+    "hit@3": 0.75,
+    "hit@5": 0.8333333333333334,
+    "hit@10": 0.9166666666666666,
+    "recall@1": 0.4166666666666667,
+    "recall@3": 0.7083333333333334,
+    "recall@5": 0.8333333333333334,
+    "recall@10": 0.9166666666666666,
+    "mrr@10": 0.5965277777777778,
+    "ndcg@1": 0.4166666666666667,
+    "ndcg@3": 0.6051549589285763,
+    "ndcg@5": 0.6593983697458373,
+    "ndcg@10": 0.6856871094779814,
+    "ci95": {
+     "hit@1": [
+      0.1667,
+      0.6667
+     ],
+     "recall@5": [
+      0.5833,
+      1.0
+     ],
+     "recall@10": [
+      0.75,
+      1.0
+     ],
+     "mrr@10": [
+      0.3742,
+      0.8021
+     ],
+     "ndcg@10": [
+      0.4797,
+      0.8516
+     ]
+    }
+   },
+   "near_miss": {
+    "n": 1,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0,
+    "ci95": {
+     "hit@1": [
+      1.0,
+      1.0
+     ],
+     "recall@5": [
+      1.0,
+      1.0
+     ],
+     "recall@10": [
+      1.0,
+      1.0
+     ],
+     "mrr@10": [
+      1.0,
+      1.0
+     ],
+     "ndcg@10": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "no_antibiotic": {
+    "n": 4,
+    "hit@1": 0.5,
+    "hit@3": 0.5,
+    "hit@5": 0.5,
+    "hit@10": 0.5,
+    "recall@1": 0.375,
+    "recall@3": 0.5,
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.5,
+    "ndcg@3": 0.5,
+    "ndcg@5": 0.5,
+    "ndcg@10": 0.5,
+    "ci95": {
+     "hit@1": [
+      0.0,
+      1.0
+     ],
+     "recall@5": [
+      0.0,
+      1.0
+     ],
+     "recall@10": [
+      0.0,
+      1.0
+     ],
+     "mrr@10": [
+      0.0,
+      1.0
+     ],
+     "ndcg@10": [
+      0.0,
+      1.0
+     ]
+    }
+   },
+   "population_variant": {
+    "n": 6,
+    "hit@1": 0.16666666666666666,
+    "hit@3": 0.5,
+    "hit@5": 0.6666666666666666,
+    "hit@10": 0.8333333333333334,
+    "recall@1": 0.16666666666666666,
+    "recall@3": 0.4166666666666667,
+    "recall@5": 0.5833333333333334,
+    "recall@10": 0.75,
+    "mrr@10": 0.38518518518518524,
+    "ndcg@1": 0.16666666666666666,
+    "ndcg@3": 0.33629709346766656,
+    "ndcg@5": 0.40077256134009015,
+    "ndcg@10": 0.45094422728408706,
+    "ci95": {
+     "hit@1": [
+      0.0,
+      0.5
+     ],
+     "recall@5": [
+      0.25,
+      0.9167
+     ],
+     "recall@10": [
+      0.4167,
+      1.0
+     ],
+     "mrr@10": [
+      0.137,
+      0.6667
+     ],
+     "ndcg@10": [
+      0.2434,
+      0.7103
+     ]
+    }
+   },
+   "single_rec": {
+    "n": 13,
+    "hit@1": 0.3076923076923077,
+    "hit@3": 0.7692307692307693,
+    "hit@5": 0.7692307692307693,
+    "hit@10": 0.9230769230769231,
+    "recall@1": 0.3076923076923077,
+    "recall@3": 0.7692307692307693,
+    "recall@5": 0.7692307692307693,
+    "recall@10": 0.9230769230769231,
+    "mrr@10": 0.5366300366300366,
+    "ndcg@1": 0.3076923076923077,
+    "ndcg@3": 0.5787476164835254,
+    "ndcg@5": 0.5787476164835254,
+    "ndcg@10": 0.6317891949790143,
+    "ci95": {
+     "hit@1": [
+      0.0769,
+      0.5385
+     ],
+     "recall@5": [
+      0.5385,
+      1.0
+     ],
+     "recall@10": [
+      0.7692,
+      1.0
+     ],
+     "mrr@10": [
+      0.3553,
+      0.7161
+     ],
+     "ndcg@10": [
+      0.4668,
+      0.7802
+     ]
+    }
+   }
+  },
+  "by_collection": {
+   "aware": {
+    "n": 16,
+    "hit@1": 0.375,
+    "hit@3": 0.6875,
+    "hit@5": 0.6875,
+    "hit@10": 0.75,
+    "recall@1": 0.34375,
+    "recall@3": 0.65625,
+    "recall@5": 0.65625,
+    "recall@10": 0.71875,
+    "mrr@10": 0.5390625,
+    "ndcg@1": 0.375,
+    "ndcg@3": 0.5608167794728867,
+    "ndcg@5": 0.5608167794728867,
+    "ndcg@10": 0.5805333342719947,
+    "ci95": {
+     "hit@1": [
+      0.125,
+      0.625
+     ],
+     "recall@5": [
+      0.4375,
+      0.875
+     ],
+     "recall@10": [
+      0.5,
+      0.9062
+     ],
+     "mrr@10": [
+      0.3436,
+      0.75
+     ],
+     "ndcg@10": [
+      0.3812,
+      0.7753
+     ]
+    }
+   },
+   "cardiometabolic": {
+    "n": 31,
+    "hit@1": 0.3870967741935484,
+    "hit@3": 0.7419354838709677,
+    "hit@5": 0.8387096774193549,
+    "hit@10": 0.9354838709677419,
+    "recall@1": 0.3387096774193548,
+    "recall@3": 0.6290322580645161,
+    "recall@5": 0.7741935483870968,
+    "recall@10": 0.8870967741935484,
+    "mrr@10": 0.5759344598054276,
+    "ndcg@1": 0.3870967741935484,
+    "ndcg@3": 0.5304335420462586,
+    "ndcg@5": 0.5971166329342824,
+    "ndcg@10": 0.6361159217382665,
+    "ci95": {
+     "hit@1": [
+      0.2258,
+      0.5484
+     ],
+     "recall@5": [
+      0.629,
+      0.9032
+     ],
+     "recall@10": [
+      0.7742,
+      0.9677
+     ],
+     "mrr@10": [
+      0.4591,
+      0.7069
+     ],
+     "ndcg@10": [
+      0.5297,
+      0.7467
+     ]
+    }
+   }
+  },
+  "bootstrap": {
+   "n_resamples": 1000,
+   "seed": 42,
+   "method": "percentile, items resampled"
+  }
+ },
+ "items": [
+  {
+   "qid": "htn-001",
+   "question": "A 55-year-old with confirmed hypertension keeps measuring around 146/88 mmHg. Does WHO advise starting blood pressure medication?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.241,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 7,
+     "chunk_ids": [
+      "who-htn-2021-rec-01a"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6309297535714575,
+    "ndcg@5": 0.6309297535714575,
+    "ndcg@10": 0.6309297535714575
+   },
+   "top_score": 10.2683,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 10.2683
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 8.9176
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 8.5257
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 8.2675
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 7.6833
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 6.8696
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 6.8119
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 6.645
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-implementation-remarks",
+     "score": 6.4935
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-implementation-remarks",
+     "score": 6.066
+    }
+   ]
+  },
+  {
+   "qid": "htn-002",
+   "question": "My patient had a heart attack last year and their systolic pressure usually sits at about 134. Should they be on antihypertensives under the WHO guideline?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.328,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 7,
+     "chunk_ids": [
+      "who-htn-2021-rec-01b"
+     ],
+     "best_rank": 3
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "rank": 3,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.5,
+    "ndcg@5": 0.5,
+    "ndcg@10": 0.5
+   },
+   "top_score": 9.3207,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 9.3207
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-p2",
+     "score": 5.9647
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 5.917
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 5.9146
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 5.7118
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.8889
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "score": 4.7939
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 4.7767
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 4.6547
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-implementation-remarks",
+     "score": 4.4511
+    }
+   ]
+  },
+  {
+   "qid": "htn-003",
+   "question": "How strong is the WHO recommendation to treat people with diabetes but no cardiovascular disease whose systolic pressure is 130 to 139 mmHg?",
+   "category": "conflicting_source",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.297,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 7,
+     "chunk_ids": [
+      "who-htn-2021-rec-01c"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 17.0784,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 17.0784
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 16.0472
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 13.6986
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 10.4257
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 9.5894
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 9.5042
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-implementation-remarks",
+     "score": 7.6335
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 7.3658
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 7.3151
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 7.1301
+    }
+   ]
+  },
+  {
+   "qid": "htn-004",
+   "question": "Which kinds of blood pressure tablets can be used as the first treatment?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.338,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 11,
+     "chunk_ids": [
+      "who-htn-2021-rec-04"
+     ],
+     "best_rank": 40
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-04",
+     "rank": 40,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 0.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.0
+   },
+   "top_score": 4.7794,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 4.7794
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.2002
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 4.0159
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 3.9994
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 3.7916
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 3.7785
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 3.7532
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 3.6974
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 3.6792
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 3.4966
+    }
+   ]
+  },
+  {
+   "qid": "htn-005",
+   "question": "Is it better to start hypertension treatment with one drug or with two drugs together?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.288,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 13,
+     "chunk_ids": [
+      "who-htn-2021-rec-05"
+     ],
+     "best_rank": 7
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-05",
+     "rank": 7,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.14285714285714285,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.3333333333333333
+   },
+   "top_score": 7.2317,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "score": 7.2317
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 6.7261
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "score": 6.7012
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-04",
+     "score": 5.8292
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "score": 5.1741
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-evidence-to-decision-considerations",
+     "score": 4.9916
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-05",
+     "score": 4.8251
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-02",
+     "score": 4.4003
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-p2",
+     "score": 4.23
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 3.8963
+    }
+   ]
+  },
+  {
+   "qid": "htn-006",
+   "question": "What blood pressure should I aim for in someone with hypertension and no other health conditions?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.3,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 16,
+     "chunk_ids": [
+      "who-htn-2021-rec-06a"
+     ],
+     "best_rank": 6
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "rank": 6,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.16666666666666666,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.3562071871080222
+   },
+   "top_score": 6.3214,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 6.3214
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 6.2018
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "score": 6.0883
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 5.9999
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 5.2162
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 5.1179
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 5.0786
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 5.0619
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-implementation-remarks",
+     "score": 4.4389
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.2951
+    }
+   ]
+  },
+  {
+   "qid": "htn-007",
+   "question": "Once a patient's blood pressure is under control, how often should they be followed up?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.238,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-htn-2021-rec-07b"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6309297535714575,
+    "ndcg@5": 0.6309297535714575,
+    "ndcg@10": 0.6309297535714575
+   },
+   "top_score": 5.7901,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 5.7901
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "score": 5.7343
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 4.9622
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-7",
+     "score": 4.7151
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.5753
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": 4.1621
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 4.0924
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 4.0842
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 3.9749
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 3.9475
+    }
+   ]
+  },
+  {
+   "qid": "htn-008",
+   "question": "Can a nurse or pharmacist start someone on blood pressure medication?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.257,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 19,
+     "chunk_ids": [
+      "who-htn-2021-rec-08"
+     ],
+     "best_rank": 3
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-08",
+     "rank": 3,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.5,
+    "ndcg@5": 0.5,
+    "ndcg@10": 0.5
+   },
+   "top_score": 6.0422,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 6.0422
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-evidence-and-rationale",
+     "score": 5.7385
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-08",
+     "score": 5.231
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-evidence-to-decision-considerations-p1",
+     "score": 4.9335
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 4.7252
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.4692
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-evidence-to-decision-considerations-p2",
+     "score": 4.3735
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-implementation-remarks",
+     "score": 4.3594
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": 4.0057
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-and-rationale",
+     "score": 3.9616
+    }
+   ]
+  },
+  {
+   "qid": "htn-009",
+   "question": "Can an ACE inhibitor be used for high blood pressure during pregnancy?",
+   "category": "population_variant",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.305,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 23,
+     "chunk_ids": [
+      "who-htn-2021-s4-3-p3"
+     ],
+     "best_rank": 5
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-s4-3-p3",
+     "rank": 5,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.2,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.38685280723454163,
+    "ndcg@10": 0.38685280723454163
+   },
+   "top_score": 6.5732,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 6.5732
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 5.9954
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 5.4418
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 5.3358
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-3-p3",
+     "score": 5.28
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 4.5021
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 4.44
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 4.3848
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 4.2999
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 4.1603
+    }
+   ]
+  },
+  {
+   "qid": "hd-001",
+   "question": "What fasting blood sugar level means someone has diabetes, and how long should they have fasted?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.327,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 13,
+     "chunk_ids": [
+      "who-hearts-d-2020-table-3"
+     ],
+     "best_rank": 1
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 13,
+     "chunk_ids": [
+      "who-hearts-d-2020-table-3"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 7.6133,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "score": 7.6133
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 5.85
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "score": 5.2127
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-implementation-remarks",
+     "score": 4.9938
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": 4.4844
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "score": 4.4776
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 4.1089
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 4.0343
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 3.8026
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 3.5285
+    }
+   ]
+  },
+  {
+   "qid": "hd-002",
+   "question": "Diet and exercise haven't brought someone's type 2 diabetes under control. What tablet should they start first?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.373,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 14,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6309297535714575,
+    "ndcg@5": 0.6309297535714575,
+    "ndcg@10": 0.6309297535714575
+   },
+   "top_score": 6.6069,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 6.6069
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 5.8581
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 5.0374
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 4.9148
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 4.8896
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part2",
+     "score": 4.4196
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.4125
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-to-dental-procedures",
+     "score": 4.286
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 4.2041
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 4.1105
+    }
+   ]
+  },
+  {
+   "qid": "hd-003",
+   "question": "A person with type 2 diabetes has an eGFR of 25. Can they take metformin?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.228,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 15,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1"
+     ],
+     "best_rank": 1
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 14,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 6.6265,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 6.6265
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": 5.8957
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 5.7155
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 5.3367
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": 5.2049
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 5.0138
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 3.9503
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 3.9056
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 3.7686
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "score": 3.5889
+    }
+   ]
+  },
+  {
+   "qid": "hd-004",
+   "question": "Is glibenclamide a good choice for a 68-year-old with type 2 diabetes?",
+   "category": "population_variant",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.339,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 15,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2"
+     ],
+     "best_rank": 1
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 15,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 8.2581,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 8.2581
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 3.9503
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "score": 3.8166
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 3.7686
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "score": 3.7245
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 3.689
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-adults-first-choice",
+     "score": 3.6379
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "score": 3.5889
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 3.559
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": 3.5113
+    }
+   ]
+  },
+  {
+   "qid": "hd-005",
+   "question": "At what blood pressure should someone with diabetes start treatment for high blood pressure?",
+   "category": "combined",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.295,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2"
+     ],
+     "best_rank": 4
+    },
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 7,
+     "chunk_ids": [
+      "who-htn-2021-rec-01c"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "rank": 4,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.5,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.38685280723454163,
+    "ndcg@5": 0.6509209298071326,
+    "ndcg@10": 0.6509209298071326
+   },
+   "top_score": 9.2633,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 9.2633
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 9.2037
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 9.1186
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 8.863
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 8.5179
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 8.5002
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 8.2732
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 8.0915
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 7.5634
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 7.2791
+    }
+   ]
+  },
+  {
+   "qid": "hd-006",
+   "question": "What systolic blood pressure target applies to a person with hypertension who also has diabetes?",
+   "category": "combined",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.271,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 16,
+     "chunk_ids": [
+      "who-htn-2021-rec-06c"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 10.2584,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 10.2584
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 9.3352
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 8.0193
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 7.4339
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 7.4044
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 7.0962
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 6.6688
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 6.5534
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 6.3818
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 6.2962
+    }
+   ]
+  },
+  {
+   "qid": "hd-007",
+   "question": "A newly diagnosed adult has a random glucose of 20 mmol/L and urine ketones below 2+. What treatment should be started?",
+   "category": "conflicting_source",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.303,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 16,
+     "chunk_ids": [
+      "who-hearts-d-2020-fig-1"
+     ],
+     "best_rank": 1
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 25,
+     "chunk_ids": [
+      "who-hearts-d-2020-fig-2-part2"
+     ],
+     "best_rank": 4
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "rank": 1,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part2",
+     "rank": 4,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.5,
+    "recall@3": 0.5,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 0.6131471927654584,
+    "ndcg@5": 0.8772153153380493,
+    "ndcg@10": 0.8772153153380493
+   },
+   "top_score": 12.9896,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": 12.9896
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": 11.5145
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 10.949
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part2",
+     "score": 10.8675
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-5",
+     "score": 10.1157
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 9.2633
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "score": 9.0004
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "score": 8.9946
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 8.1936
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 7.4811
+    }
+   ]
+  },
+  {
+   "qid": "hd-008",
+   "question": "How should insulin be started in type 2 diabetes when tablets aren't enough?",
+   "category": "dose_lookup",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.271,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 29,
+     "chunk_ids": [
+      "who-hearts-d-2020-annex1-flowchart"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 7.0496,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 7.0496
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 6.8143
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 6.2456
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 5.5239
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 5.4797
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 5.2242
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p1",
+     "score": 4.0441
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-management-of-hyperglycaemic-emergencies",
+     "score": 3.9421
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": 3.7214
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "score": 3.5889
+    }
+   ]
+  },
+  {
+   "qid": "hd-009",
+   "question": "Someone with diabetes is shaky and their sugar is low, but they are awake and can swallow. How much glucose should they have?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.22,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 19,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 7.6029,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": 7.6029
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "score": 4.5568
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 3.836
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 3.7985
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 3.778
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "score": 3.7547
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "score": 3.5079
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 3.3824
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": 3.2835
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-treatment-dental",
+     "score": 3.2269
+    }
+   ]
+  },
+  {
+   "qid": "hd-010",
+   "question": "Should everyone with type 2 diabetes take daily aspirin to prevent heart disease?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.232,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 24,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch3-antiplatelet-treatment"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-antiplatelet-treatment",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6309297535714575,
+    "ndcg@5": 0.6309297535714575,
+    "ndcg@10": 0.6309297535714575
+   },
+   "top_score": 5.9524,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-counselling-patients-on-foot-care",
+     "score": 5.9524
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-antiplatelet-treatment",
+     "score": 5.7646
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "score": 5.4341
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 5.3955
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 5.127
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 5.0016
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 4.8893
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-6",
+     "score": 4.8406
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": 4.6045
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "score": 4.4007
+    }
+   ]
+  },
+  {
+   "qid": "hd-011",
+   "question": "Which people with type 2 diabetes should be offered a statin?",
+   "category": "single_rec",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.194,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 6.3015,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 6.3015
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 5.8254
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 5.1506
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "score": 4.586
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 4.0371
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 3.7686
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": 3.5113
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "score": 3.3296
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "score": 3.2881
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "score": 3.1069
+    }
+   ]
+  },
+  {
+   "qid": "aw-001",
+   "question": "An adult has had a cough with green phlegm for a week and no signs of pneumonia. Are antibiotics indicated?",
+   "category": "no_antibiotic",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.371,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 35,
+     "chunk_ids": [
+      "who-aware-2022-ch04-noabx-antibiotic-treatment"
+     ],
+     "best_rank": null
+    },
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 29,
+     "chunk_ids": [
+      "who-aware-2022-ch04-noabx-key-messages"
+     ],
+     "best_rank": 14
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch04-noabx-antibiotic-treatment",
+     "rank": null,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-noabx-key-messages",
+     "rank": 14,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 0.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.0
+   },
+   "top_score": 9.5923,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch04-most-likely-pathogens-to-clinical-presentation",
+     "score": 9.5923
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-imaging-to-scores-to-determine-disease",
+     "score": 5.609
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-key-messages-to-epidemiology",
+     "score": 5.5155
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-community-acquired-pneumonia-caused-by-antibiotic-to-clinical-presentation",
+     "score": 5.4208
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-clinical-presentation",
+     "score": 4.9568
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-key-messages",
+     "score": 4.8942
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-noabx-symptomatic-care",
+     "score": 4.8203
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-noabx-no-antibiotic-care",
+     "score": 4.6956
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-ruling-out-tuberculosis-to-antibiotic-treatment",
+     "score": 4.4494
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-epidemiology-to-clinical-presentation",
+     "score": 4.0622
+    }
+   ]
+  },
+  {
+   "qid": "aw-002",
+   "question": "Does a 4-year-old with a mild ear infection need antibiotics?",
+   "category": "no_antibiotic",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.35,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 42,
+     "chunk_ids": [
+      "who-aware-2022-ch05-noabx-no-antibiotic-care"
+     ],
+     "best_rank": 22
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch05-noabx-no-antibiotic-care",
+     "rank": 22,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 0.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.0
+   },
+   "top_score": 4.6038,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch05-key-messages-to-pathophysiology",
+     "score": 4.6038
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-laboratory-tests-patient-microbiology-tests-to-no-antibiotic-care",
+     "score": 4.5689
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-most-likely-pathogens-to-clinical-presentation",
+     "score": 3.928
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-noabx-key-messages",
+     "score": 3.5781
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 3.5524
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-antibiotic-treatment-to-prevention",
+     "score": 3.4336
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-clinical-presentation-to-abscess",
+     "score": 3.3423
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-epidemiology",
+     "score": 3.2704
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-noabx-key-messages",
+     "score": 2.7905
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-intro-to-definition",
+     "score": 2.7872
+    }
+   ]
+  },
+  {
+   "qid": "aw-003",
+   "question": "Should antibiotics be given to settle toothache before a dental procedure?",
+   "category": "no_antibiotic",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.207,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 72,
+     "chunk_ids": [
+      "who-aware-2022-ch08-noabx-key-messages"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-key-messages",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 8.5587,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-key-messages",
+     "score": 8.5587
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-treatment-no-antibiotic-care-to-antibiotic-treatment",
+     "score": 7.0574
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-to-dental-procedures",
+     "score": 5.0166
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-adults",
+     "score": 4.5745
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-children",
+     "score": 4.4496
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-3",
+     "score": 4.2819
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-note-to-key-messages",
+     "score": 4.1422
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-antibiotic-treatment",
+     "score": 3.9409
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-to-gingivitis",
+     "score": 3.2671
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-2",
+     "score": 2.7582
+    }
+   ]
+  },
+  {
+   "qid": "aw-004",
+   "question": "What are the antibiotic options for an adult with an uncomplicated lower urinary tract infection, and for how long?",
+   "category": "dose_lookup",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.243,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 290,
+     "chunk_ids": [
+      "who-aware-2022-ch23-dosing-adults"
+     ],
+     "best_rank": 2
+    },
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 290,
+     "chunk_ids": [
+      "who-aware-2022-ch23-dosing-adults"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6309297535714575,
+    "ndcg@5": 0.6309297535714575,
+    "ndcg@10": 0.6309297535714575
+   },
+   "top_score": 8.3692,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch23-note-to-definition",
+     "score": 8.3692
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "score": 6.4984
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-pathophysiology-to-epidemiology",
+     "score": 5.903
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-noabx-key-messages",
+     "score": 5.8576
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-noabx-no-antibiotic-care",
+     "score": 5.7745
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-table-23-3",
+     "score": 5.3732
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-table-23-4",
+     "score": 5.2162
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "score": 5.0671
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-laboratory-tests-patient-microbiology-tests-to-imaging",
+     "score": 4.8926
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-noabx-laboratory-tests-patient-microbiology-tests-to-other-tests",
+     "score": 4.5445
+    }
+   ]
+  },
+  {
+   "qid": "aw-005",
+   "question": "What dose of amoxicillin should a 12 kg child with pneumonia treated at home get, and for how many days?",
+   "category": "dose_lookup",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.308,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 161,
+     "chunk_ids": [
+      "who-aware-2022-ch12-dosing-t12-5-children"
+     ],
+     "best_rank": 1
+    },
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 161,
+     "chunk_ids": [
+      "who-aware-2022-ch12-dosing-t12-5-children"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 11.6984,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "score": 11.6984
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "score": 7.8249
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "score": 7.6981
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "score": 7.58
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "score": 7.3935
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "score": 7.3061
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "score": 7.2714
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-children",
+     "score": 7.2407
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "score": 7.1785
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-children",
+     "score": 7.0415
+    }
+   ]
+  },
+  {
+   "qid": "aw-006",
+   "question": "A pregnant woman with early syphilis is allergic to penicillin. What are the alternatives, and do they protect the baby?",
+   "category": "population_variant",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.314,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 269,
+     "chunk_ids": [
+      "who-aware-2022-ch21-dosing-syphilis-in-pregnancy-pregnant-allergy"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-syphilis-in-pregnancy-pregnant-allergy",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6309297535714575,
+    "ndcg@5": 0.6309297535714575,
+    "ndcg@10": 0.6309297535714575
+   },
+   "top_score": 8.4749,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "score": 8.4749
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-syphilis-in-pregnancy-pregnant-allergy",
+     "score": 8.1362
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-neurosyphilis-unspecified-other",
+     "score": 5.9703
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-late-syphilis-or-unknown-stage-adults-adolescents-first-choice",
+     "score": 5.1398
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-syphilis-in-pregnancy-pregnant-other",
+     "score": 5.0314
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-imaging-to-antibiotic-treatment",
+     "score": 5.0049
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-clinical-presentation-p2",
+     "score": 4.9823
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-second-choice",
+     "score": 4.2801
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-definition",
+     "score": 4.1851
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-pathogen-to-pathophysiology",
+     "score": 3.8791
+    }
+   ]
+  },
+  {
+   "qid": "aw-007",
+   "question": "An adult with a severe dental infection is allergic to penicillin. What does the AWaRe book recommend instead?",
+   "category": "near_miss",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.344,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 93,
+     "chunk_ids": [
+      "who-aware-2022-ch08-treatment-antibiotic-treatment"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-antibiotic-treatment",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 6.8156,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-antibiotic-treatment",
+     "score": 6.8156
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-adults",
+     "score": 4.6794
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-neurosyphilis-unspecified-other",
+     "score": 3.875
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-children",
+     "score": 3.874
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-adults",
+     "score": 3.7873
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-laboratory-tests-other-tests-to-no-antibiotic-care",
+     "score": 3.5004
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "score": 3.4412
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-ruling-out-tuberculosis-to-antibiotic-treatment",
+     "score": 3.3521
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-periorbital-or-preseptal-cellulitis-laboratory-tests-to-antibiotic-treatment",
+     "score": 3.2722
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-adults",
+     "score": 3.1297
+    }
+   ]
+  },
+  {
+   "qid": "aw-008",
+   "question": "How long should amoxicillin be given to an adult with strep throat?",
+   "category": "dose_lookup",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.252,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 58,
+     "chunk_ids": [
+      "who-aware-2022-ch06-dosing-adults-first-choice"
+     ],
+     "best_rank": 22
+    },
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 59,
+     "chunk_ids": [
+      "who-aware-2022-ch06-dosing-adults-first-choice",
+      "who-aware-2022-ch06-dosing-children-first-choice"
+     ],
+     "best_rank": 22
+    },
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 59,
+     "chunk_ids": [
+      "who-aware-2022-ch06-dosing-adults-first-choice",
+      "who-aware-2022-ch06-dosing-children-first-choice"
+     ],
+     "best_rank": 22
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-adults-first-choice",
+     "rank": 22,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-first-choice",
+     "rank": 41,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 0.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.0
+   },
+   "top_score": 3.7731,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-adults",
+     "score": 3.7731
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "score": 3.6481
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "score": 3.6054
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "score": 3.6054
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-adults",
+     "score": 3.5076
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "score": 3.505
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-adults",
+     "score": 3.4751
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "score": 3.4697
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-adults-first-choice",
+     "score": 3.4661
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "score": 3.4511
+    }
+   ]
+  },
+  {
+   "qid": "nm-001",
+   "question": "What antibiotics should be used for hospital-acquired pneumonia?",
+   "category": "near_miss",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.445,
+   "top_score": 4.1627,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "score": 4.1627
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "score": 4.1627
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "score": 4.0512
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-imaging-to-scores-to-determine-disease",
+     "score": 4.0159
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-key-messages-to-definition",
+     "score": 3.9679
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-imaging-to-prevention",
+     "score": 3.6367
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-1",
+     "score": 3.4992
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-imaging-to-note",
+     "score": 3.4935
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-2",
+     "score": 3.2531
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-noabx-symptomatic-care",
+     "score": 3.2165
+    }
+   ]
+  },
+  {
+   "qid": "nm-002",
+   "question": "How should insulin pump settings be adjusted for someone with type 1 diabetes?",
+   "category": "near_miss",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.259,
+   "top_score": 6.5964,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 6.5964
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 5.6078
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 5.3013
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p1",
+     "score": 5.2684
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 5.1948
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 4.927
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "score": 4.1089
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 4.0814
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 3.5556
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": 3.5214
+    }
+   ]
+  },
+  {
+   "qid": "nm-003",
+   "question": "What drug should be given first for a hypertensive emergency?",
+   "category": "near_miss",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.193,
+   "top_score": 4.4845,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-rec-04",
+     "score": 4.4845
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-management-of-hyperglycaemic-emergencies",
+     "score": 3.7239
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 3.6787
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "score": 3.172
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-05",
+     "score": 2.9503
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "score": 2.6727
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-1-p1",
+     "score": 2.5598
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-1-p2",
+     "score": 2.5547
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-first-choice",
+     "score": 2.3245
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 2.2513
+    }
+   ]
+  },
+  {
+   "qid": "ood-001",
+   "question": "What is the best preventive treatment for migraine?",
+   "category": "out_of_domain",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.179,
+   "top_score": 3.6254,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s4-1-p1",
+     "score": 3.6254
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-treatment-no-antibiotic-care-to-antibiotic-treatment",
+     "score": 3.1566
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-prevention-streptococcus-pyogenes-pharyngitis-rheumatic-fever-to-other-causes-of-bacterial",
+     "score": 3.0582
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "score": 2.6531
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-1-p2",
+     "score": 2.5488
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "score": 2.0254
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-to-decision-considerations",
+     "score": 1.9049
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-noabx-preventive-antibiotic-use",
+     "score": 1.6699
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-antibiotic-treatment-to-prevention",
+     "score": 1.6035
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-noabx-preventive-antibiotic-use",
+     "score": 1.5549
+    }
+   ]
+  },
+  {
+   "qid": "ood-002",
+   "question": "How should an acute gout flare be treated?",
+   "category": "out_of_domain",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.188,
+   "top_score": 1.6548,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch04-most-likely-pathogens-to-clinical-presentation",
+     "score": 1.6548
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-note-to-definition",
+     "score": 1.5328
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-epidemiology",
+     "score": 1.4719
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "score": 1.4395
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-imaging-to-antibiotic-treatment",
+     "score": 1.3856
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": 1.3163
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-antibiotic-treatment",
+     "score": 1.2383
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-note-to-key-messages",
+     "score": 1.2364
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-to-decision-considerations-p1",
+     "score": 1.2299
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-note-to-definition",
+     "score": 1.2073
+    }
+   ]
+  },
+  {
+   "qid": "pa-001",
+   "question": "I have some amoxicillin left over from last year. Should I take it for my sore throat?",
+   "category": "personal_advice",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.214,
+   "top_score": 5.658,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-epidemiology",
+     "score": 5.658
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-key-messages-to-pathophysiology",
+     "score": 5.1658
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-epidemiology",
+     "score": 4.5492
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "score": 3.3761
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-antibiotic-treatment",
+     "score": 3.1567
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 3.119
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-key-messages-to-pathophysiology",
+     "score": 3.0359
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 2.992
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-treatment-dental",
+     "score": 2.8648
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-clinical-presentation",
+     "score": 2.7378
+    }
+   ]
+  },
+  {
+   "qid": "pa-002",
+   "question": "My sugar levels have been normal for months. Can I stop taking my metformin?",
+   "category": "personal_advice",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.204,
+   "top_score": 6.7307,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": 6.7307
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 5.7406
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 5.2182
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-pathophysiology",
+     "score": 4.3737
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-prevention",
+     "score": 4.185
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 4.1254
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-note-to-key-messages",
+     "score": 3.7102
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part2",
+     "score": 2.9824
+    },
+    {
+     "chunk_id": "who-aware-2022-ch11-laboratory-tests-patient-microbiology-tests-to-prevention",
+     "score": 2.956
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "score": 2.8292
+    }
+   ]
+  },
+  {
+   "qid": "cmb-001",
+   "question": "Someone with type 2 diabetes had a heart attack two years ago. Besides their diabetes tablets, should they be on aspirin and a statin?",
+   "category": "combined",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.286,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 24,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch3-antiplatelet-treatment"
+     ],
+     "best_rank": 25
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-antiplatelet-treatment",
+     "rank": 25,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.5,
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.38685280723454163,
+    "ndcg@5": 0.38685280723454163,
+    "ndcg@10": 0.38685280723454163
+   },
+   "top_score": 7.7072,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 7.7072
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 7.6637
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "score": 6.3715
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 6.283
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-p2",
+     "score": 6.0479
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 5.9748
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "score": 5.9295
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": 5.8356
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 5.7886
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 5.5174
+    }
+   ]
+  },
+  {
+   "qid": "cmb-002",
+   "question": "My diabetic patient's blood pressure is 150/95. Should I treat it, and which drugs can I start with?",
+   "category": "combined",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.335,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2"
+     ],
+     "best_rank": 5
+    },
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 11,
+     "chunk_ids": [
+      "who-htn-2021-rec-04"
+     ],
+     "best_rank": null
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "rank": 5,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-04",
+     "rank": null,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 0.2,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.23719771276929622,
+    "ndcg@10": 0.23719771276929622
+   },
+   "top_score": 6.2244,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 6.2244
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 5.3518
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 5.1027
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 5.0117
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.9473
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 4.7252
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 4.4915
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 4.4194
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "score": 4.2249
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-to-decision-considerations",
+     "score": 4.1621
+    }
+   ]
+  },
+  {
+   "qid": "cmb-003",
+   "question": "After starting someone on blood pressure tablets, how often should they be seen, and when can visits be spaced out?",
+   "category": "combined",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.411,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-htn-2021-rec-07a"
+     ],
+     "best_rank": null
+    },
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-htn-2021-rec-07b"
+     ],
+     "best_rank": 22
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-07a",
+     "rank": null,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "rank": 22,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 0.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.0
+   },
+   "top_score": 4.8686,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 4.8686
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 4.7252
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.6189
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-clinical-presentation-to-patient-microbiology-tests",
+     "score": 4.3919
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 4.3216
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-treatment-periodontitis",
+     "score": 4.0769
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-table-15-1",
+     "score": 3.791
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 3.6875
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 3.5005
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 3.4781
+    }
+   ]
+  },
+  {
+   "qid": "cmb-004",
+   "question": "A person with type 2 diabetes and kidney disease (eGFR 25) also has high blood pressure. Can they stay on metformin, and what systolic target should they have?",
+   "category": "combined",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.51,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 15,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1"
+     ],
+     "best_rank": 6
+    },
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 16,
+     "chunk_ids": [
+      "who-htn-2021-rec-06c"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "rank": 6,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.5,
+    "recall@3": 0.5,
+    "recall@5": 0.5,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 0.6131471927654584,
+    "ndcg@5": 0.6131471927654584,
+    "ndcg@10": 0.8315546295836225
+   },
+   "top_score": 12.1682,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 12.1682
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 11.2444
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 11.0174
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 10.2298
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": 9.3637
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 9.1961
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 8.4045
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 8.256
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 8.1316
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "score": 7.419
+    }
+   ]
+  },
+  {
+   "qid": "cmb-005",
+   "question": "A patient on insulin keeps waking at night with low sugars. What should be done with the insulin, and how should a low be treated if they can still eat?",
+   "category": "combined",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.494,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 29,
+     "chunk_ids": [
+      "who-hearts-d-2020-annex1-flowchart"
+     ],
+     "best_rank": 4
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 19,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "rank": 4,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.5,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.38685280723454163,
+    "ndcg@5": 0.6509209298071326,
+    "ndcg@10": 0.6509209298071326
+   },
+   "top_score": 7.2034,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 7.2034
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": 6.6796
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p1",
+     "score": 6.3313
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 5.9852
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 5.7497
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 5.4631
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-treatment-dental",
+     "score": 5.2672
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-clinical-presentation-to-patient-microbiology-tests",
+     "score": 4.6357
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 4.5187
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-adults",
+     "score": 4.1433
+    }
+   ]
+  },
+  {
+   "qid": "cmb-006",
+   "question": "How is sugar control checked if an HbA1c test isn't available, and what level counts as good control?",
+   "category": "combined",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.377,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control"
+     ],
+     "best_rank": 3
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 27,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch5"
+     ],
+     "best_rank": 15
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "rank": 3,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "rank": 15,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.5,
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.3065735963827292,
+    "ndcg@5": 0.3065735963827292,
+    "ndcg@10": 0.3065735963827292
+   },
+   "top_score": 6.6188,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch21-table-21-4",
+     "score": 6.6188
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 6.2925
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 6.2734
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "score": 5.4498
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 4.5382
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 4.1834
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p2",
+     "score": 4.0742
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "score": 4.0011
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-evidence-and-rationale",
+     "score": 3.9458
+    },
+    {
+     "chunk_id": "who-aware-2022-ch22-laboratory-tests-to-using-microbiology-surveillance-data",
+     "score": 3.875
+    }
+   ]
+  },
+  {
+   "qid": "dl-001",
+   "question": "What dose of cefalexin should a 12 kg child with impetigo get, and for how long?",
+   "category": "dose_lookup",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.426,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 205,
+     "chunk_ids": [
+      "who-aware-2022-ch16-dosing-children"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 7.2646,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "score": 7.2646
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-second-choice",
+     "score": 7.0129
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "score": 6.7591
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-children",
+     "score": 6.5769
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "score": 6.5716
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "score": 6.5341
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "score": 5.0484
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-children-second-choice",
+     "score": 5.0031
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "score": 4.9944
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "score": 4.8519
+    }
+   ]
+  },
+  {
+   "qid": "dl-002",
+   "question": "What should an adult with mild pneumonia treated at home be given, and for how long?",
+   "category": "dose_lookup",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.321,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 160,
+     "chunk_ids": [
+      "who-aware-2022-ch12-dosing-t12-4-adults-first-choice"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6309297535714575,
+    "ndcg@5": 0.6309297535714575,
+    "ndcg@10": 0.6309297535714575
+   },
+   "top_score": 7.1051,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "score": 7.1051
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "score": 5.1988
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "score": 5.1988
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-3",
+     "score": 3.79
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-community-acquired-pneumonia-caused-by-antibiotic-to-clinical-presentation",
+     "score": 3.6234
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-high-adults",
+     "score": 3.4963
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-most-likely-pathogens",
+     "score": 3.3371
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-key-messages-to-definition",
+     "score": 3.3337
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-most-likely-pathogens-to-clinical-presentation",
+     "score": 3.1325
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-adults",
+     "score": 3.0453
+    }
+   ]
+  },
+  {
+   "qid": "dl-003",
+   "question": "If an adult's ear infection does need antibiotics, what is the first-choice drug and dose?",
+   "category": "dose_lookup",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.339,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 44,
+     "chunk_ids": [
+      "who-aware-2022-ch05-dosing-adults-first-choice"
+     ],
+     "best_rank": 8
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-adults-first-choice",
+     "rank": 8,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.125,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.31546487678572877
+   },
+   "top_score": 5.3017,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-first-choice",
+     "score": 5.3017
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-most-likely-pathogens-to-clinical-presentation",
+     "score": 4.9222
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-late-syphilis-or-unknown-stage-adults-adolescents-first-choice",
+     "score": 4.7206
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "score": 4.6746
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-key-messages-to-pathophysiology",
+     "score": 4.4264
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-first-choice",
+     "score": 4.3767
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "score": 4.3028
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-adults-first-choice",
+     "score": 4.2446
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-children-first-choice",
+     "score": 4.2379
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-dual-unspecified-first-choice",
+     "score": 4.0565
+    }
+   ]
+  },
+  {
+   "qid": "dl-004",
+   "question": "What antibiotics treat uncomplicated genital gonorrhoea when no local resistance data are available?",
+   "category": "dose_lookup",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.268,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 251,
+     "chunk_ids": [
+      "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-dual-unspecified-first-choice",
+      "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-dual-unspecified-second-choice"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-dual-unspecified-first-choice",
+     "rank": 2,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-dual-unspecified-second-choice",
+     "rank": 3,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6934264036172708,
+    "ndcg@5": 0.6934264036172708,
+    "ndcg@10": 0.6934264036172708
+   },
+   "top_score": 8.0266,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch20-definition-to-pathophysiology",
+     "score": 8.0266
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-dual-unspecified-first-choice",
+     "score": 7.7531
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-dual-unspecified-second-choice",
+     "score": 7.7531
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-imaging-to-prevention",
+     "score": 7.2386
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-single-unspecified-other",
+     "score": 7.0356
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-oropharyngeal-infections-dual-therapy-unspecified-first-choice",
+     "score": 5.9283
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-oropharyngeal-infections-dual-therapy-unspecified-second-choice",
+     "score": 5.9283
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-laboratory-tests-patient-microbiology-tests-to-no-antibiotic-care",
+     "score": 5.8279
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-oropharyngeal-infections-single-therapy-if-unspecified-other",
+     "score": 5.5035
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-note-to-key-messages",
+     "score": 5.045
+    }
+   ]
+  },
+  {
+   "qid": "dl-005",
+   "question": "An 8 kg baby has a urine infection. What dose of trimethoprim, and for how many days?",
+   "category": "dose_lookup",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.358,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 291,
+     "chunk_ids": [
+      "who-aware-2022-ch23-dosing-children"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 7.5898,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "score": 7.5898
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-children-second-choice",
+     "score": 6.902
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-6-endogenous-children",
+     "score": 5.8175
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-children",
+     "score": 5.7866
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "score": 5.5962
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-table-23-4",
+     "score": 5.4814
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-2",
+     "score": 5.3208
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-table-6-4",
+     "score": 5.2883
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-table-4-2",
+     "score": 5.2835
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-table-7-2",
+     "score": 5.2787
+    }
+   ]
+  },
+  {
+   "qid": "dl-006",
+   "question": "What's the highest metformin dose in the WHO diabetes protocol before another drug is added?",
+   "category": "dose_lookup",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.278,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 16,
+     "chunk_ids": [
+      "who-hearts-d-2020-fig-1"
+     ],
+     "best_rank": 5
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "rank": 5,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.2,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.38685280723454163,
+    "ndcg@10": 0.38685280723454163
+   },
+   "top_score": 7.3201,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 7.3201
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 5.6808
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "score": 5.4823
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 5.4165
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": 5.3953
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "score": 4.6084
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 3.5995
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 3.591
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 3.4101
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "score": 3.3011
+    }
+   ]
+  },
+  {
+   "qid": "dl-007",
+   "question": "Someone with diabetes is unconscious with very low blood sugar. What should be given?",
+   "category": "dose_lookup",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.283,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 19,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2"
+     ],
+     "best_rank": 3
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 25,
+     "chunk_ids": [
+      "who-hearts-d-2020-fig-2-part3"
+     ],
+     "best_rank": 4
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "rank": 3,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "rank": 4,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.5,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.3065735963827292,
+    "ndcg@5": 0.5706417189553201,
+    "ndcg@10": 0.5706417189553201
+   },
+   "top_score": 4.3258,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": 4.3258
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-adults",
+     "score": 4.0954
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "score": 3.8844
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 3.8567
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "score": 2.8607
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 2.8541
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-adults-first-choice",
+     "score": 2.8347
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 2.7801
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 2.6959
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-prevention",
+     "score": 2.6851
+    }
+   ]
+  },
+  {
+   "qid": "dl-008",
+   "question": "In WHO's example single-pill protocol, what is the starting combination and dose for hypertension?",
+   "category": "dose_lookup",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.278,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 28,
+     "chunk_ids": [
+      "who-htn-2021-s6-2"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 10.4892,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "score": 10.4892
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-evidence-to-decision-considerations-p1",
+     "score": 7.785
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "score": 7.7232
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "score": 7.5496
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 6.6635
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-evidence-to-decision-considerations-p2",
+     "score": 6.5761
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p2",
+     "score": 6.5472
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "score": 6.2385
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-05",
+     "score": 6.1703
+    },
+    {
+     "chunk_id": "who-htn-2021-s5-5-p2",
+     "score": 5.692
+    }
+   ]
+  },
+  {
+   "qid": "pv-001",
+   "question": "A child weighing 35 kg has a lower urinary tract infection. What dose of co-trimoxazole?",
+   "category": "population_variant",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.294,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 291,
+     "chunk_ids": [
+      "who-aware-2022-ch23-dosing-children"
+     ],
+     "best_rank": 2
+    },
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 291,
+     "chunk_ids": [
+      "who-aware-2022-ch23-dosing-adults"
+     ],
+     "best_rank": 11
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "rank": 2,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "rank": 11,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.5,
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.38685280723454163,
+    "ndcg@5": 0.38685280723454163,
+    "ndcg@10": 0.38685280723454163
+   },
+   "top_score": 6.9865,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch23-table-23-4",
+     "score": 6.9865
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "score": 6.8021
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-note-to-definition",
+     "score": 6.2978
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-pathophysiology-to-epidemiology",
+     "score": 5.903
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-noabx-key-messages",
+     "score": 5.4207
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-table-23-3",
+     "score": 5.3732
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-noabx-no-antibiotic-care",
+     "score": 5.2095
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-note-to-key-messages",
+     "score": 4.8454
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-note-to-key-messages",
+     "score": 4.8081
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-laboratory-tests-patient-microbiology-tests-to-imaging",
+     "score": 4.5042
+    }
+   ]
+  },
+  {
+   "qid": "pv-002",
+   "question": "How long should a man with a bladder infection take antibiotics compared with a woman who isn't pregnant?",
+   "category": "population_variant",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.405,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 291,
+     "chunk_ids": [
+      "who-aware-2022-ch23-dosing-adults",
+      "who-aware-2022-ch23-dosing-children"
+     ],
+     "best_rank": 14
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "rank": 14,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "rank": null,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 0.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 0.0,
+    "mrr@10": 0.0,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.0
+   },
+   "top_score": 4.3302,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch23-note-to-definition",
+     "score": 4.3302
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-3-p2",
+     "score": 4.182
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-pathophysiology-to-epidemiology",
+     "score": 3.4773
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-infection-in-pregnant-women-pregnant",
+     "score": 3.0779
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-implementation-remarks",
+     "score": 2.9072
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-noabx-no-antibiotic-care",
+     "score": 2.8416
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p2",
+     "score": 2.7807
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-adults-second-choice",
+     "score": 2.651
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-noabx-symptomatic-care",
+     "score": 2.5264
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 2.5255
+    }
+   ]
+  },
+  {
+   "qid": "pv-003",
+   "question": "An elderly patient with diabetes keeps having bad hypos. Should their sugar target be as strict as everyone else's?",
+   "category": "population_variant",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.298,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 17,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control"
+     ],
+     "best_rank": 9
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "rank": 9,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 0.0,
+    "hit@5": 0.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 0.0,
+    "recall@5": 0.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.1111111111111111,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.0,
+    "ndcg@5": 0.0,
+    "ndcg@10": 0.3010299956639812
+   },
+   "top_score": 4.3277,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-counselling-patients-on-foot-care",
+     "score": 4.3277
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-to-decision-considerations-p1",
+     "score": 3.738
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": 3.6103
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 3.5278
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "score": 3.2644
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-treatment-dental",
+     "score": 3.104
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-and-rationale-p2",
+     "score": 3.0911
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-antibiotic-treatment",
+     "score": 2.8647
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 2.8491
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": 2.8395
+    }
+   ]
+  },
+  {
+   "qid": "na-001",
+   "question": "My sinuses are blocked and I'm blowing out green snot. Does that mean I need antibiotics?",
+   "category": "no_antibiotic",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 0.263,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 61,
+     "chunk_ids": [
+      "who-aware-2022-ch07-noabx-key-messages"
+     ],
+     "best_rank": 1
+    },
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 67,
+     "chunk_ids": [
+      "who-aware-2022-ch07-noabx-clinical-presentation"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-key-messages",
+     "rank": 1,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-clinical-presentation",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.5,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 5.9206,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-key-messages",
+     "score": 5.9206
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-clinical-presentation",
+     "score": 4.9859
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-noabx-key-messages",
+     "score": 4.322
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-clinical-presentation-to-patient-microbiology-tests",
+     "score": 3.438
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-laboratory-tests-other-tests-to-no-antibiotic-care",
+     "score": 3.215
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-note-to-key-messages",
+     "score": 3.0348
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-antibiotic-treatment",
+     "score": 3.0265
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-key-messages-to-pathophysiology",
+     "score": 2.9763
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-orbital-cellulitis-laboratory-tests-patient-microbiology-to-antibiotic-treatment",
+     "score": 2.8781
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-epidemiology-to-sinusitis-caused-by-antibiotic",
+     "score": 2.8258
+    }
+   ]
+  },
+  {
+   "qid": "cs-001",
+   "question": "Someone has just been diagnosed with type 2 diabetes with a fasting glucose of 9 mmol/L. How long should diet and exercise be tried before starting metformin?",
+   "category": "conflicting_source",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 0.385,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 16,
+     "chunk_ids": [
+      "who-hearts-d-2020-fig-1"
+     ],
+     "best_rank": 3
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 25,
+     "chunk_ids": [
+      "who-hearts-d-2020-fig-2-part1"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "rank": 3,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.5,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 0.9197207891481876,
+    "ndcg@5": 0.9197207891481876,
+    "ndcg@10": 0.9197207891481876
+   },
+   "top_score": 14.1687,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 14.1687
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "score": 12.5079
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": 12.2087
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 11.2591
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 10.3259
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 9.302
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 8.5837
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 8.4753
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "score": 8.1117
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": 7.6321
+    }
+   ]
+  },
+  {
+   "qid": "nm-004",
+   "question": "How should high blood sugar first found during pregnancy be treated?",
+   "category": "near_miss",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.266,
+   "top_score": 4.5833,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch08-prevention",
+     "score": 4.5833
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-implementation-remarks",
+     "score": 3.5152
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-3-p3",
+     "score": 3.3754
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-3-p1",
+     "score": 3.3206
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-adults-first-choice",
+     "score": 3.294
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-antibiotic-treatment",
+     "score": 3.2576
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": 3.1662
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 3.118
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-syphilis-in-pregnancy-pregnant-allergy",
+     "score": 2.9072
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-adults",
+     "score": 2.8869
+    }
+   ]
+  },
+  {
+   "qid": "nm-005",
+   "question": "What dose of empagliflozin should be added for type 2 diabetes?",
+   "category": "near_miss",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.164,
+   "top_score": 4.754,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 4.754
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "score": 3.9503
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-6-endogenous-children",
+     "score": 3.7921
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 3.7686
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 3.6825
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "score": 3.6646
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "score": 3.5889
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": 3.5113
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 3.3523
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-6-endogenous-adults",
+     "score": 3.2496
+    }
+   ]
+  },
+  {
+   "qid": "nm-006",
+   "question": "How should the cefalexin dose be adjusted for someone with kidney failure?",
+   "category": "near_miss",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.14,
+   "top_score": 4.0025,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": 4.0025
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-implementation-remarks",
+     "score": 3.7124
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-p2",
+     "score": 3.447
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "score": 3.0805
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "score": 2.9051
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-children",
+     "score": 2.8929
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "score": 2.8811
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-retreatment-after-treatment-failure-unspecified-other",
+     "score": 2.8442
+    },
+    {
+     "chunk_id": "who-htn-2021-s5-5-p1",
+     "score": 2.819
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "score": 2.8173
+    }
+   ]
+  },
+  {
+   "qid": "nm-007",
+   "question": "Which antibiotic should a child with severe pneumonia get in hospital?",
+   "category": "near_miss",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.148,
+   "top_score": 5.7348,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch12-imaging-to-scores-to-determine-disease",
+     "score": 5.7348
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-community-acquired-pneumonia-caused-by-antibiotic-to-clinical-presentation",
+     "score": 3.843
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "score": 3.5668
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-imaging-to-prevention",
+     "score": 3.5507
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-key-messages-to-definition",
+     "score": 3.3023
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-epidemiology-to-clinical-presentation",
+     "score": 3.1813
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-note-to-key-messages",
+     "score": 3.0068
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 2.9375
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-noabx-antibiotic-treatment-note-to-antibiotic-treatment",
+     "score": 2.8257
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-epidemiology-to-clinical-presentation",
+     "score": 2.7734
+    }
+   ]
+  },
+  {
+   "qid": "ood-003",
+   "question": "Which inhaler should be used first for adult asthma?",
+   "category": "out_of_domain",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.166,
+   "top_score": 3.1785,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch13-imaging-to-prevention",
+     "score": 3.1785
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-first-choice",
+     "score": 2.5541
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-04",
+     "score": 2.3911
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-key-messages-to-pathophysiology",
+     "score": 2.3245
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "score": 2.2993
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-adults-first-choice",
+     "score": 2.2848
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-adults-first-choice",
+     "score": 2.2117
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "score": 2.2111
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "score": 2.1922
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-9-all",
+     "score": 2.0988
+    }
+   ]
+  },
+  {
+   "qid": "ood-004",
+   "question": "What is the first-line medicine for depression?",
+   "category": "out_of_domain",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.184,
+   "top_score": 3.6667,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-uncomplicated-urogenital-infection-unspecified",
+     "score": 3.6667
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "score": 3.3001
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-04",
+     "score": 3.0938
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "score": 2.6588
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-ruling-out-tuberculosis-to-antibiotic-treatment",
+     "score": 2.2641
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 2.1328
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 1.982
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-late-syphilis-or-unknown-stage-adults-adolescents-first-choice",
+     "score": 1.9672
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "score": 1.8952
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "score": 1.8614
+    }
+   ]
+  },
+  {
+   "qid": "pa-003",
+   "question": "My blood pressure was 145/92 at the pharmacy today. Should I double my amlodipine tonight?",
+   "category": "personal_advice",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.277,
+   "top_score": 5.088,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "score": 5.088
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "score": 4.4214
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 3.6875
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 3.5528
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 3.5005
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 3.4781
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 3.4559
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 3.4124
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 3.4028
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 3.37
+    }
+   ]
+  },
+  {
+   "qid": "pa-004",
+   "question": "My little one has earache and a temperature. Can I give her some of her brother's leftover antibiotic?",
+   "category": "personal_advice",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 0.173,
+   "top_score": 2.7857,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-table-1",
+     "score": 2.7857
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-imaging-to-antibiotic-treatment",
+     "score": 2.4503
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "score": 2.0349
+    },
+    {
+     "chunk_id": "who-aware-2022-ch22-dosing-unspecified",
+     "score": 1.9845
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-table-6-2",
+     "score": 1.9217
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-symptoms",
+     "score": 1.8473
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "score": 1.8335
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-imaging-to-prevention",
+     "score": 1.6533
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "score": 1.6138
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 1.6
+    }
+   ]
+  }
+ ]
+}

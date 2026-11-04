@@ -21,8 +21,11 @@ guidelines do not support an answer. Each of those properties is measured, not a
 | Hypertension guideline parser (`src/parse/who_hypertension.py`) | done |
 | AWaRe parser, primary health care chapters (`src/parse/who_aware.py`) | done; dosing sample manually cross-checked against the PDF (see [Manual verification](#manual-verification)) |
 | HEARTS-D type 2 diabetes parser (`src/parse/who_hearts_d.py`), from WHO's original PDF | done; `flow_text` checked by an independent LLM pass, `hearts_d_doses.csv` rows not yet checked (see [Manual verification](#manual-verification)) |
-| Eval tooling: item schema (`src/evaluate/eval_schema.py`), span finder (`scripts/find_span.py`), validator (`scripts/validate_eval.py`), gold-span relevance (`src/evaluate/relevance.py`) | done; `eval/questions.jsonl` still empty |
-| Retrieval, generation, evaluation metrics, app | not started |
+| Eval tooling: item schema (`src/evaluate/eval_schema.py`), span finder (`scripts/find_span.py`), validator (`scripts/validate_eval.py`), gold-span relevance (`src/evaluate/relevance.py`) | done; `eval/questions.jsonl` has 62 items (47 answerable, 15 unanswerable) |
+| BM25 (`src/retrieve/bm25.py`: `bm25` stemmed baseline, `bm25-nostem` ablation; corpus `src/retrieve/corpus.py`, tokenizer `src/retrieve/tokenize.py`) | done |
+| Dense retrieval (`src/retrieve/dense.py`: `bge-small`, `bge-base`, `pubmedbert`, `medcpt`; FAISS, cosine) | done |
+| Retrieval metrics (`src/evaluate/retrieval_metrics.py`, per-source recall), bootstrap CIs (`src/evaluate/bootstrap.py`), harness (`scripts/run_retrieval_eval.py`, `scripts/compare_retrievers.py`) | done; results in `results/retrieval/` |
+| Hybrid retrieval, reranking, generation, app | not started |
 
 ## Manual verification
 
@@ -82,6 +85,9 @@ py -3.11 -m venv .venv
 #   add --sample notes/<new file>.md to write a new verification sample (never overwrites an existing file)
 .venv/Scripts/python scripts/find_span.py "cefalexin 375 mg"  # find a verbatim span to cite in an eval item
 .venv/Scripts/python scripts/validate_eval.py               # check eval/questions.jsonl; --strict once complete
+.venv/Scripts/python -m src.retrieve.corpus                 # indexed chunk counts per document
+.venv/Scripts/python scripts/run_retrieval_eval.py --retriever all    # or e.g. bm25 bge-small; writes results/retrieval/<name>.json
+.venv/Scripts/python scripts/compare_retrievers.py --save results/retrieval/comparison.txt
 .venv/Scripts/python -m pytest
 ```
 
@@ -205,7 +211,23 @@ chunks. No clinical content has been added or reworded.
 
 ## Results
 
-_TBD_
+### Retrieval (62 items, 47 answerable; commit `68ba420`)
+
+Full report: [results/retrieval/comparison.txt](results/retrieval/comparison.txt) (by collection, by
+category, paired bootstrap, misses); per-item results in `results/retrieval/<retriever>.json`. 95 %
+percentile bootstrap CIs over items (1,000 resamples, seed 42). Recall is per gold source.
+
+| Retriever | hit@1 | recall@5 | recall@10 | MRR@10 | nDCG@10 |
+|---|---|---|---|---|---|
+| bm25 (stemmed) | 0.38 [0.26, 0.53] | 0.73 [0.62, 0.84] | 0.83 [0.72, 0.93] | 0.56 [0.45, 0.67] | 0.62 [0.52, 0.71] |
+| bm25-nostem | 0.34 [0.21, 0.49] | 0.64 [0.51, 0.76] | 0.73 [0.61, 0.85] | 0.48 [0.37, 0.60] | 0.54 [0.43, 0.64] |
+| bge-small | 0.70 [0.57, 0.83] | 0.95 [0.88, 0.99] | 0.98 [0.95, 1.00] | 0.82 [0.73, 0.89] | 0.84 [0.77, 0.90] |
+| bge-base | 0.77 [0.64, 0.89] | 0.89 [0.81, 0.97] | 0.98 [0.95, 1.00] | 0.84 [0.75, 0.92] | 0.85 [0.78, 0.91] |
+| pubmedbert | 0.38 [0.26, 0.53] | 0.71 [0.60, 0.83] | 0.90 [0.82, 0.97] | 0.55 [0.45, 0.66] | 0.63 [0.53, 0.72] |
+| medcpt | 0.53 [0.38, 0.68] | 0.89 [0.81, 0.96] | 0.93 [0.85, 0.98] | 0.71 [0.62, 0.80] | 0.75 [0.67, 0.82] |
+
+The eval set is small, so differences between the dense models are within noise; against bm25,
+bge-small, bge-base and medcpt are better on recall@5 and MRR@10 (paired bootstrap CIs exclude 0).
 
 ## Failure cases
 
