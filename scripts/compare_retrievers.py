@@ -12,9 +12,10 @@ Prints:
 1. one table, rows = retrievers: hit@1, recall@5, recall@10, MRR@10, nDCG@10, each with its
    95 % bootstrap CI (``src/evaluate/bootstrap.py``: 1,000 resamples of items, seed 42), median
    query latency, build/encode time and device; then the same table per collection and per
-   category (CIs over very few items are wide; ``n`` is shown);
-2. paired bootstrap of every other retriever minus the baseline on recall@5 and MRR@10
-   (``*`` marks a CI that excludes 0);
+   category (CIs over very few items are wide; ``n`` is shown), and recall@5 / MRR@10 / hit@1
+   by question wording (lay vs clinical);
+2. paired bootstrap (A minus B on the same items) on hit@1, recall@5 and MRR@10 for the pairs in
+   :data:`PAIRS` whose results exist (``*`` marks a CI that excludes 0);
 3. answerable items that every retriever misses at k = 10 (no relevant chunk in the top 10),
    and items where every retriever finds some but not all gold sources in the top 10;
 4. items where a dense retriever beats the baseline by the largest margin, and the reverse,
@@ -43,7 +44,17 @@ TABLE_METRICS: tuple[tuple[str, str], ...] = (
     ("hit@1", "hit@1"), ("recall@5", "recall@5"), ("recall@10", "recall@10"),
     ("mrr@10", "MRR@10"), ("ndcg@10", "nDCG@10"),
 )
-PAIRED_METRICS: tuple[str, ...] = ("recall@5", "mrr@10")
+PAIRED_METRICS: tuple[str, ...] = ("hit@1", "recall@5", "mrr@10")
+WORDING_METRICS: tuple[tuple[str, str], ...] = (("recall@5", "recall@5"), ("mrr@10", "MRR@10"), ("hit@1", "hit@1"))
+# (A, B): report A - B. Grouped: ablations, dense vs BM25, hybrids, rerankers.
+PAIRS: tuple[tuple[str, str], ...] = (
+    ("bm25-nostem", "bm25"),
+    ("bge-small", "bm25"), ("bge-base", "bm25"), ("pubmedbert", "bm25"), ("medcpt", "bm25"),
+    ("medcpt-raw", "medcpt"),
+    ("hybrid-rrf", "bge-small"), ("hybrid-rrf", "bm25"),
+    ("hybrid-w03", "hybrid-rrf"), ("hybrid-w05", "hybrid-rrf"), ("hybrid-w07", "hybrid-rrf"),
+    ("rerank-minilm", "hybrid-rrf"), ("rerank-bge", "hybrid-rrf"), ("rerank-medcpt", "hybrid-rrf"),
+)
 DEPTH = 50
 
 
@@ -84,9 +95,9 @@ def fmt_table(headers: list[str], rows: list[list[str]], right_from: int = 1) ->
     return "\n".join([line(headers), "-" * len(line(headers)), *(line(r) for r in rows)])
 
 
-def metric_cells(items: list[dict[str, Any]]) -> list[str]:
+def metric_cells(items: list[dict[str, Any]], metrics: tuple[tuple[str, str], ...] = TABLE_METRICS) -> list[str]:
     cells = []
-    for key, _ in TABLE_METRICS:
+    for key, _ in metrics:
         ci = bootstrap_ci([i["metrics"][key] for i in items])
         cells.append(f"{ci.estimate:.3f} [{ci.lo:.2f}, {ci.hi:.2f}]")
     return cells
@@ -102,29 +113,30 @@ def print_overall(runs: dict[str, dict[str, Any]]) -> None:
     print(fmt_table(headers, rows))
 
 
-def print_grouped(runs: dict[str, dict[str, Any]], key: str, title: str) -> None:
+def print_grouped(runs: dict[str, dict[str, Any]], key: str, title: str,
+                  metrics: tuple[tuple[str, str], ...] = TABLE_METRICS) -> None:
     groups = sorted({i[key] for i in answerable(next(iter(runs.values())))})
-    headers = [title, "retriever", "n", *(label for _, label in TABLE_METRICS)]
+    headers = [title, "retriever", "n", *(label for _, label in metrics)]
     rows = []
     for g in groups:
         for name, run in runs.items():
             items = [i for i in answerable(run) if i[key] == g]
-            rows.append([g, name, str(len(items)), *metric_cells(items)])
+            rows.append([g, name, str(len(items)), *metric_cells(items, metrics)])
     print(fmt_table(headers, rows, right_from=2))
 
 
-def print_paired(runs: dict[str, dict[str, Any]], baseline: str) -> None:
-    base = answerable(runs[baseline])
-    headers = ["retriever", *(f"{m} diff [95% CI]" for m in PAIRED_METRICS)]
+def print_paired(runs: dict[str, dict[str, Any]], pairs: tuple[tuple[str, str], ...] = PAIRS) -> None:
+    headers = ["A - B", *(f"{m} diff [95% CI]" for m in PAIRED_METRICS)]
     rows = []
-    for name, run in runs.items():
-        if name == baseline:
+    for a, b in pairs:
+        if a not in runs or b not in runs:
             continue
+        ia, ib = answerable(runs[a]), answerable(runs[b])
         cells = []
         for m in PAIRED_METRICS:
-            ci = paired_bootstrap([i["metrics"][m] for i in answerable(run)], [i["metrics"][m] for i in base])
+            ci = paired_bootstrap([i["metrics"][m] for i in ia], [i["metrics"][m] for i in ib])
             cells.append(f"{ci.estimate:+.3f} [{ci.lo:+.3f}, {ci.hi:+.3f}]{' *' if ci.excludes_zero() else '  '}")
-        rows.append([f"{name} - {baseline}", *cells])
+        rows.append([f"{a} - {b}", *cells])
     print(fmt_table(headers, rows))
 
 
@@ -202,9 +214,11 @@ def report(runs: dict[str, dict[str, Any]], baseline: str) -> None:
     print_grouped(runs, "collection", "collection")
     print("\nBy category")
     print_grouped(runs, "category", "category")
-    if baseline in runs:
-        print(f"\nPaired bootstrap vs {baseline} (same items, same resamples; * = CI excludes 0)")
-        print_paired(runs, baseline)
+    if all("wording" in i for i in first["items"]):
+        print("\nBy question wording (lay = everyday terms instead of the guideline's terminology)")
+        print_grouped(runs, "wording", "wording", WORDING_METRICS)
+    print("\nPaired bootstrap, A minus B (same items, same resamples; * = CI excludes 0)")
+    print_paired(runs)
     print()
     print_misses(runs)
     print()

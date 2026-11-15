@@ -1,0 +1,43 @@
+{
+ "name": "qwen2.5-7b-v2",
+ "model": "qwen2.5:7b",
+ "model_info": {
+  "model": "qwen2.5:7b",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen2",
+   "families": [
+    "qwen2"
+   ],
+   "parameter_size": "7.6B",
+   "quantization_level": "Q4_K_M"
+  },
+  "modified_at": "2026-11-15T15:34:28.30236+05:30",
+  "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+ },
+ "config": {
+  "pipeline": "v2",
+  "retriever": "bge-base",
+  "top_k": 5,
+  "gate_threshold": 0.6905,
+  "retriever_device": "cpu",
+  "model": "qwen2.5:7b",
+  "ollama_url": "http://localhost:11434",
+  "temperature": 0.0,
+  "seed": 42,
+  "num_ctx": 8192,
+  "num_gpu": null,
+  "num_predict": 1024,
+  "max_retries": 1,
+  "request_timeout_s": 600.0
+ },
+ "git_commit": "ec515ed+dirty",
+ "date": "2026-11-15T16:51:28+05:30",
+ "questions": "C:/Users/Dell/Documents/Personal Projects/guideline-rag-eval/eval/questions.jsonl",
+ "questions_sha256": "e852916643f648a768bfebba56ab5d1ce5e1970478485ac14f55ebb0d96c991e",
+ "n_items": 62,
+ "wall_time_s": 899.7,
+ "retrieval": "precomputed in a child process (same retriever and config)",
+ "scoring": "v2 checks"
+}

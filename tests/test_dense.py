@@ -68,6 +68,20 @@ def test_embeddings_are_normalised():
     assert np.allclose(np.linalg.norm(l2_normalise(np.zeros((1, 3))), axis=1), 0)  # no NaN
 
 
+def test_raw_inner_product_spec():
+    """medcpt-raw: same encoders as medcpt, unnormalised inner product."""
+    raw = DENSE_SPECS["medcpt-raw"]
+    assert raw.normalise is False and DENSE_SPECS["medcpt"].normalise is True
+    assert (raw.query_model, raw.doc_model) == (DENSE_SPECS["medcpt"].query_model, DENSE_SPECS["medcpt"].doc_model)
+    enc = FakeEncoder()
+    spec = DenseSpec("fake-raw", "st", "fake/model", "fake/model", normalise=False)
+    r = DenseRetriever(spec, enc, enc.encode_docs(CORPUS, 2), [c.chunk_id for c in CORPUS], "fp", "cpu")
+    assert not np.allclose(np.linalg.norm(r.embeddings, axis=1), 1.0)
+    cid, score = r.search("amoxicillin", 1)[0]
+    # raw dot product: (4.01 * 1.01) + 1.01 * 0.01 + 3 * 0.0001 = 4.0605
+    assert cid == "amox" and score == pytest.approx(4.0605, abs=1e-3)
+
+
 def test_truncation_report():
     rep = make().truncation_report(CORPUS, ["a b", "a b c d e f"])
     assert rep["n_chunks_truncated"] == 0 and rep["max_chunk_tokens"] == 7

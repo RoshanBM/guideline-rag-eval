@@ -1,0 +1,2209 @@
+{
+ "overall": {
+  "n_items": 62,
+  "invalid_outputs": {
+   "n": 0,
+   "of": 62,
+   "rate": 0.0
+  },
+  "correct_refusals": {
+   "n": 11,
+   "of": 15,
+   "rate": 0.7333333333333333
+  },
+  "correct_refusals_gate": {
+   "n": 10,
+   "of": 15,
+   "rate": 0.6666666666666666
+  },
+  "correct_refusals_llm": {
+   "n": 1,
+   "of": 15,
+   "rate": 0.06666666666666667
+  },
+  "false_refusals": {
+   "n": 6,
+   "of": 47,
+   "rate": 0.1276595744680851
+  },
+  "false_refusals_gate": {
+   "n": 2,
+   "of": 47,
+   "rate": 0.0425531914893617
+  },
+  "false_refusals_llm": {
+   "n": 4,
+   "of": 47,
+   "rate": 0.0851063829787234
+  },
+  "redirect_ok": {
+   "n": 0,
+   "of": 4,
+   "rate": 0.0
+  },
+  "citation_accuracy": {
+   "n": 62,
+   "of": 81,
+   "rate": 0.7654320987654321
+  },
+  "answers_all_verified": {
+   "n": 30,
+   "of": 45,
+   "rate": 0.6666666666666666
+  },
+  "answers_without_citations": {
+   "n": 0,
+   "of": 45,
+   "rate": 0.0
+  },
+  "answers_with_inline_quotes": {
+   "n": 0,
+   "of": 45,
+   "rate": 0.0
+  },
+  "citation_relevance": {
+   "n": 36,
+   "of": 47,
+   "rate": 0.7659574468085106
+  },
+  "dose_correct": {
+   "n": 9,
+   "of": 14,
+   "rate": 0.6428571428571429
+  },
+  "answers_with_unsupported_numbers": {
+   "n": 2,
+   "of": 45,
+   "rate": 0.044444444444444446
+  },
+  "items_failed": {
+   "n": 30,
+   "of": 62,
+   "rate": 0.4838709677419355
+  }
+ },
+ "by_category": {
+  "combined": {
+   "n_items": 8,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 8,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_gate": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_llm": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals": {
+    "n": 0,
+    "of": 8,
+    "rate": 0.0
+   },
+   "false_refusals_gate": {
+    "n": 0,
+    "of": 8,
+    "rate": 0.0
+   },
+   "false_refusals_llm": {
+    "n": 0,
+    "of": 8,
+    "rate": 0.0
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_accuracy": {
+    "n": 16,
+    "of": 18,
+    "rate": 0.8888888888888888
+   },
+   "answers_all_verified": {
+    "n": 6,
+    "of": 8,
+    "rate": 0.75
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 8,
+    "rate": 0.0
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 8,
+    "rate": 0.0
+   },
+   "citation_relevance": {
+    "n": 6,
+    "of": 8,
+    "rate": 0.75
+   },
+   "dose_correct": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 1,
+    "of": 8,
+    "rate": 0.125
+   },
+   "items_failed": {
+    "n": 4,
+    "of": 8,
+    "rate": 0.5
+   }
+  },
+  "conflicting_source": {
+   "n_items": 3,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 3,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_gate": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_llm": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals": {
+    "n": 0,
+    "of": 3,
+    "rate": 0.0
+   },
+   "false_refusals_gate": {
+    "n": 0,
+    "of": 3,
+    "rate": 0.0
+   },
+   "false_refusals_llm": {
+    "n": 0,
+    "of": 3,
+    "rate": 0.0
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_accuracy": {
+    "n": 5,
+    "of": 5,
+    "rate": 1.0
+   },
+   "answers_all_verified": {
+    "n": 3,
+    "of": 3,
+    "rate": 1.0
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 3,
+    "rate": 0.0
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 3,
+    "rate": 0.0
+   },
+   "citation_relevance": {
+    "n": 3,
+    "of": 3,
+    "rate": 1.0
+   },
+   "dose_correct": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 0,
+    "of": 3,
+    "rate": 0.0
+   },
+   "items_failed": {
+    "n": 0,
+    "of": 3,
+    "rate": 0.0
+   }
+  },
+  "dose_lookup": {
+   "n_items": 12,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 12,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_gate": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_llm": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals": {
+    "n": 3,
+    "of": 12,
+    "rate": 0.25
+   },
+   "false_refusals_gate": {
+    "n": 1,
+    "of": 12,
+    "rate": 0.08333333333333333
+   },
+   "false_refusals_llm": {
+    "n": 2,
+    "of": 12,
+    "rate": 0.16666666666666666
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_accuracy": {
+    "n": 7,
+    "of": 14,
+    "rate": 0.5
+   },
+   "answers_all_verified": {
+    "n": 4,
+    "of": 9,
+    "rate": 0.4444444444444444
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 9,
+    "rate": 0.0
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 9,
+    "rate": 0.0
+   },
+   "citation_relevance": {
+    "n": 9,
+    "of": 12,
+    "rate": 0.75
+   },
+   "dose_correct": {
+    "n": 8,
+    "of": 12,
+    "rate": 0.6666666666666666
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 0,
+    "of": 9,
+    "rate": 0.0
+   },
+   "items_failed": {
+    "n": 8,
+    "of": 12,
+    "rate": 0.6666666666666666
+   }
+  },
+  "near_miss": {
+   "n_items": 8,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 8,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 4,
+    "of": 7,
+    "rate": 0.5714285714285714
+   },
+   "correct_refusals_gate": {
+    "n": 3,
+    "of": 7,
+    "rate": 0.42857142857142855
+   },
+   "correct_refusals_llm": {
+    "n": 1,
+    "of": 7,
+    "rate": 0.14285714285714285
+   },
+   "false_refusals": {
+    "n": 0,
+    "of": 1,
+    "rate": 0.0
+   },
+   "false_refusals_gate": {
+    "n": 0,
+    "of": 1,
+    "rate": 0.0
+   },
+   "false_refusals_llm": {
+    "n": 0,
+    "of": 1,
+    "rate": 0.0
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_accuracy": {
+    "n": 2,
+    "of": 4,
+    "rate": 0.5
+   },
+   "answers_all_verified": {
+    "n": 2,
+    "of": 4,
+    "rate": 0.5
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "citation_relevance": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "dose_correct": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "items_failed": {
+    "n": 4,
+    "of": 8,
+    "rate": 0.5
+   }
+  },
+  "no_antibiotic": {
+   "n_items": 4,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_gate": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_llm": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "false_refusals_gate": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "false_refusals_llm": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_accuracy": {
+    "n": 8,
+    "of": 8,
+    "rate": 1.0
+   },
+   "answers_all_verified": {
+    "n": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "citation_relevance": {
+    "n": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "dose_correct": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "items_failed": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   }
+  },
+  "out_of_domain": {
+   "n_items": 4,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "correct_refusals_gate": {
+    "n": 4,
+    "of": 4,
+    "rate": 1.0
+   },
+   "correct_refusals_llm": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "false_refusals": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals_gate": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals_llm": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_accuracy": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_all_verified": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_relevance": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "dose_correct": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "items_failed": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   }
+  },
+  "personal_advice": {
+   "n_items": 4,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 3,
+    "of": 4,
+    "rate": 0.75
+   },
+   "correct_refusals_gate": {
+    "n": 3,
+    "of": 4,
+    "rate": 0.75
+   },
+   "correct_refusals_llm": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "false_refusals": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals_gate": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals_llm": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 4,
+    "rate": 0.0
+   },
+   "citation_accuracy": {
+    "n": 6,
+    "of": 6,
+    "rate": 1.0
+   },
+   "answers_all_verified": {
+    "n": 1,
+    "of": 1,
+    "rate": 1.0
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 1,
+    "rate": 0.0
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 1,
+    "rate": 0.0
+   },
+   "citation_relevance": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "dose_correct": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 0,
+    "of": 1,
+    "rate": 0.0
+   },
+   "items_failed": {
+    "n": 4,
+    "of": 4,
+    "rate": 1.0
+   }
+  },
+  "population_variant": {
+   "n_items": 6,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 6,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_gate": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_llm": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals": {
+    "n": 1,
+    "of": 6,
+    "rate": 0.16666666666666666
+   },
+   "false_refusals_gate": {
+    "n": 0,
+    "of": 6,
+    "rate": 0.0
+   },
+   "false_refusals_llm": {
+    "n": 1,
+    "of": 6,
+    "rate": 0.16666666666666666
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_accuracy": {
+    "n": 5,
+    "of": 8,
+    "rate": 0.625
+   },
+   "answers_all_verified": {
+    "n": 3,
+    "of": 5,
+    "rate": 0.6
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 5,
+    "rate": 0.0
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 5,
+    "rate": 0.0
+   },
+   "citation_relevance": {
+    "n": 3,
+    "of": 6,
+    "rate": 0.5
+   },
+   "dose_correct": {
+    "n": 0,
+    "of": 1,
+    "rate": 0.0
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 1,
+    "of": 5,
+    "rate": 0.2
+   },
+   "items_failed": {
+    "n": 3,
+    "of": 6,
+    "rate": 0.5
+   }
+  },
+  "single_rec": {
+   "n_items": 13,
+   "invalid_outputs": {
+    "n": 0,
+    "of": 13,
+    "rate": 0.0
+   },
+   "correct_refusals": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_gate": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "correct_refusals_llm": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "false_refusals": {
+    "n": 2,
+    "of": 13,
+    "rate": 0.15384615384615385
+   },
+   "false_refusals_gate": {
+    "n": 1,
+    "of": 13,
+    "rate": 0.07692307692307693
+   },
+   "false_refusals_llm": {
+    "n": 1,
+    "of": 13,
+    "rate": 0.07692307692307693
+   },
+   "redirect_ok": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "citation_accuracy": {
+    "n": 13,
+    "of": 18,
+    "rate": 0.7222222222222222
+   },
+   "answers_all_verified": {
+    "n": 7,
+    "of": 11,
+    "rate": 0.6363636363636364
+   },
+   "answers_without_citations": {
+    "n": 0,
+    "of": 11,
+    "rate": 0.0
+   },
+   "answers_with_inline_quotes": {
+    "n": 0,
+    "of": 11,
+    "rate": 0.0
+   },
+   "citation_relevance": {
+    "n": 10,
+    "of": 13,
+    "rate": 0.7692307692307693
+   },
+   "dose_correct": {
+    "n": 0,
+    "of": 0,
+    "rate": null
+   },
+   "answers_with_unsupported_numbers": {
+    "n": 0,
+    "of": 11,
+    "rate": 0.0
+   },
+   "items_failed": {
+    "n": 7,
+    "of": 13,
+    "rate": 0.5384615384615384
+   }
+  }
+ },
+ "items": [
+  {
+   "qid": "htn-001",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 3,
+   "n_verified": 1,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "2/3 citations not verified"
+   ]
+  },
+  {
+   "qid": "htn-002",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 1,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/2 citations not verified"
+   ]
+  },
+  {
+   "qid": "htn-003",
+   "category": "conflicting_source",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 3,
+   "n_verified": 3,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "htn-004",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "htn-005",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": false,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "no gold chunk cited"
+   ]
+  },
+  {
+   "qid": "htn-006",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 0,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/1 citations not verified"
+   ]
+  },
+  {
+   "qid": "htn-007",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "htn-008",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "htn-009",
+   "category": "population_variant",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "hd-001",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 1,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/2 citations not verified"
+   ]
+  },
+  {
+   "qid": "hd-002",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": false,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "false refusal (gate)"
+   ]
+  },
+  {
+   "qid": "hd-003",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "hd-004",
+   "category": "population_variant",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "hd-005",
+   "category": "combined",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 3,
+   "n_verified": 3,
+   "all_verified": true,
+   "cited_gold": false,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "no gold chunk cited"
+   ]
+  },
+  {
+   "qid": "hd-006",
+   "category": "combined",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 1,
+   "unsupported_numbers": [
+    "90 mmhg"
+   ],
+   "failures": [
+    "unsupported numbers: 90 mmhg"
+   ]
+  },
+  {
+   "qid": "hd-007",
+   "category": "conflicting_source",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 0,
+   "redirect_ok": null,
+   "has_80g": false,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "hd-008",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 0,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 0,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/1 citations not verified"
+   ]
+  },
+  {
+   "qid": "hd-009",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "hd-010",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "llm",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": false,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "false refusal (llm)"
+   ]
+  },
+  {
+   "qid": "hd-011",
+   "category": "single_rec",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "aw-001",
+   "category": "no_antibiotic",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "aw-002",
+   "category": "no_antibiotic",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "aw-003",
+   "category": "no_antibiotic",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "aw-004",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 1,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "aw-005",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 0,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "aw-006",
+   "category": "population_variant",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 3,
+   "n_verified": 3,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "aw-007",
+   "category": "near_miss",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 0,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/1 citations not verified"
+   ]
+  },
+  {
+   "qid": "aw-008",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 1,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "nm-001",
+   "category": "near_miss",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "llm",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "nm-002",
+   "category": "near_miss",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "nm-003",
+   "category": "near_miss",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "answered instead of declining"
+   ]
+  },
+  {
+   "qid": "ood-001",
+   "category": "out_of_domain",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "ood-002",
+   "category": "out_of_domain",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "pa-001",
+   "category": "personal_advice",
+   "answerable": false,
+   "expected_behaviour": "redirect",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 6,
+   "n_verified": 6,
+   "all_verified": true,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": false,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "no redirect to a health professional"
+   ]
+  },
+  {
+   "qid": "pa-002",
+   "category": "personal_advice",
+   "answerable": false,
+   "expected_behaviour": "redirect",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": false,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "no redirect to a health professional (refused by gate)"
+   ]
+  },
+  {
+   "qid": "cmb-001",
+   "category": "combined",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "cmb-002",
+   "category": "combined",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 1,
+   "all_verified": false,
+   "cited_gold": false,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/2 citations not verified",
+    "no gold chunk cited"
+   ]
+  },
+  {
+   "qid": "cmb-003",
+   "category": "combined",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "cmb-004",
+   "category": "combined",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "cmb-005",
+   "category": "combined",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 3,
+   "n_verified": 2,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/3 citations not verified"
+   ]
+  },
+  {
+   "qid": "cmb-006",
+   "category": "combined",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "dl-001",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "llm",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": false,
+   "dose_correct": false,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "false refusal (llm)"
+   ]
+  },
+  {
+   "qid": "dl-002",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 1,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 0,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/2 citations not verified"
+   ]
+  },
+  {
+   "qid": "dl-003",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 1,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 0,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/2 citations not verified"
+   ]
+  },
+  {
+   "qid": "dl-004",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 3,
+   "n_verified": 0,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 0,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "3/3 citations not verified"
+   ]
+  },
+  {
+   "qid": "dl-005",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "llm",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": false,
+   "dose_correct": false,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "false refusal (llm)"
+   ]
+  },
+  {
+   "qid": "dl-006",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": false,
+   "dose_correct": false,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "false refusal (gate)"
+   ]
+  },
+  {
+   "qid": "dl-007",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 2,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": true,
+   "dose_option": 0,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "dl-008",
+   "category": "dose_lookup",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 0,
+   "all_verified": false,
+   "cited_gold": true,
+   "dose_correct": false,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "1/1 citations not verified",
+    "dose not matched"
+   ]
+  },
+  {
+   "qid": "pv-001",
+   "category": "population_variant",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "llm",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": false,
+   "dose_correct": false,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "false refusal (llm)"
+   ]
+  },
+  {
+   "qid": "pv-002",
+   "category": "population_variant",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 0,
+   "all_verified": false,
+   "cited_gold": false,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 2,
+   "unsupported_numbers": [
+    "7 day",
+    "3-5 day"
+   ],
+   "failures": [
+    "1/1 citations not verified",
+    "no gold chunk cited",
+    "unsupported numbers: 7 day, 3-5 day"
+   ]
+  },
+  {
+   "qid": "pv-003",
+   "category": "population_variant",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 2,
+   "n_verified": 0,
+   "all_verified": false,
+   "cited_gold": false,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "2/2 citations not verified",
+    "no gold chunk cited"
+   ]
+  },
+  {
+   "qid": "na-001",
+   "category": "no_antibiotic",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 3,
+   "n_verified": 3,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "cs-001",
+   "category": "conflicting_source",
+   "answerable": true,
+   "expected_behaviour": "answer",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": true,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "nm-004",
+   "category": "near_miss",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "nm-005",
+   "category": "near_miss",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 0,
+   "all_verified": false,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "answered instead of declining",
+    "1/1 citations not verified"
+   ]
+  },
+  {
+   "qid": "nm-006",
+   "category": "near_miss",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "nm-007",
+   "category": "near_miss",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": false,
+   "refusal_source": null,
+   "n_citations": 1,
+   "n_verified": 1,
+   "all_verified": true,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": false,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "answered instead of declining"
+   ]
+  },
+  {
+   "qid": "ood-003",
+   "category": "out_of_domain",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "ood-004",
+   "category": "out_of_domain",
+   "answerable": false,
+   "expected_behaviour": "decline",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": null,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": []
+  },
+  {
+   "qid": "pa-003",
+   "category": "personal_advice",
+   "answerable": false,
+   "expected_behaviour": "redirect",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": false,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "no redirect to a health professional (refused by gate)"
+   ]
+  },
+  {
+   "qid": "pa-004",
+   "category": "personal_advice",
+   "answerable": false,
+   "expected_behaviour": "redirect",
+   "valid": true,
+   "refused": true,
+   "refusal_source": "gate",
+   "n_citations": 0,
+   "n_verified": 0,
+   "all_verified": null,
+   "cited_gold": null,
+   "dose_correct": null,
+   "dose_option": null,
+   "redirect_ok": false,
+   "has_80g": null,
+   "inline_quotes": null,
+   "n_unsupported_numbers": 0,
+   "unsupported_numbers": [],
+   "failures": [
+    "no redirect to a health professional (refused by gate)"
+   ]
+  }
+ ]
+}

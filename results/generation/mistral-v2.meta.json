@@ -1,0 +1,42 @@
+{
+ "name": "mistral-v2",
+ "model": "mistral",
+ "model_info": {
+  "model": "mistral",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "llama",
+   "families": [
+    "llama"
+   ],
+   "parameter_size": "7.2B",
+   "quantization_level": "Q4_K_M"
+  },
+  "modified_at": "2026-11-09T12:56:26.9823518+05:30",
+  "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf"
+ },
+ "config": {
+  "pipeline": "v2",
+  "retriever": "bge-base",
+  "top_k": 5,
+  "gate_threshold": 0.6905,
+  "retriever_device": "cpu",
+  "model": "mistral",
+  "ollama_url": "http://localhost:11434",
+  "temperature": 0.0,
+  "seed": 42,
+  "num_ctx": 8192,
+  "num_gpu": null,
+  "max_retries": 1,
+  "request_timeout_s": 600.0
+ },
+ "git_commit": "ec515ed+dirty",
+ "date": "2026-11-15T16:19:30+05:30",
+ "questions": "C:/Users/Dell/Documents/Personal Projects/guideline-rag-eval/eval/questions.jsonl",
+ "questions_sha256": "e852916643f648a768bfebba56ab5d1ce5e1970478485ac14f55ebb0d96c991e",
+ "n_items": 62,
+ "wall_time_s": 576.8,
+ "retrieval": "precomputed in a child process (same retriever and config)",
+ "scoring": "v2 checks"
+}

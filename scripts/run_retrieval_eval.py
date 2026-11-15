@@ -8,22 +8,29 @@ Usage::
 
 Retrievers are the names in ``src/retrieve/registry.py``: ``bm25`` (stemmed baseline),
 ``bm25-nostem`` (ablation; ``--retriever bm25 --no-stem`` is the same), ``bge-small``,
-``bge-base``, ``pubmedbert``, ``medcpt``; ``all`` runs every one.
+``bge-base``, ``pubmedbert``, ``medcpt``, ``medcpt-raw``, ``hybrid-rrf``, ``hybrid-w03``,
+``hybrid-w05``, ``hybrid-w07``, ``rerank-minilm``, ``rerank-bge``, ``rerank-medcpt``;
+``all`` runs every one.
 
 For each **answerable** item it records, per gold source, the chunks holding its span and the
 best rank among them, the rank of each relevant chunk (null if not in the top ``DEPTH`` = 50),
 the top-10 chunk ids with scores and the per-item metrics of
 ``src/evaluate/retrieval_metrics.py`` (recall is per gold source). For each **unanswerable**
 item it records the top-10 chunks and the top score (input for a later refusal threshold);
-these items are excluded from the metrics.
+these items are excluded from the metrics. Hybrids also record each top-10 chunk's component
+ranks and scores; rerankers record every candidate's first-stage rank and score and its
+reranker score (``candidates``). Summaries are given overall and by category, collection and
+wording (lay / clinical).
 
 Per retriever it writes ``<out-dir>/<retriever>.json`` (per-item results, summaries with 95 %
 bootstrap CIs, timing, device, and for dense models the truncation report) and appends one row
 to ``<out-dir>/summary.csv``. ``scripts/compare_retrievers.py`` compares the JSON files.
 
 Timing: the index is built from scratch (BM25: build time; dense: corpus encode time, model load
-and a warm-up batch excluded). One warm-up query is run before timing; per-query latency is the
-wall time of ``search(question, DEPTH)`` (dense: query encoding plus FAISS search).
+and a warm-up batch excluded). Five fixed warm-up queries (:data:`WARMUP_QUERIES`, not eval
+questions) are run before timing; per-query latency is the wall time of
+``search(question, DEPTH)`` (dense: query encoding plus FAISS search; hybrid: both components
+plus fusion; reranker: hybrid-rrf plus cross-encoder scoring of the 30 candidates).
 """
 
 from __future__ import annotations
@@ -52,9 +59,16 @@ from src.evaluate.relevance import load_chunks, relevant_chunk_ids_by_source  # 
 from src.evaluate.retrieval_metrics import METRIC_NAMES, item_metrics, mean_metrics  # noqa: E402
 from src.retrieve.base import Retriever  # noqa: E402
 from src.retrieve.corpus import CorpusChunk, load_corpus  # noqa: E402
-from src.retrieve.registry import RETRIEVER_NAMES, build_retriever  # noqa: E402
+from src.retrieve.registry import RETRIEVER_NAMES, build_retriever, release_shared  # noqa: E402
 
 DEPTH = 50
+WARMUP_QUERIES: tuple[str, ...] = (
+    "What is the recommended dose of amoxicillin for adults?",
+    "When should antihypertensive treatment be started?",
+    "How is hypoglycaemia treated?",
+    "Which antibiotic is first choice for urinary tract infection in children?",
+    "What blood glucose target is recommended for people with diabetes?",
+)
 TOP_N = 10
 QUESTIONS_PATH = ROOT / "eval" / "questions.jsonl"
 CHUNKS_DIR = ROOT / "data" / "chunks"
@@ -98,7 +112,8 @@ def rel_path(path: Path) -> str:
 def run(retriever: Retriever, items: list[EvalItem], all_chunks: list[dict[str, Any]],
         corpus: list[CorpusChunk]) -> tuple[list[dict[str, Any]], list[float]]:
     indexed = {c.chunk_id for c in corpus}
-    retriever.search(items[0].question, DEPTH)  # warm-up, not timed
+    for q in WARMUP_QUERIES:  # warm-up, not timed
+        retriever.search(q, DEPTH)
     results: list[dict[str, Any]] = []
     latencies: list[float] = []
     for item in items:
@@ -109,7 +124,7 @@ def run(retriever: Retriever, items: list[EvalItem], all_chunks: list[dict[str, 
         rank_of = {cid: r for r, cid in enumerate(ranked, start=1)}
         row: dict[str, Any] = {
             "qid": item.qid, "question": item.question, "category": item.category,
-            "collection": item.collection, "answerable": item.answerable,
+            "wording": item.wording, "collection": item.collection, "answerable": item.answerable,
             "latency_ms": round(latencies[-1], 3),
         }
         if item.answerable:
@@ -125,8 +140,15 @@ def run(retriever: Retriever, items: list[EvalItem], all_chunks: list[dict[str, 
             row["gold"] = [{"chunk_id": cid, "rank": rank_of.get(cid), "indexed": cid in indexed}
                            for cid in gold]
             row["metrics"] = item_metrics(ranked, by_source)
-        row["top_score"] = round(hits[0][1], 4) if hits else None
-        row["top"] = [{"chunk_id": cid, "score": round(score, 4)} for cid, score in hits[:TOP_N]]
+        row["top_score"] = round(hits[0][1], 6) if hits else None
+        row["top"] = [{"chunk_id": cid, "score": round(score, 6)} for cid, score in hits[:TOP_N]]
+        components = getattr(retriever, "last_components", None)
+        if components:
+            for t in row["top"]:
+                t.update(components.get(t["chunk_id"], {}))
+        candidates = getattr(retriever, "last_candidates", None)
+        if candidates is not None:
+            row["candidates"] = candidates
         results.append(row)
     return results, latencies
 
@@ -144,13 +166,16 @@ def summarise(results: list[dict[str, Any]]) -> dict[str, Any]:
     scored = [r for r in results if r["answerable"]]
     by_cat: dict[str, list[dict[str, float]]] = defaultdict(list)
     by_coll: dict[str, list[dict[str, float]]] = defaultdict(list)
+    by_wording: dict[str, list[dict[str, float]]] = defaultdict(list)
     for r in scored:
         by_cat[r["category"]].append(r["metrics"])
         by_coll[r["collection"]].append(r["metrics"])
+        by_wording[r["wording"]].append(r["metrics"])
     return {
         "overall": group_summary([r["metrics"] for r in scored]),
         "by_category": {k: group_summary(v) for k, v in sorted(by_cat.items())},
         "by_collection": {k: group_summary(v) for k, v in sorted(by_coll.items())},
+        "by_wording": {k: group_summary(v) for k, v in sorted(by_wording.items())},
         "bootstrap": {"n_resamples": N_RESAMPLES, "seed": SEED, "method": "percentile, items resampled"},
     }
 
@@ -193,6 +218,7 @@ def print_report(out: dict[str, Any], full: bool, n_worst: int = 5) -> None:
     print()
     print_table("category", s["by_category"])
     print_table("collection", s["by_collection"])
+    print_table("wording", s["by_wording"])
 
     answerable = [r for r in out["items"] if r["answerable"]]
     worst = sorted(answerable, key=lambda r: (-worst_rank(r), r["qid"]))[:n_worst]
@@ -239,7 +265,7 @@ def evaluate(name: str, items: list[EvalItem], all_chunks: list[dict[str, Any]],
     if hasattr(retriever, "truncation_report"):
         truncation = retriever.truncation_report(corpus, [it.question for it in items])
     results, latencies = run(retriever, items, all_chunks, corpus)
-    if hasattr(retriever, "close"):
+    if not built.shared and hasattr(retriever, "close"):
         retriever.close()
 
     n_ans = sum(r["answerable"] for r in results)
@@ -302,6 +328,7 @@ def main(argv: list[str] | None = None) -> int:
     for name in names:
         out = evaluate(name, items, all_chunks, corpus, args.questions, args.out_dir, commit)
         print_report(out, full=len(names) == 1)
+    release_shared()
     print(f"\nwrote {', '.join(f'{n}.json' for n in names)} to {rel_path(args.out_dir)}/ and appended to summary.csv")
     if len(names) > 1:
         print("compare with: python scripts/compare_retrievers.py")

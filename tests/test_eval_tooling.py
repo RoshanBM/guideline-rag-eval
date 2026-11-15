@@ -30,6 +30,7 @@ ANSWERABLE = {
     "qid": "example-dose",
     "question": "Example: what daily dose of acetylsalicylic acid does HEARTS-D give for secondary prevention?",
     "category": "dose_lookup",
+    "wording": "clinical",
     "collection": "cardiometabolic",
     "answerable": True,
     "expected_behaviour": "answer",
@@ -46,6 +47,7 @@ UNANSWERABLE = {
     "qid": "example-ood",
     "question": "Example: what is the capital of France?",
     "category": "out_of_domain",
+    "wording": "lay",
     "collection": None,
     "answerable": False,
     "expected_behaviour": "decline",
@@ -101,6 +103,8 @@ def test_examples_are_valid_items() -> None:
     (_with(ANSWERABLE, expected_behaviour="decline"), "expected_behaviour 'answer'"),
     (_with(ANSWERABLE, collection=None), "need a collection"),
     (_with(ANSWERABLE, category="dosing"), "category 'dosing' not in"),
+    (_with(ANSWERABLE, wording="plain"), "wording 'plain' not in"),
+    ({k: v for k, v in ANSWERABLE.items() if k != "wording"}, "missing keys ['wording']"),
     (_with_source(ANSWERABLE, printed_page="24"), "printed_page must be an integer"),
     (_with(ANSWERABLE, gold_structured={"any_of": []}), "any_of must be a non-empty list"),
     (_with(ANSWERABLE, gold_structured={"any_of": [{"drug": "x", "dose": "1 mg"}]}), "missing keys"),
@@ -131,8 +135,16 @@ def test_validate_cli_counts_and_strict(tmp_path: Path, capsys: pytest.CaptureFi
     out = capsys.readouterr().out
     assert "2 valid item(s), 0 error(s)" in out
     assert "dose_lookup              1      12  (11 to go)" in out
-    assert "total                    2      59  (+1 spare allowed)" in out
+    assert "total                    2      62  (+0 spare allowed)" in out
+    assert "clinical            1             0" in out and "lay                 0             1" in out
     assert validate_eval.main(["--questions", str(path), "--strict"]) == 1  # far below the targets
+
+
+def test_targets_match_the_eval_set() -> None:
+    report = validate_eval.validate_file(validate_eval.QUESTIONS_PATH, load_chunks(), page_check=False)
+    assert report.errors == []
+    assert report.off_target() == []
+    assert dict(report.counts) == validate_eval.TARGETS
 
 
 @pytest.mark.parametrize("item, message", [

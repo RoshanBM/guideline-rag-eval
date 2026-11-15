@@ -1,7 +1,7 @@
 """Dense retrieval: embed each chunk's retrieval ``text`` and search with FAISS.
 
 Embeddings are L2-normalised and searched by inner product (``faiss.IndexFlatIP``), i.e. cosine
-similarity, for every model. Registered models (:data:`DENSE_SPECS`):
+similarity, for every model except ``medcpt-raw``. Registered models (:data:`DENSE_SPECS`):
 
 * ``bge-small`` / ``bge-base``: ``BAAI/bge-{small,base}-en-v1.5`` via sentence-transformers.
   Queries get the model card's retrieval instruction ("Represent this sentence for searching
@@ -13,8 +13,9 @@ similarity, for every model. Registered models (:data:`DENSE_SPECS`):
   embedding, as on the model cards. A chunk is encoded as the pair
   ``[context_header, rest of text]``, as the card does for ``[title, abstract]``; chunks
   without a header (all hypertension chunks) are encoded as ``["", text]`` so the body stays in
-  the second segment. Note: MedCPT was trained for raw inner product; normalising (as for the
-  other models) can change its ranking slightly.
+  the second segment.
+* ``medcpt-raw``: the same encoders, **unnormalised** inner product, the scoring MedCPT was
+  trained with (``medcpt`` normalises, like the other models).
 
 Embeddings are cached in ``data/index/<name>/`` (``embeddings.npy`` + ``meta.json`` with the
 model ids, prefix, corpus fingerprint, device and encode time). :meth:`DenseRetriever.load_or_build`
@@ -53,6 +54,7 @@ class DenseSpec:
     query_prefix: str = ""
     query_max_length: int | None = None  # None: the model's own max_seq_length
     doc_max_length: int | None = None
+    normalise: bool = True  # L2-normalise query and chunk embeddings (cosine); False: raw inner product
 
 
 DENSE_SPECS: dict[str, DenseSpec] = {
@@ -64,6 +66,8 @@ DENSE_SPECS: dict[str, DenseSpec] = {
                             "NeuML/pubmedbert-base-embeddings"),
     "medcpt": DenseSpec("medcpt", "medcpt", "ncbi/MedCPT-Article-Encoder", "ncbi/MedCPT-Query-Encoder",
                         query_max_length=64, doc_max_length=512),
+    "medcpt-raw": DenseSpec("medcpt-raw", "medcpt", "ncbi/MedCPT-Article-Encoder", "ncbi/MedCPT-Query-Encoder",
+                            query_max_length=64, doc_max_length=512, normalise=False),
 }
 
 
@@ -172,13 +176,18 @@ class DenseRetriever:
         self.spec = spec
         self.name = spec.name
         self.encoder = encoder
-        self.embeddings = l2_normalise(embeddings)
+        self.embeddings = self._prepare(embeddings)
         self.chunk_ids = list(chunk_ids)
         self.fingerprint = fingerprint
         self.device = device
         self.index = faiss.IndexFlatIP(self.embeddings.shape[1])
         self.index.add(self.embeddings)
         self.timings: dict[str, float] = {}
+
+    def _prepare(self, x: np.ndarray) -> np.ndarray:
+        if self.spec.normalise:
+            return l2_normalise(x)
+        return np.ascontiguousarray(x, dtype=np.float32)
 
     @classmethod
     def build(cls, spec: DenseSpec, corpus: list[CorpusChunk], device: str | None = None,
@@ -202,7 +211,7 @@ class DenseRetriever:
     def search(self, query: str, k: int) -> list[tuple[str, float]]:
         if k <= 0:
             return []
-        q = l2_normalise(self.encoder.encode_queries([query]))
+        q = self._prepare(self.encoder.encode_queries([query]))
         scores, idx = self.index.search(q, min(k, self.index.ntotal))
         return [(self.chunk_ids[i], float(s)) for s, i in zip(scores[0], idx[0]) if i >= 0]
 
@@ -232,7 +241,7 @@ class DenseRetriever:
             "spec": asdict(self.spec),
             "chunk_ids": self.chunk_ids,
             "corpus_fingerprint": self.fingerprint,
-            "normalised": True,
+            "normalised": self.spec.normalise,
             "dim": int(self.embeddings.shape[1]),
             "device": device_label(self.device),
             "timings": self.timings,

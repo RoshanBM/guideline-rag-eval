@@ -17,7 +17,7 @@ venv/
 .ipynb_checkpoints/
 
 # Eval question drafts (work in progress, not part of the eval set)
-eval/questions_draft.jsonl
+eval/questions_draft*.jsonl
 
 # Retrieval indexes (rebuilt from data/chunks/)
 data/index/

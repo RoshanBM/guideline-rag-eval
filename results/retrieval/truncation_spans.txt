@@ -1,0 +1,36 @@
+Gold spans in truncated gold chunks (positions include special tokens; limit 512 keeps content positions 1-510)
+
+model       qid     chunk                                chunk tokens  span tokens  status                            located by
+--------------------------------------------------------------------------------------------------------------------------------
+bge-small   hd-007  who-hearts-d-2020-fig-1              675           ?-?          not in embedded text (flowchart)  -         
+bge-small   dl-001  who-aware-2022-ch16-dosing-children  723           336-347      inside                            full      
+bge-small   dl-005  who-aware-2022-ch23-dosing-children  658           395-406      inside                            full      
+bge-small   dl-006  who-hearts-d-2020-fig-1              675           ?-?          not in embedded text (flowchart)  -         
+bge-small   dl-008  who-htn-2021-s6-2                    599           146-179      inside                            full      
+bge-small   pv-001  who-aware-2022-ch23-dosing-children  658           353-359      inside                            full      
+bge-small   pv-002  who-aware-2022-ch23-dosing-children  658           554-601      beyond                            full      
+bge-small   cs-001  who-hearts-d-2020-fig-1              675           ?-?          not in embedded text (flowchart)  -         
+bge-base    hd-007  who-hearts-d-2020-fig-1              675           ?-?          not in embedded text (flowchart)  -         
+bge-base    dl-001  who-aware-2022-ch16-dosing-children  723           336-347      inside                            full      
+bge-base    dl-005  who-aware-2022-ch23-dosing-children  658           395-406      inside                            full      
+bge-base    dl-006  who-hearts-d-2020-fig-1              675           ?-?          not in embedded text (flowchart)  -         
+bge-base    dl-008  who-htn-2021-s6-2                    599           146-179      inside                            full      
+bge-base    pv-001  who-aware-2022-ch23-dosing-children  658           353-359      inside                            full      
+bge-base    pv-002  who-aware-2022-ch23-dosing-children  658           554-601      beyond                            full      
+bge-base    cs-001  who-hearts-d-2020-fig-1              675           ?-?          not in embedded text (flowchart)  -         
+pubmedbert  hd-007  who-hearts-d-2020-fig-1              609           ?-?          not in embedded text (flowchart)  -         
+pubmedbert  dl-001  who-aware-2022-ch16-dosing-children  623           296-307      inside                            full      
+pubmedbert  dl-005  who-aware-2022-ch23-dosing-children  559           342-353      inside                            full      
+pubmedbert  dl-006  who-hearts-d-2020-fig-1              609           ?-?          not in embedded text (flowchart)  -         
+pubmedbert  dl-008  who-htn-2021-s6-2                    540           134-165      inside                            full      
+pubmedbert  pv-001  who-aware-2022-ch23-dosing-children  559           303-309      inside                            full      
+pubmedbert  pv-002  who-aware-2022-ch23-dosing-children  559           471-517      cut                               full      
+pubmedbert  cs-001  who-hearts-d-2020-fig-1              609           ?-?          not in embedded text (flowchart)  -         
+medcpt      hd-007  who-hearts-d-2020-fig-1              610           ?-?          not in embedded text (flowchart)  -         
+medcpt      dl-001  who-aware-2022-ch16-dosing-children  624           297-308      inside                            full      
+medcpt      dl-005  who-aware-2022-ch23-dosing-children  560           343-354      inside                            full      
+medcpt      dl-006  who-hearts-d-2020-fig-1              610           ?-?          not in embedded text (flowchart)  -         
+medcpt      dl-008  who-htn-2021-s6-2                    541           135-166      inside                            full      
+medcpt      pv-001  who-aware-2022-ch23-dosing-children  560           304-310      inside                            full      
+medcpt      pv-002  who-aware-2022-ch23-dosing-children  560           472-518      cut                               full      
+medcpt      cs-001  who-hearts-d-2020-fig-1              610           ?-?          not in embedded text (flowchart)  -         

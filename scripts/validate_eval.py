@@ -47,7 +47,14 @@ import pymupdf
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from src.evaluate.eval_schema import CATEGORIES, EvalItem, GoldSource, parse_item, validate_item  # noqa: E402
+from src.evaluate.eval_schema import (  # noqa: E402
+    CATEGORIES,
+    WORDINGS,
+    EvalItem,
+    GoldSource,
+    parse_item,
+    validate_item,
+)
 from src.evaluate.relevance import chunk_match_text, load_chunks, source_matches  # noqa: E402
 from src.parse import who_hearts_d, who_hypertension  # noqa: E402
 from src.parse.pdf_utils import PUA_RE, _font_xref, page_label_map, type3_pua_glyph_hashes  # noqa: E402
@@ -57,8 +64,9 @@ from src.parse.text_utils import normalise_for_match  # noqa: E402
 QUESTIONS_PATH = ROOT / "eval" / "questions.jsonl"
 CHUNKS_DIR = ROOT / "data" / "chunks"
 
+# The current composition of eval/questions.jsonl (62 items, batches 1 and 2).
 TARGETS: dict[str, int] = {
-    "single_rec": 10,
+    "single_rec": 13,
     "combined": 8,
     "dose_lookup": 12,
     "population_variant": 6,
@@ -68,8 +76,8 @@ TARGETS: dict[str, int] = {
     "out_of_domain": 4,
     "personal_advice": 4,
 }
-TARGET_TOTAL = 59
-SPARE = 1
+TARGET_TOTAL = 62
+SPARE = 0
 MIN_SPAN_WORDS = 3  # shorter spans are allowed but flagged: they may match by accident
 
 assert list(TARGETS) == list(CATEGORIES) and sum(TARGETS.values()) == TARGET_TOTAL
@@ -329,6 +337,10 @@ def print_report(path: Path, report: Report, page_check: bool = True) -> None:
         print(f"{cat:<20} {n:>5}  {target:>6}{mark}")
     total = len(report.items)
     print(f"{'total':<20} {total:>5}  {TARGET_TOTAL:>6}  (+{SPARE} spare allowed)")
+    wording = Counter((item.wording, item.answerable) for item in report.items)
+    print("\nwording    answerable  unanswerable")
+    for w in WORDINGS:
+        print(f"{w:<10} {wording[(w, True)]:>10}  {wording[(w, False)]:>12}")
 
 
 def main(argv: list[str] | None = None) -> int:

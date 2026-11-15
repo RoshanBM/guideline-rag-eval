@@ -4,7 +4,7 @@ An item is a question with its expected behaviour and, when it is answerable, th
 answer and the verbatim source spans that support it::
 
     {
-      "qid": "...", "question": "...", "category": "dose_lookup", "collection": "aware",
+      "qid": "...", "question": "...", "category": "dose_lookup", "wording": "lay", "collection": "aware",
       "answerable": true, "expected_behaviour": "answer", "gold_answer": "...",
       "gold_sources": [{"doc_id": "who-aware-2022", "printed_page": 290, "span": "..."}],
       "gold_structured": {"any_of": [{"drug": "...", "dose": "...", "frequency": "...", "duration": "..."}]},
@@ -16,7 +16,11 @@ the chunk files is checked by ``scripts/validate_eval.py``):
 
 * every key above is present (``gold_answer``, ``gold_structured``, ``collection`` and
   ``notes`` may be null) and no other key is;
-* ``category`` and ``expected_behaviour`` take one of the listed values;
+* ``category``, ``wording`` and ``expected_behaviour`` take one of the listed values.
+  ``wording`` is ``lay`` when the question names the concept needed to find the passage only in
+  everyday terms, not the guideline's terminology (e.g. "blood pressure tablets" for
+  antihypertensive medicines, "strep throat" for pharyngitis, "sugar" for glucose), else
+  ``clinical`` (the guideline's term is present, even if the rest of the question is informal);
 * ``answerable`` items expect ``answer`` and have a ``collection``, a ``gold_answer`` and at
   least one gold source; unanswerable items expect ``decline`` or ``redirect`` and have **empty**
   ``gold_sources`` and no ``gold_answer`` or ``gold_structured``;
@@ -43,9 +47,10 @@ CATEGORIES: tuple[str, ...] = (
     "personal_advice",
 )
 BEHAVIOURS: tuple[str, ...] = ("answer", "decline", "redirect")
+WORDINGS: tuple[str, ...] = ("lay", "clinical")
 
 ITEM_KEYS: tuple[str, ...] = (
-    "qid", "question", "category", "collection", "answerable", "expected_behaviour", "gold_answer",
+    "qid", "question", "category", "wording", "collection", "answerable", "expected_behaviour", "gold_answer",
     "gold_sources", "gold_structured", "notes",
 )
 SOURCE_KEYS: tuple[str, ...] = ("doc_id", "printed_page", "span")
@@ -85,6 +90,7 @@ class EvalItem:
     qid: str
     question: str
     category: str
+    wording: str
     collection: str | None
     answerable: bool
     expected_behaviour: str
@@ -128,6 +134,8 @@ def validate_item(obj: Any) -> list[str]:
             errors.append(f"{key} must be a non-empty string or null")
     if obj["category"] not in CATEGORIES:
         errors.append(f"category {obj['category']!r} not in {list(CATEGORIES)}")
+    if obj["wording"] not in WORDINGS:
+        errors.append(f"wording {obj['wording']!r} not in {list(WORDINGS)}")
     if obj["expected_behaviour"] not in BEHAVIOURS:
         errors.append(f"expected_behaviour {obj['expected_behaviour']!r} not in {list(BEHAVIOURS)}")
     if not isinstance(obj["answerable"], bool):
@@ -204,6 +212,7 @@ def parse_item(obj: Any) -> EvalItem:
         qid=obj["qid"],
         question=obj["question"],
         category=obj["category"],
+        wording=obj["wording"],
         collection=obj["collection"],
         answerable=obj["answerable"],
         expected_behaviour=obj["expected_behaviour"],

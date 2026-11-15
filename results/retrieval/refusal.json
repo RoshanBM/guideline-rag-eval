@@ -1,0 +1,268 @@
+{
+ "bm25": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.8965,
+  "auroc_ci95": [
+   0.8085,
+   0.9631
+  ],
+  "median_top_answerable": 7.203392,
+  "median_top_unanswerable": 4.484517,
+  "n_missing_scores": 0,
+  "threshold": 4.327717,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.4667,
+  "n_refused_unanswerable": 7,
+  "is_reranker": false
+ },
+ "bm25-nostem": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.8695,
+  "auroc_ci95": [
+   0.7589,
+   0.9504
+  ],
+  "median_top_answerable": 6.858534,
+  "median_top_unanswerable": 4.50634,
+  "n_missing_scores": 0,
+  "threshold": 4.162027,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.4667,
+  "n_refused_unanswerable": 7,
+  "is_reranker": false
+ },
+ "bge-small": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.9078,
+  "auroc_ci95": [
+   0.8014,
+   0.9901
+  ],
+  "median_top_answerable": 0.768094,
+  "median_top_unanswerable": 0.70786,
+  "n_missing_scores": 0,
+  "threshold": 0.72026,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.6667,
+  "n_refused_unanswerable": 10,
+  "is_reranker": false
+ },
+ "bge-base": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.9631,
+  "auroc_ci95": [
+   0.9177,
+   0.9957
+  ],
+  "median_top_answerable": 0.743146,
+  "median_top_unanswerable": 0.675637,
+  "n_missing_scores": 0,
+  "threshold": 0.690515,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.6667,
+  "n_refused_unanswerable": 10,
+  "is_reranker": false
+ },
+ "pubmedbert": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.827,
+  "auroc_ci95": [
+   0.7035,
+   0.9362
+  ],
+  "median_top_answerable": 0.615354,
+  "median_top_unanswerable": 0.516419,
+  "n_missing_scores": 0,
+  "threshold": 0.523181,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.5333,
+  "n_refused_unanswerable": 8,
+  "is_reranker": false
+ },
+ "medcpt": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.8156,
+  "auroc_ci95": [
+   0.6609,
+   0.939
+  ],
+  "median_top_answerable": 0.688141,
+  "median_top_unanswerable": 0.646365,
+  "n_missing_scores": 0,
+  "threshold": 0.65667,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.6,
+  "n_refused_unanswerable": 9,
+  "is_reranker": false
+ },
+ "medcpt-raw": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.7858,
+  "auroc_ci95": [
+   0.6311,
+   0.9178
+  ],
+  "median_top_answerable": 66.1306,
+  "median_top_unanswerable": 63.101925,
+  "n_missing_scores": 0,
+  "threshold": 64.079948,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.5333,
+  "n_refused_unanswerable": 8,
+  "is_reranker": false
+ },
+ "hybrid-rrf": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.6652,
+  "auroc_ci95": [
+   0.4857,
+   0.8348
+  ],
+  "median_top_answerable": 0.032522,
+  "median_top_unanswerable": 0.032258,
+  "n_missing_scores": 0,
+  "threshold": 0.031514,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0213,
+  "n_false_refusals": 1,
+  "refusal_rate_unanswerable": 0.3333,
+  "n_refused_unanswerable": 5,
+  "is_reranker": false
+ },
+ "hybrid-w03": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.6879,
+  "auroc_ci95": [
+   0.5091,
+   0.8709
+  ],
+  "median_top_answerable": 0.989898,
+  "median_top_unanswerable": 0.875134,
+  "n_missing_scores": 0,
+  "threshold": 0.836067,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.4,
+  "n_refused_unanswerable": 6,
+  "is_reranker": false
+ },
+ "hybrid-w05": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.7007,
+  "auroc_ci95": [
+   0.5177,
+   0.8766
+  ],
+  "median_top_answerable": 0.990939,
+  "median_top_unanswerable": 0.861487,
+  "n_missing_scores": 0,
+  "threshold": 0.804677,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.3333,
+  "n_refused_unanswerable": 5,
+  "is_reranker": false
+ },
+ "hybrid-w07": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.7021,
+  "auroc_ci95": [
+   0.5219,
+   0.8688
+  ],
+  "median_top_answerable": 0.987444,
+  "median_top_unanswerable": 0.882819,
+  "n_missing_scores": 0,
+  "threshold": 0.859496,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.3333,
+  "n_refused_unanswerable": 5,
+  "is_reranker": false
+ },
+ "rerank-minilm": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.7546,
+  "auroc_ci95": [
+   0.583,
+   0.9163
+  ],
+  "median_top_answerable": 1.9866,
+  "median_top_unanswerable": -1.517292,
+  "n_missing_scores": 0,
+  "threshold": -2.709472,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.4,
+  "n_refused_unanswerable": 6,
+  "is_reranker": true
+ },
+ "rerank-bge": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.8922,
+  "auroc_ci95": [
+   0.7858,
+   0.9788
+  ],
+  "median_top_answerable": 2.239438,
+  "median_top_unanswerable": -2.389702,
+  "n_missing_scores": 0,
+  "threshold": -1.09925,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.6667,
+  "n_refused_unanswerable": 10,
+  "is_reranker": true
+ },
+ "rerank-medcpt": {
+  "n_answerable": 47,
+  "n_unanswerable": 15,
+  "auroc": 0.8709,
+  "auroc_ci95": [
+   0.7532,
+   0.9702
+  ],
+  "median_top_answerable": 12.663855,
+  "median_top_unanswerable": 1.656619,
+  "n_missing_scores": 0,
+  "threshold": 2.660924,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0426,
+  "n_false_refusals": 2,
+  "refusal_rate_unanswerable": 0.6,
+  "n_refused_unanswerable": 9,
+  "is_reranker": true
+ }
+}

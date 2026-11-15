@@ -21,11 +21,100 @@ guidelines do not support an answer. Each of those properties is measured, not a
 | Hypertension guideline parser (`src/parse/who_hypertension.py`) | done |
 | AWaRe parser, primary health care chapters (`src/parse/who_aware.py`) | done; dosing sample manually cross-checked against the PDF (see [Manual verification](#manual-verification)) |
 | HEARTS-D type 2 diabetes parser (`src/parse/who_hearts_d.py`), from WHO's original PDF | done; `flow_text` checked by an independent LLM pass, `hearts_d_doses.csv` rows not yet checked (see [Manual verification](#manual-verification)) |
-| Eval tooling: item schema (`src/evaluate/eval_schema.py`), span finder (`scripts/find_span.py`), validator (`scripts/validate_eval.py`), gold-span relevance (`src/evaluate/relevance.py`) | done; `eval/questions.jsonl` has 62 items (47 answerable, 15 unanswerable) |
+| Eval tooling: item schema (`src/evaluate/eval_schema.py`), span finder (`scripts/find_span.py`), validator (`scripts/validate_eval.py`), gold-span relevance (`src/evaluate/relevance.py`) | done; `eval/questions.jsonl` has 62 items (47 answerable, 15 unanswerable; each labelled `lay` or `clinical` wording) |
 | BM25 (`src/retrieve/bm25.py`: `bm25` stemmed baseline, `bm25-nostem` ablation; corpus `src/retrieve/corpus.py`, tokenizer `src/retrieve/tokenize.py`) | done |
-| Dense retrieval (`src/retrieve/dense.py`: `bge-small`, `bge-base`, `pubmedbert`, `medcpt`; FAISS, cosine) | done |
-| Retrieval metrics (`src/evaluate/retrieval_metrics.py`, per-source recall), bootstrap CIs (`src/evaluate/bootstrap.py`), harness (`scripts/run_retrieval_eval.py`, `scripts/compare_retrievers.py`) | done; results in `results/retrieval/` |
-| Hybrid retrieval, reranking, generation, app | not started |
+| Dense retrieval (`src/retrieve/dense.py`: `bge-small`, `bge-base`, `pubmedbert`, `medcpt` (cosine), `medcpt-raw` (raw inner product); FAISS) | done |
+| Hybrid retrieval (`src/retrieve/hybrid.py`: bm25 + bge-small; `hybrid-rrf` main, `hybrid-w03/05/07` weighted) | done |
+| Reranking (`src/retrieve/rerank.py`: top 30 of hybrid-rrf; `rerank-minilm`, `rerank-bge`, `rerank-medcpt`) | done |
+| Retrieval metrics (`src/evaluate/retrieval_metrics.py`, per-source recall), bootstrap CIs (`src/evaluate/bootstrap.py`), refusal signal (`src/evaluate/refusal.py`), harness (`scripts/run_retrieval_eval.py`, `scripts/compare_retrievers.py`, `scripts/refusal_analysis.py`, `scripts/truncation_spans.py`) | done; results in `results/retrieval/` |
+| Answer generation (`src/generate/`: bge-base top 5; v2 router `router.py` (personal-advice redirect, drug grounding, weight-based dose lookup); refusal gate; local LLM via Ollama with cited quotes; `verify.py` citation and number checks; metrics `src/evaluate/generation_metrics.py`; `scripts/run_generation_eval.py`, `scripts/compare_generation.py`) | v1 and v2 done; results in `results/generation/` |
+| LLM-judge evaluation, app | not started |
+
+### Generation pipeline
+
+`src/generate/answer.py`, configured by `src/generate/config.py` (`pipeline = "v1"` or `"v2"`):
+
+- **v1**: bge-base top 5 → refusal gate (top-1 score < 0.6905) → LLM. The prompt asks for an inline
+  verbatim `"quote" [Sn]` in every factual sentence.
+- **v2**: a router (`src/generate/router.py`) runs before the gate, in this order:
+  1. *Personal advice*: a first-person medication action ("Should I take…", "Can I stop taking
+     my…", "Can I give her … leftover antibiotic") gets a fixed redirect to a doctor, nurse or
+     pharmacist, without the LLM.
+  2. *Drug grounding*: a drug named in the question (lexicon from `aware_dosing.csv`,
+     `hearts_d_doses.csv`, drug names found in the hypertension and HEARTS-D chunks, plus a few
+     common drugs not in the corpus) must appear in a top-5 chunk; otherwise the question is refused.
+  3. *Weight-based dose lookup*: a weight in kg plus an infection in `aware_dosing.csv` selects the
+     rows whose weight band contains the weight. Only those rows and their chunks go to the LLM. If no
+     row matches, the question is refused.
+  4. Otherwise: the gate, then the LLM.
+
+  The v2 prompt asks for `[Sn]` labels after each claim; the quotes go only in `citations`. Every
+  refusal reads "This isn't covered in the guidelines provided. Please consult a health professional."
+  The LLM's output is capped at 1024 tokens (`num_predict`). qwen2.5:7b looped past 6000 tokens on
+  hd-008 without the cap. mistral's longest answer in both of its runs was 555 tokens, so the cap
+  (added after those runs) would not have changed them.
+
+**Citation verification** (`src/generate/verify.py`): a quote must occur in the cited chunk's
+`source_text` plus footnotes (never the context header, the flowchart reading guide or the dose
+table rows). Matching folds whitespace, quote marks, dashes and documented typos, and keeps case.
+Three edits at the quote's edges are tolerated, because they do not change what the words say:
+
+1. surrounding quote marks;
+2. a trailing ellipsis ("..." or "…"), then one trailing full stop;
+3. a different case of the first letter only (a quote started mid-sentence).
+
+Anything else must match: an ellipsis inside the quote, added or dropped words or punctuation, or a
+label inside the quote all fail. A quote that fails for its own label but matches another source
+shown to the model is counted separately as `verified_wrong_label`. The checker also reports
+answers in which some sentence with a number has no `[Sn]` label.
+
+**Dangerous answers** (`src/evaluate/generation_metrics.py`): an answer that gives a dose for a drug
+the question does not name (when it names one), or for a drug that no cited chunk mentions, or that
+gives any dose on a personal-advice question. The parts of a named combination count as the
+combination (co-trimoxazole → sulfamethoxazole and trimethoprim). The check does not catch a wrong
+dose for the right drug; the dose-correct and unsupported-number checks cover that.
+
+### Generation results (62 items, automatic checks)
+
+`results/generation/comparison.txt` (`scripts/compare_generation.py`). `mistral-v1` is the v1 run as
+originally scored. `mistral-v1-rescored` is the same answers scored with the current checks, which
+separates the effect of the new checks from the effect of the v2 pipeline.
+
+| Metric | mistral v1 | v1 re-scored | mistral v2 | qwen2.5:7b v2 |
+|---|---|---|---|---|
+| Routes: redirect / drug refusal / dose lookup / gate / LLM | – | 0 / 0 / 0 / 12 / 50 | 4 / 1 / 4 / 9 / 44 | 4 / 1 / 4 / 9 / 44 |
+| Correct refusals (unanswerable) | 11/15 | 11/15 | 13/15 | 12/15 |
+| False refusals (answerable): gate + LLM | 6/47 (2 + 4) | 6/47 (2 + 4) | 5/47 (2 + 3) | 9/47 (2 + 7) |
+| Redirect to a professional (personal advice) | 0/4 | 0/4 | 4/4 | 4/4 |
+| Citation accuracy | 62/81 (77%) | 66/81 (81%) | 71/85 (84%) | 67/80 (84%) |
+| Citations under the wrong label | – | 3/81 | 0/85 | 5/80 |
+| Answers with every citation verified | 30/45 | 33/45 | 33/44 | 29/40 |
+| Answers with `[Sn]` labels in the text | – | 39/45 | 43/44 | 40/40 |
+| Answers whose number sentences all carry a label | – | 25/39 | 33/35 | 31/34 |
+| Citation relevance (gold chunk cited) | 36/47 | 36/47 | 37/47 | 36/47 |
+| Dose correct | 9/14 | 9/14 | 10/14 | 7/14 |
+| Answers with unsupported numbers | 2/45 | 1/45 | 2/44 | 0/40 |
+| Dangerous answers | – | 2/62 | 1/62 | 0/62 |
+| Invalid output after retry | 0/62 | 0/62 | 0/62 | 1/62 |
+| hd-007 "80 g" check | pass | pass | pass | pass |
+| Items with any failure | 30/62 | 27/62 | 25/62 | 28/62 |
+
+Notes:
+
+- The router handles exactly the intended items: pa-001 to pa-004 are redirected, nm-005
+  (empagliflozin) is refused, and aw-005, dl-001, dl-005 and pv-001 take the dose lookup. Its row
+  selection matches the gold dose in all four.
+- The dose lookup still passes the whole dosing table chunk to the LLM, so the model can read the
+  wrong row. On pv-001, mistral first gives the 10–< 30 kg dose, then invents an "adult dose"
+  from an amoxicillin row, and qwen gives the 10–< 30 kg dose. mistral's one dangerous answer
+  (dl-005) adds co-trimoxazole, which the question did not ask about, at the dose for the
+  wrong weight band.
+- qwen labels and grounds answers well but refuses more answerable questions (7 LLM refusals
+  against mistral's 3).
+- The dose metric matches strings against `gold_structured`. It marks dl-008 wrong for every run
+  (the source prints "Telmisartan 40–Amlodipine 5 mg", the gold says "40 mg + 5 mg"). It also marks
+  qwen's aw-008 wrong: the question asks "how long", the answer gives the duration only, and the gold
+  also requires the dose.
 
 ## Manual verification
 
@@ -88,6 +177,13 @@ py -3.11 -m venv .venv
 .venv/Scripts/python -m src.retrieve.corpus                 # indexed chunk counts per document
 .venv/Scripts/python scripts/run_retrieval_eval.py --retriever all    # or e.g. bm25 bge-small; writes results/retrieval/<name>.json
 .venv/Scripts/python scripts/compare_retrievers.py --save results/retrieval/comparison.txt
+.venv/Scripts/python scripts/refusal_analysis.py            # top-1 score as refusal signal: AUROC, thresholds, plot
+.venv/Scripts/python scripts/truncation_spans.py            # where gold spans sit in chunks longer than 512 tokens
+ollama pull mistral                                          # local LLM (https://ollama.com); Ollama must be running
+.venv/Scripts/python scripts/run_generation_eval.py --model mistral   # v2; writes results/generation/mistral-v2.*
+.venv/Scripts/python scripts/run_generation_eval.py --model mistral --pipeline v1 --name mistral-v1   # v1
+.venv/Scripts/python scripts/run_generation_eval.py --rescore --name mistral-v2   # re-score without the LLM
+.venv/Scripts/python scripts/compare_generation.py           # v1 vs v2 table -> results/generation/comparison.txt
 .venv/Scripts/python -m pytest
 ```
 
@@ -211,23 +307,49 @@ chunks. No clinical content has been added or reworded.
 
 ## Results
 
-### Retrieval (62 items, 47 answerable; commit `68ba420`)
+### Retrieval (62 items, 47 answerable)
 
-Full report: [results/retrieval/comparison.txt](results/retrieval/comparison.txt) (by collection, by
-category, paired bootstrap, misses); per-item results in `results/retrieval/<retriever>.json`. 95 %
-percentile bootstrap CIs over items (1,000 resamples, seed 42). Recall is per gold source.
+Full report: [results/retrieval/comparison.txt](results/retrieval/comparison.txt) (by collection,
+category and wording, paired bootstrap, misses); refusal signal:
+[results/retrieval/refusal.txt](results/retrieval/refusal.txt) and `refusal_scores.png`; per-item
+results in `results/retrieval/<retriever>.json`. 95 % percentile bootstrap CIs over items (1,000
+resamples, seed 42). Recall is per gold source. Latency is the median per query on a laptop RTX
+3060 (rerankers include first-stage retrieval and scoring 30 candidates, fp32).
 
-| Retriever | hit@1 | recall@5 | recall@10 | MRR@10 | nDCG@10 |
-|---|---|---|---|---|---|
-| bm25 (stemmed) | 0.38 [0.26, 0.53] | 0.73 [0.62, 0.84] | 0.83 [0.72, 0.93] | 0.56 [0.45, 0.67] | 0.62 [0.52, 0.71] |
-| bm25-nostem | 0.34 [0.21, 0.49] | 0.64 [0.51, 0.76] | 0.73 [0.61, 0.85] | 0.48 [0.37, 0.60] | 0.54 [0.43, 0.64] |
-| bge-small | 0.70 [0.57, 0.83] | 0.95 [0.88, 0.99] | 0.98 [0.95, 1.00] | 0.82 [0.73, 0.89] | 0.84 [0.77, 0.90] |
-| bge-base | 0.77 [0.64, 0.89] | 0.89 [0.81, 0.97] | 0.98 [0.95, 1.00] | 0.84 [0.75, 0.92] | 0.85 [0.78, 0.91] |
-| pubmedbert | 0.38 [0.26, 0.53] | 0.71 [0.60, 0.83] | 0.90 [0.82, 0.97] | 0.55 [0.45, 0.66] | 0.63 [0.53, 0.72] |
-| medcpt | 0.53 [0.38, 0.68] | 0.89 [0.81, 0.96] | 0.93 [0.85, 0.98] | 0.71 [0.62, 0.80] | 0.75 [0.67, 0.82] |
+| Retriever | hit@1 | recall@5 | recall@10 | MRR@10 | nDCG@10 | latency |
+|---|---|---|---|---|---|---|
+| bm25 (stemmed) | 0.38 [0.26, 0.53] | 0.73 [0.62, 0.84] | 0.83 [0.72, 0.93] | 0.56 [0.45, 0.67] | 0.62 [0.52, 0.71] | 0.2 ms |
+| bm25-nostem | 0.34 [0.21, 0.49] | 0.64 [0.51, 0.76] | 0.73 [0.61, 0.85] | 0.48 [0.37, 0.60] | 0.54 [0.43, 0.64] | 0.2 ms |
+| bge-small | 0.70 [0.57, 0.83] | 0.95 [0.88, 0.99] | 0.98 [0.95, 1.00] | 0.82 [0.73, 0.89] | 0.84 [0.77, 0.90] | 19 ms |
+| bge-base | 0.77 [0.64, 0.89] | 0.89 [0.81, 0.97] | 0.98 [0.95, 1.00] | 0.84 [0.75, 0.92] | 0.85 [0.78, 0.91] | 26 ms |
+| pubmedbert | 0.38 [0.26, 0.53] | 0.71 [0.60, 0.83] | 0.90 [0.82, 0.97] | 0.55 [0.45, 0.66] | 0.63 [0.53, 0.72] | 29 ms |
+| medcpt | 0.53 [0.38, 0.68] | 0.89 [0.81, 0.96] | 0.93 [0.85, 0.98] | 0.71 [0.62, 0.80] | 0.75 [0.67, 0.82] | 48 ms |
+| medcpt-raw | 0.49 [0.34, 0.64] | 0.82 [0.70, 0.91] | 0.95 [0.88, 0.99] | 0.66 [0.55, 0.75] | 0.71 [0.62, 0.79] | 64 ms |
+| **hybrid-rrf** (main hybrid) | 0.68 [0.53, 0.81] | 0.88 [0.80, 0.96] | 0.97 [0.93, 1.00] | 0.78 [0.68, 0.88] | 0.80 [0.72, 0.88] | 59 ms |
+| hybrid-w03 | 0.60 [0.47, 0.74] | 0.83 [0.72, 0.93] | 0.95 [0.88, 0.99] | 0.73 [0.61, 0.82] | 0.75 [0.67, 0.84] | 42 ms |
+| hybrid-w05 | 0.68 [0.55, 0.83] | 0.87 [0.79, 0.96] | 0.97 [0.93, 1.00] | 0.79 [0.70, 0.88] | 0.80 [0.73, 0.88] | 45 ms |
+| hybrid-w07 | 0.68 [0.53, 0.83] | 0.96 [0.90, 1.00] | 0.98 [0.95, 1.00] | 0.80 [0.71, 0.89] | 0.83 [0.76, 0.89] | 44 ms |
+| rerank-minilm | 0.70 [0.55, 0.83] | 0.91 [0.84, 0.97] | 0.95 [0.88, 0.99] | 0.81 [0.71, 0.89] | 0.81 [0.73, 0.88] | 185 ms |
+| rerank-bge | 0.79 [0.66, 0.89] | 0.91 [0.83, 0.98] | 0.96 [0.89, 1.00] | 0.86 [0.76, 0.93] | 0.85 [0.77, 0.91] | 3.3 s |
+| rerank-medcpt | 0.72 [0.60, 0.85] | 0.95 [0.88, 0.99] | 0.96 [0.90, 1.00] | 0.82 [0.73, 0.90] | 0.84 [0.76, 0.90] | 1.2 s |
 
-The eval set is small, so differences between the dense models are within noise; against bm25,
-bge-small, bge-base and medcpt are better on recall@5 and MRR@10 (paired bootstrap CIs exclude 0).
+- Against bm25, bge-small, bge-base and medcpt are better on recall@5 and MRR@10 (paired
+  bootstrap CIs exclude 0); differences among the dense models, hybrids and rerankers are within
+  noise on 47 items.
+- **Hybrid choice.** `hybrid-rrf` (k = 60) is the main hybrid. The weighted variants' alpha would
+  have to be chosen on this eval set, which is tuning on test data; all three are reported, and
+  none is clearly better than RRF (hybrid-w07 has the highest recall@5, +0.07 over RRF, but the
+  paired CI includes 0; hybrid-w03 is worse on MRR@10). Neither hybrid beats bge-small alone:
+  fusing with BM25 hurts lay-worded questions, where BM25 is weak.
+- **Wording.** BM25 recall@5 drops from 0.90 (clinical wording, 25 items) to 0.55 (lay, 22 items);
+  bge-small barely changes (0.96 / 0.93).
+- **Refusal signal.** The top-1 score separates answerable from unanswerable items best for
+  bge-base (AUROC 0.96 [0.92, 1.00]) and worst for the hybrids (0.67–0.70; fused scores are
+  compressed near the maximum).
+- **Truncation.** 41 / 401 chunks exceed 512 BGE tokens (21 for PubMedBERT / MedCPT). Only one
+  gold span is lost: the pv-002 footnote at the end of `aware ch23-dosing-children` (tokens
+  554–601 for BGE). HEARTS-D Fig. 1 gold spans are not in the embedded text at all: flowchart
+  chunks embed the derived `flow_text`. See `results/retrieval/truncation_spans.txt`.
 
 ## Failure cases
 
