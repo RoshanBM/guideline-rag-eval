@@ -13,10 +13,19 @@ optimistic for new questions.
 
 * ``"v1"``: retrieve, gate, LLM; the prompt asks for inline ``"quote" [Sn]`` in the answer; every
   refusal is :data:`REFUSAL_SENTENCE`. Kept so the v1 results can be reproduced.
-* ``"v2"`` (default): the router (``src/generate/router.py``) runs before the gate (personal-advice
+* ``"v2"``: the router (``src/generate/router.py``) runs before the gate (personal-advice
   redirect, drug grounding, weight-based dose lookup); the prompt asks for ``[Sn]`` labels after each
   claim and quotes only in ``citations``; every refusal shown to the user is :data:`REFUSAL_MESSAGE`
-  (the LLM itself still replies with :data:`REFUSAL_SENTENCE`, which is then replaced).
+  (the LLM itself still replies with :data:`REFUSAL_SENTENCE`, which is then replaced). On the dose
+  route the LLM phrases the answer from the matched rows.
+* ``"v2.1"`` (default, **frozen**: :data:`PIPELINE_VERSION`): as v2, except that the dose route builds
+  the answer from the matched ``aware_dosing.csv`` rows with a template and does not call the LLM
+  (``router.build_dose_answer``), and the LLM-route prompt requires each quote to be one contiguous
+  line from a single source.
+
+The frozen pipeline is ``GenerationConfig()`` with ``pipeline="v2.1"`` and the defaults below
+(bge-base top 5, gate 0.6905, mistral, temperature 0, seed 42, num_ctx 8192, num_predict 1024).
+Changes after the freeze need a new pipeline version, so the frozen results stay reproducible.
 """
 
 from __future__ import annotations
@@ -28,12 +37,13 @@ REFUSAL_SENTENCE = "This isn't covered in the guidelines provided."
 REFUSAL_MESSAGE = "This isn't covered in the guidelines provided. Please consult a health professional."
 REDIRECT_MESSAGE = ("I can't advise on your own or a family member's treatment. "
                     "Please speak to a doctor, nurse or pharmacist.")
-PIPELINES = ("v1", "v2")
+PIPELINES = ("v1", "v2", "v2.1")
+PIPELINE_VERSION = "v2.1-frozen"  # the frozen generation pipeline: GenerationConfig() with pipeline "v2.1"
 
 
 @dataclass(frozen=True)
 class GenerationConfig:
-    pipeline: str = "v2"
+    pipeline: str = "v2.1"
     retriever: str = "bge-base"
     top_k: int = 5
     gate_threshold: float = 0.6905  # results/retrieval/refusal.json bge-base (0.690515), rounded down

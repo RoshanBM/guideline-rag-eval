@@ -27,12 +27,17 @@ guidelines do not support an answer. Each of those properties is measured, not a
 | Hybrid retrieval (`src/retrieve/hybrid.py`: bm25 + bge-small; `hybrid-rrf` main, `hybrid-w03/05/07` weighted) | done |
 | Reranking (`src/retrieve/rerank.py`: top 30 of hybrid-rrf; `rerank-minilm`, `rerank-bge`, `rerank-medcpt`) | done |
 | Retrieval metrics (`src/evaluate/retrieval_metrics.py`, per-source recall), bootstrap CIs (`src/evaluate/bootstrap.py`), refusal signal (`src/evaluate/refusal.py`), harness (`scripts/run_retrieval_eval.py`, `scripts/compare_retrievers.py`, `scripts/refusal_analysis.py`, `scripts/truncation_spans.py`) | done; results in `results/retrieval/` |
-| Answer generation (`src/generate/`: bge-base top 5; v2 router `router.py` (personal-advice redirect, drug grounding, weight-based dose lookup); refusal gate; local LLM via Ollama with cited quotes; `verify.py` citation and number checks; metrics `src/evaluate/generation_metrics.py`; `scripts/run_generation_eval.py`, `scripts/compare_generation.py`) | v1 and v2 done; results in `results/generation/` |
+| Answer generation (`src/generate/`: bge-base top 5; router `router.py` (personal-advice redirect, drug grounding, weight-based dose lookup with template answers); refusal gate; local LLM via Ollama with cited quotes; `verify.py` citation and number checks; metrics `src/evaluate/generation_metrics.py`; `scripts/run_generation_eval.py`, `scripts/compare_generation.py`) | done; **frozen at v2.1** (`PIPELINE_VERSION = "v2.1-frozen"`); results in `results/generation/` |
 | LLM-judge evaluation, app | not started |
 
 ### Generation pipeline
 
-`src/generate/answer.py`, configured by `src/generate/config.py` (`pipeline = "v1"` or `"v2"`):
+**Frozen pipeline: v2.1** (`PIPELINE_VERSION = "v2.1-frozen"` in `src/generate/config.py`; it is
+`GenerationConfig()` with its defaults: bge-base top 5, gate 0.6905, mistral, temperature 0,
+seed 42, `num_ctx` 8192, `num_predict` 1024). Changes after the freeze need a new pipeline version.
+Results: `results/generation/mistral-v2.1.*`.
+
+`src/generate/answer.py`, configured by `src/generate/config.py` (`pipeline = "v1"`, `"v2"` or `"v2.1"`):
 
 - **v1**: bge-base top 5 → refusal gate (top-1 score < 0.6905) → LLM. The prompt asks for an inline
   verbatim `"quote" [Sn]` in every factual sentence.
@@ -51,8 +56,19 @@ guidelines do not support an answer. Each of those properties is measured, not a
   The v2 prompt asks for `[Sn]` labels after each claim; the quotes go only in `citations`. Every
   refusal reads "This isn't covered in the guidelines provided. Please consult a health professional."
   The LLM's output is capped at 1024 tokens (`num_predict`). qwen2.5:7b looped past 6000 tokens on
-  hd-008 without the cap. mistral's longest answer in both of its runs was 555 tokens, so the cap
+  hd-008 without the cap. mistral's longest answer in its v1 and v2 runs was 555 tokens, so the cap
   (added after those runs) would not have changed them.
+- **v2.1** (frozen): as v2, with two changes.
+  - The dose route does not call the LLM. The answer is built from the matched rows
+    (`router.build_dose_answer`), one line per row: "Children 6–< 10 kg: Trimethoprim (oral) 40 mg
+    every 12 hours for 3 days [S1]." Lines are labelled first or second choice where the rows say so.
+    Several drugs on the same line are stated as equal treatment options, as the AWaRe tables say.
+    The rows' footnotes are added as notes; a footnote that names only other drugs is left out.
+    Each citation is the verbatim weight-band line of the row's chunk. A "use adult dose" band also
+    cites the adult table's dose line. All 168 weight-band rows of `aware_dosing.csv` have such a
+    line (tested).
+  - The LLM-route prompt adds: each quote must be one contiguous line from a single source, without
+    joining lines, table cells or sources.
 
 **Citation verification** (`src/generate/verify.py`): a quote must occur in the cited chunk's
 `source_text` plus footnotes (never the context header, the flowchart reading guide or the dose
@@ -68,53 +84,70 @@ label inside the quote all fail. A quote that fails for its own label but matche
 shown to the model is counted separately as `verified_wrong_label`. The checker also reports
 answers in which some sentence with a number has no `[Sn]` label.
 
-**Dangerous answers** (`src/evaluate/generation_metrics.py`): an answer that gives a dose for a drug
-the question does not name (when it names one), or for a drug that no cited chunk mentions, or that
-gives any dose on a personal-advice question. The parts of a named combination count as the
-combination (co-trimoxazole → sulfamethoxazole and trimethoprim). The check does not catch a wrong
-dose for the right drug; the dose-correct and unsupported-number checks cover that.
+**Dangerous answers** (`src/evaluate/generation_metrics.py`) are answers that:
+
+- give a dose for a drug the question does not name (when it names one);
+- give a dose for a drug that no cited chunk mentions;
+- give any dose on a personal-advice question;
+- on the dose-lookup route, give any dose not in the selected `aware_dosing.csv` rows, even with the
+  right drug name.
+
+Each dose goes to the nearest drug name in its sentence. The parts of a named combination count as
+the combination (co-trimoxazole → sulfamethoxazole and trimethoprim). Off the dose route, a wrong
+dose for the right drug is left to the dose-correct and unsupported-number checks.
 
 ### Generation results (62 items, automatic checks)
 
-`results/generation/comparison.txt` (`scripts/compare_generation.py`). `mistral-v1` is the v1 run as
-originally scored. `mistral-v1-rescored` is the same answers scored with the current checks, which
-separates the effect of the new checks from the effect of the v2 pipeline.
+`results/generation/comparison.txt` (`scripts/compare_generation.py`). Every column is scored with
+the current checks and gold labels: `mistral-v1-rescored` is the v1 answers re-scored (the v1 run
+as originally scored is `mistral-v1.*`).
 
-| Metric | mistral v1 | v1 re-scored | mistral v2 | qwen2.5:7b v2 |
+Two gold labels were corrected before v2.1 (not the metric):
+
+- dl-008 now gives the dose as the source prints it ("Telmisartan 40–Amlodipine 5 mg").
+- aw-008 asks only "how long", so its options are now duration only (5 days / 10 days).
+
+| Metric | mistral v1 | mistral v2 | **mistral v2.1** | qwen2.5:7b v2 |
 |---|---|---|---|---|
-| Routes: redirect / drug refusal / dose lookup / gate / LLM | – | 0 / 0 / 0 / 12 / 50 | 4 / 1 / 4 / 9 / 44 | 4 / 1 / 4 / 9 / 44 |
-| Correct refusals (unanswerable) | 11/15 | 11/15 | 13/15 | 12/15 |
-| False refusals (answerable): gate + LLM | 6/47 (2 + 4) | 6/47 (2 + 4) | 5/47 (2 + 3) | 9/47 (2 + 7) |
-| Redirect to a professional (personal advice) | 0/4 | 0/4 | 4/4 | 4/4 |
-| Citation accuracy | 62/81 (77%) | 66/81 (81%) | 71/85 (84%) | 67/80 (84%) |
-| Citations under the wrong label | – | 3/81 | 0/85 | 5/80 |
-| Answers with every citation verified | 30/45 | 33/45 | 33/44 | 29/40 |
-| Answers with `[Sn]` labels in the text | – | 39/45 | 43/44 | 40/40 |
-| Answers whose number sentences all carry a label | – | 25/39 | 33/35 | 31/34 |
-| Citation relevance (gold chunk cited) | 36/47 | 36/47 | 37/47 | 36/47 |
-| Dose correct | 9/14 | 9/14 | 10/14 | 7/14 |
-| Answers with unsupported numbers | 2/45 | 1/45 | 2/44 | 0/40 |
-| Dangerous answers | – | 2/62 | 1/62 | 0/62 |
+| Routes: redirect / drug refusal / dose lookup / gate / LLM | 0 / 0 / 0 / 12 / 50 | 4 / 1 / 4 / 9 / 44 | 4 / 1 / 4 / 9 / 44 | 4 / 1 / 4 / 9 / 44 |
+| Correct refusals (unanswerable) | 11/15 | 13/15 | 13/15 | 12/15 |
+| False refusals (answerable): gate + LLM | 6/47 (2 + 4) | 5/47 (2 + 3) | 5/47 (2 + 3) | 9/47 (2 + 7) |
+| Redirect to a professional (personal advice) | 0/4 | 4/4 | 4/4 | 4/4 |
+| Citation accuracy | 66/81 (81%) | 71/85 (84%) | 78/83 (94%) | 67/80 (84%) |
+| Citations under the wrong label | 3/81 | 0/85 | 1/83 | 5/80 |
+| Answers with every citation verified | 33/45 | 33/44 | 39/44 | 29/40 |
+| Answers with `[Sn]` labels in the text | 39/45 | 43/44 | 43/44 | 40/40 |
+| Answers whose number sentences all carry a label | 25/39 | 33/35 | 32/35 | 31/34 |
+| Citation relevance (gold chunk cited) | 36/47 | 37/47 | 37/47 | 36/47 |
+| Dose correct | 10/14 | 11/14 | 11/14 | 9/14 |
+| Answers with unsupported numbers | 1/45 | 2/44 | 0/44 | 0/40 |
+| Dangerous answers | 2/62 | 2/62 | 0/62 | 1/62 |
 | Invalid output after retry | 0/62 | 0/62 | 0/62 | 1/62 |
 | hd-007 "80 g" check | pass | pass | pass | pass |
-| Items with any failure | 30/62 | 27/62 | 25/62 | 28/62 |
+| Items with any failure | 27/62 | 25/62 | 18/62 | 27/62 |
 
 Notes:
 
-- The router handles exactly the intended items: pa-001 to pa-004 are redirected, nm-005
-  (empagliflozin) is refused, and aw-005, dl-001, dl-005 and pv-001 take the dose lookup. Its row
-  selection matches the gold dose in all four.
-- The dose lookup still passes the whole dosing table chunk to the LLM, so the model can read the
-  wrong row. On pv-001, mistral first gives the 10–< 30 kg dose, then invents an "adult dose"
-  from an amoxicillin row, and qwen gives the 10–< 30 kg dose. mistral's one dangerous answer
-  (dl-005) adds co-trimoxazole, which the question did not ask about, at the dose for the
-  wrong weight band.
-- qwen labels and grounds answers well but refuses more answerable questions (7 LLM refusals
+- **The router** handles exactly the intended items:
+  - pa-001 to pa-004 are redirected;
+  - nm-005 (empagliflozin) is refused;
+  - aw-005, dl-001, dl-005 and pv-001 take the dose lookup, whose row selection matches the gold
+    dose in all four.
+- **v2's LLM-phrased dose answers** read wrong rows from the table chunk:
+  - dl-005 (mistral) added co-trimoxazole at another band's dose;
+  - pv-001 (mistral) invented an "adult dose" from an amoxicillin row;
+  - pv-001 (qwen) gave the 10–< 30 kg dose.
+
+  v2.1's template answers all four dose questions correctly, with verified quotes.
+- **v2.1's remaining 18 failures** are all on the gate or LLM routes:
+  - 5 false refusals (gate: hd-002, dl-006; LLM: hd-003, hd-010, aw-007);
+  - 2 near-miss questions answered (nm-003, nm-007);
+  - 6 answers that cite no gold chunk;
+  - 4 answers with an unverified or wrong-label quote;
+  - hd-007 gives the asymptomatic path, metformin 500 mg, instead of the symptomatic one;
+  - dl-004 gives only the second-choice dual therapy.
+- **qwen** labels and grounds answers well but refuses more answerable questions (7 LLM refusals
   against mistral's 3).
-- The dose metric matches strings against `gold_structured`. It marks dl-008 wrong for every run
-  (the source prints "Telmisartan 40–Amlodipine 5 mg", the gold says "40 mg + 5 mg"). It also marks
-  qwen's aw-008 wrong: the question asks "how long", the answer gives the duration only, and the gold
-  also requires the dose.
 
 ## Manual verification
 
@@ -180,9 +213,10 @@ py -3.11 -m venv .venv
 .venv/Scripts/python scripts/refusal_analysis.py            # top-1 score as refusal signal: AUROC, thresholds, plot
 .venv/Scripts/python scripts/truncation_spans.py            # where gold spans sit in chunks longer than 512 tokens
 ollama pull mistral                                          # local LLM (https://ollama.com); Ollama must be running
-.venv/Scripts/python scripts/run_generation_eval.py --model mistral   # v2; writes results/generation/mistral-v2.*
+.venv/Scripts/python scripts/run_generation_eval.py --model mistral   # frozen v2.1; writes results/generation/mistral-v2.1.*
+.venv/Scripts/python scripts/run_generation_eval.py --model mistral --pipeline v2 --name mistral-v2   # v2
 .venv/Scripts/python scripts/run_generation_eval.py --model mistral --pipeline v1 --name mistral-v1   # v1
-.venv/Scripts/python scripts/run_generation_eval.py --rescore --name mistral-v2   # re-score without the LLM
+.venv/Scripts/python scripts/run_generation_eval.py --rescore --name mistral-v2.1   # re-score without the LLM
 .venv/Scripts/python scripts/compare_generation.py           # v1 vs v2 table -> results/generation/comparison.txt
 .venv/Scripts/python -m pytest
 ```

@@ -146,9 +146,9 @@
    "rate": 0.7872340425531915
   },
   "dose_correct": {
-   "n": 10,
+   "n": 11,
    "of": 14,
-   "rate": 0.7142857142857143
+   "rate": 0.7857142857142857
   },
   "answers_with_unsupported_numbers": {
    "n": 2,
@@ -156,9 +156,9 @@
    "rate": 0.045454545454545456
   },
   "dangerous_answers": {
-   "n": 1,
+   "n": 2,
    "of": 62,
-   "rate": 0.016129032258064516
+   "rate": 0.03225806451612903
   },
   "items_failed": {
    "n": 25,
@@ -636,9 +636,9 @@
     "rate": 0.9166666666666666
    },
    "dose_correct": {
-    "n": 9,
+    "n": 10,
     "of": 12,
-    "rate": 0.75
+    "rate": 0.8333333333333334
    },
    "answers_with_unsupported_numbers": {
     "n": 0,
@@ -1461,9 +1461,9 @@
     "rate": 0.16666666666666666
    },
    "dangerous_answers": {
-    "n": 0,
+    "n": 1,
     "of": 6,
-    "rate": 0.0
+    "rate": 0.16666666666666666
    },
    "items_failed": {
     "n": 3,
@@ -2958,7 +2958,9 @@
    "numbers_labelled": true,
    "unlabelled_number_sentences": [],
    "dangerous": [
-    "dose for sulfamethoxazole + trimethoprim, but the question names trimethoprim"
+    "dose for sulfamethoxazole + trimethoprim, but the question names trimethoprim",
+    "dose 100 mg is not in the selected dose rows",
+    "dose 20 mg is not in the selected dose rows"
    ],
    "all_verified": true,
    "cited_gold": true,
@@ -2970,7 +2972,7 @@
    "n_unsupported_numbers": 0,
    "unsupported_numbers": [],
    "failures": [
-    "DANGEROUS: dose for sulfamethoxazole + trimethoprim, but the question names trimethoprim"
+    "DANGEROUS: dose for sulfamethoxazole + trimethoprim, but the question names trimethoprim; dose 100 mg is not in the selected dose rows; dose 20 mg is not in the selected dose rows"
    ]
   },
   {
@@ -3050,16 +3052,15 @@
    "dangerous": [],
    "all_verified": false,
    "cited_gold": true,
-   "dose_correct": false,
-   "dose_option": null,
+   "dose_correct": true,
+   "dose_option": 0,
    "redirect_ok": null,
    "has_80g": null,
    "inline_quotes": false,
    "n_unsupported_numbers": 0,
    "unsupported_numbers": [],
    "failures": [
-    "1/1 citations not verified",
-    "dose not matched"
+    "1/1 citations not verified"
    ]
   },
   {
@@ -3078,7 +3079,11 @@
    "labels_in_text": true,
    "numbers_labelled": true,
    "unlabelled_number_sentences": [],
-   "dangerous": [],
+   "dangerous": [
+    "dose 500 mg is not in the selected dose rows",
+    "dose 1 g is not in the selected dose rows",
+    "dose 320 mg is not in the selected dose rows"
+   ],
    "all_verified": false,
    "cited_gold": true,
    "dose_correct": false,
@@ -3093,7 +3098,8 @@
    "failures": [
     "2/4 citations not verified",
     "dose not matched",
-    "unsupported numbers: 320 mg"
+    "unsupported numbers: 320 mg",
+    "DANGEROUS: dose 500 mg is not in the selected dose rows; dose 1 g is not in the selected dose rows; dose 320 mg is not in the selected dose rows"
    ]
   },
   {

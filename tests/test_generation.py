@@ -13,6 +13,7 @@ from src.evaluate.generation_metrics import (
     aggregate,
     contains_80g,
     dangerous_reasons,
+    dose_route_reasons,
     dosed_drugs,
     dose_match,
     has_inline_quote,
@@ -21,8 +22,23 @@ from src.evaluate.generation_metrics import (
     score_item,
 )
 from src.evaluate.relevance import load_chunks
-from src.generate.answer import SYSTEM_PROMPT_V1, SYSTEM_PROMPT_V2, Answerer, build_user_prompt, parse_output, Source
-from src.generate.config import REDIRECT_MESSAGE, REFUSAL_MESSAGE, REFUSAL_SENTENCE, GenerationConfig
+from src.generate.answer import (
+    SYSTEM_PROMPT_V1,
+    SYSTEM_PROMPT_V2,
+    SYSTEM_PROMPT_V21,
+    SYSTEM_PROMPTS,
+    Answerer,
+    Source,
+    build_user_prompt,
+    parse_output,
+)
+from src.generate.config import (
+    PIPELINE_VERSION,
+    REDIRECT_MESSAGE,
+    REFUSAL_MESSAGE,
+    REFUSAL_SENTENCE,
+    GenerationConfig,
+)
 from src.generate.router import build_lexicon
 from src.generate.llm import ChatResult
 from src.generate.verify import check_result
@@ -130,11 +146,12 @@ def test_router_redirect_and_drug_refusal_skip_the_llm(chunks):
     assert v1.answer("What dose of empagliflozin should be added?")["route"] == "llm"  # no router in v1
 
 
-def test_dose_route_sends_only_the_rows_and_their_chunks(chunks):
+def test_v2_dose_route_sends_only_the_rows_and_their_chunks(chunks):
     reply = json.dumps({"answer": "Trimethoprim 40 mg every 12 hours for 3 days [S1].",
                         "citations": [{"label": "S1", "quote": "Trimethoprim (oral):"}], "refused": False})
     llm = FakeLLM([reply])
-    a = Answerer(GenerationConfig(gate_threshold=0.99), FakeRetriever([(AW23_CHILD, 0.5), (FIG1, 0.4)]), llm, chunks)
+    a = Answerer(GenerationConfig(pipeline="v2", gate_threshold=0.99), FakeRetriever([(AW23_CHILD, 0.5), (FIG1, 0.4)]),
+                 llm, chunks)
     r = a.answer("An 8 kg baby has a urine infection. What dose of trimethoprim, and for how many days?")
     assert r["route"] == "dose_lookup" and not r["refused"] and not r["gated"]  # bypasses the gate
     assert [s["chunk_id"] for s in r["sources"]] == [AW23_CHILD]
@@ -146,6 +163,65 @@ def test_dose_route_sends_only_the_rows_and_their_chunks(chunks):
     assert (no_row["route"], no_row["refusal_source"], no_row["answer"]) == ("dose_lookup", "dose_no_match",
                                                                              REFUSAL_MESSAGE)
     assert len(llm.calls) == 1
+
+
+AW23_ADULT = "who-aware-2022-ch23-dosing-adults"
+
+
+def test_v21_dose_route_is_a_template_without_the_llm(chunks):
+    llm = FakeLLM([])
+    a = Answerer(GenerationConfig(gate_threshold=0.99), FakeRetriever([(AW23_CHILD, 0.5), (FIG1, 0.4)]), llm, chunks)
+    r = a.answer("An 8 kg baby has a urine infection. What dose of trimethoprim, and for how many days?")
+    assert llm.calls == [] and r["attempts"] == [] and r["route"] == "dose_lookup" and not r["refused"]
+    assert r["route_detail"]["answer_mode"] == "template" and r["route_detail"]["missing_quote_lines"] == []
+    assert r["answer"].splitlines()[0] == "Children 6–< 10 kg: Trimethoprim (oral) 40 mg every 12 hours for 3 days [S1]."
+    assert r["citations"] == [{"label": "S1", "quote": "6–< 10 kg: 40 mg given every 12 hours"}]
+    checks = check_result(r, chunks)
+    assert [c["status"] for c in checks["citation_checks"]] == ["verified"]
+    assert checks["number_flags"] == [] and checks["unlabelled_number_sentences"] == []
+
+
+def test_v21_adult_dose_band_cites_both_tables(chunks):
+    a = Answerer(GenerationConfig(gate_threshold=0.99), FakeRetriever([(AW23_CHILD, 0.5)]), FakeLLM([]), chunks)
+    r = a.answer("A child weighing 35 kg has a lower urinary tract infection. What dose of co-trimoxazole?")
+    assert [s["chunk_id"] for s in r["sources"]] == [AW23_CHILD, AW23_ADULT]
+    assert r["answer"].startswith("Children ≥ 30 kg (adult dose): Sulfamethoxazole+ trimethoprim (oral) "
+                                  "800 mg + 160 mg every 12 hours for 3 days [S1, S2].")
+    assert [c["quote"] for c in r["citations"]] == [
+        "≥ 30 kg: use adult dose | 3 days",
+        "Sulfamethoxazole+ trimethoprim (oral): 800 mg + 160 mg given every 12 hours | 3 days"]
+    assert all(c["verified"] for c in check_result(r, chunks)["citation_checks"])
+
+
+def test_v21_lists_equal_options_when_no_drug_is_named(chunks):
+    a = Answerer(GenerationConfig(gate_threshold=0.99), FakeRetriever([(AW23_CHILD, 0.5)]), FakeLLM([]), chunks)
+    r = a.answer("What should an 8 kg baby with a urine infection be given?")
+    lines = r["answer"].splitlines()
+    assert any(line.startswith("Children 6–< 10 kg: Trimethoprim (oral) 40 mg") for line in lines)
+    assert any(line.startswith("Children 6–< 10 kg: Sulfamethoxazole+ trimethoprim (oral) 200 mg/40 mg") for line in lines)
+    assert "These are equal treatment options [S1]." in lines
+    assert all(c["verified"] for c in check_result(r, chunks)["citation_checks"])
+
+
+def test_dose_route_danger_any_dose_not_in_the_rows():
+    rows = [{"antibiotic": "Trimethoprim", "weight_band": "6–< 10 kg", "resolved_dose": "40 mg",
+             "resolved_frequency": "every 12 hours", "duration": "3 days", "notes": ""}]
+    assert dose_route_reasons("Trimethoprim 40 mg every 12 hours for 3 days [S1].", rows) == []
+    assert dose_route_reasons("Trimethoprim 80 mg every 12 hours [S1].", rows) == [
+        "dose 80 mg is not in the selected dose rows"]  # right drug, wrong dose
+    it = items()["dl-005"]
+    r = {"valid": True, "refused": False, "refusal_source": None, "route": "dose_lookup",
+         "route_detail": {"rows": rows}, "answer": "Trimethoprim 40 mg [S1]; or co-trimoxazole 100 mg/20 mg [S1]."}
+    s = score_item(it, r, {"citation_checks": [], "number_flags": []}, [])
+    assert "dose 100 mg is not in the selected dose rows" in s.dangerous
+    assert "dose 20 mg is not in the selected dose rows" in s.dangerous
+
+
+def test_v21_prompt_requires_single_line_quotes():
+    assert "Each quote must be one contiguous line from a single source" in SYSTEM_PROMPT_V21
+    assert "contiguous line" not in SYSTEM_PROMPT_V2  # v2 kept as it was run
+    assert SYSTEM_PROMPTS["v2.1"] == SYSTEM_PROMPT_V21 and GenerationConfig().pipeline == "v2.1"
+    assert PIPELINE_VERSION == "v2.1-frozen"
 
 
 def test_v2_prompt_asks_for_labels_not_inline_quotes():
@@ -379,3 +455,14 @@ def test_score_item_80g_and_aggregate():
     assert agg["correct_refusals_gate"]["n"] == 1 and agg["false_refusals"]["n"] == 0
     assert agg["citation_accuracy"] == {"n": 1, "of": 1, "rate": 1.0}
     assert agg["items_failed"]["n"] == 1
+
+
+def test_a_dose_goes_to_the_nearest_drug(lexicon):
+    """hd-008 (v2.1): the insulin dose is not a metformin dose because metformin shares the sentence."""
+    assert dosed_drugs("Start with 10 units intermediate-acting insulin (NPH) at bedtime, continue metformin "
+                       "and sulfonylurea.", lexicon) == ["nph insulin"]
+    assert dangerous_reasons("How should insulin be started in type 2 diabetes when tablets aren't enough?",
+                             "dose_lookup", "Start with 10 units intermediate-acting insulin (NPH) at bedtime, continue "
+                             "metformin and sulfonylurea. [S1]", [], lexicon) == [
+        "dose for nph insulin, which no cited chunk mentions"]  # no cited chunk given here
+    assert dosed_drugs("Give amoxicillin; metformin 500 mg daily.", lexicon) == ["metformin"]

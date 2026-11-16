@@ -114,22 +114,23 @@ class DrugLexicon:
     def _prep(text: str) -> str:
         return normalise_for_match(text).lower()
 
-    def find(self, text: str) -> list[str]:
-        """Canonical drugs named in ``text``, in order of first mention (longest alias wins)."""
-        t = self._prep(text)
+    def spans(self, text: str, prepared: bool = False) -> list[tuple[int, int, str]]:
+        """``(start, end, canonical)`` for every drug mention, in text order (longest alias wins).
+        Offsets refer to the lower-cased match form of ``text`` (or to ``text`` if ``prepared``)."""
+        t = text if prepared else self._prep(text)
         taken = [False] * len(t)
-        hits: list[tuple[int, str]] = []
+        hits: list[tuple[int, int, str]] = []
         for pat, canon in self._patterns:
             for m in pat.finditer(t):
                 if any(taken[m.start():m.end()]):
                     continue
                 taken[m.start():m.end()] = [True] * (m.end() - m.start())
-                hits.append((m.start(), canon))
-        out: list[str] = []
-        for _, canon in sorted(hits):
-            if canon not in out:
-                out.append(canon)
-        return out
+                hits.append((m.start(), m.end(), canon))
+        return sorted(hits)
+
+    def find(self, text: str) -> list[str]:
+        """Canonical drugs named in ``text``, in order of first mention (longest alias wins)."""
+        return list(dict.fromkeys(canon for _, _, canon in self.spans(text)))
 
     def mentioned_in(self, canon: str, text: str) -> bool:
         """True if any name of ``canon`` occurs in ``text`` (anywhere, even inside a longer name)."""
@@ -303,6 +304,117 @@ def lookup_doses(question: str, lexicon: DrugLexicon | None = None,
                     and band_contains(r["weight_band"], weight)
                     and (not drugs or canonical_drug(r["antibiotic"]) in drugs))
     return DoseLookup(weight, infection, drugs, matched)
+
+
+# --------------------------------------------------------------------------- #
+# c (v2.1). Deterministic dose answer from the matched rows
+# --------------------------------------------------------------------------- #
+def _squash(text: str) -> str:
+    return re.sub(r"\s+", "", normalise_for_match(text)).lower()
+
+
+def _drug_header_re(antibiotic: str) -> re.Pattern[str]:
+    """A line that introduces the drug: it starts with the name followed by "(", ":" or the line
+    end ("Cloxacillin", "Trimethoprim (oral): ..."), or contains "<name> (" not as the second part
+    of a combination ("Sulfamethoxazole+ trimethoprim (oral)" is not a trimethoprim header)."""
+    body = r"\s*\+\s*".join(re.escape(p) for p in re.split(r"\s*\+\s*", antibiotic.strip()))
+    return re.compile(rf"(?:^[\s|•-]*{body}\s*(?:\(|:|$))|(?:(?<![\w+])(?<!\+ ){body}\s*\()", re.IGNORECASE)
+
+
+def band_line(row: dict[str, str], record: dict[str, Any]) -> str | None:
+    """The verbatim line of ``record`` that gives the row's weight band: the first line starting
+    with the band ("6–< 10 kg: 40 mg given every 12 hours") after a header line of the row's drug."""
+    lines = verifiable_text(record).splitlines()
+    header = _drug_header_re(row["antibiotic"])
+    band = _squash(row["weight_band"])
+    for start in (i for i, line in enumerate(lines) if header.search(normalise_for_match(line))):
+        for line in lines[start:]:
+            if _squash(line).lstrip("|•-").startswith(band):
+                return line.strip()
+    return None
+
+
+def adult_dose_line(row: dict[str, str], record: dict[str, Any]) -> str | None:
+    """For an "use adult dose" band: the adult table's line that holds the drug and its dose."""
+    header, dose = _drug_header_re(row["antibiotic"]), _squash(row["resolved_dose"])
+    lines = verifiable_text(record).splitlines()
+    return next((line.strip() for line in lines if header.search(normalise_for_match(line)) and dose in _squash(line)),
+                None)
+
+
+_NOTE_SPLIT = re.compile(r";\s*(?=Footnote |Row: |Source discrepancy|Oral options)")
+
+
+def row_caveats(rows: tuple[dict[str, str], ...], lexicon: DrugLexicon) -> list[str]:
+    """Footnotes from the rows' ``notes`` (deduplicated). A footnote that names other drugs but
+    none of the selected rows' drugs is left out (footnotes are attached to every row of a table)."""
+    selected = {canonical_drug(r["antibiotic"]) for r in rows}
+    selected |= {part for d in selected for part in d.split(" + ")}
+    out: list[str] = []
+    for r in rows:
+        for part in _NOTE_SPLIT.split(r.get("notes") or ""):
+            m = re.match(r"Footnote [a-z]\s+(.*)", part.strip(), re.DOTALL)
+            if not m:
+                continue
+            text = m.group(1).strip()
+            named = set(lexicon.find(text))
+            named |= {p for d in named for p in d.split(" + ")}
+            if named and not named & selected:
+                continue
+            if text not in out:
+                out.append(text)
+    return out
+
+
+@dataclass(frozen=True)
+class DoseAnswer:
+    answer: str
+    citations: list[dict[str, str]]  # [{label, quote}]
+    missing_lines: list[str]  # rows whose verbatim line was not found (cited without a quote)
+
+
+def build_dose_answer(lookup: DoseLookup, chunks: dict[str, dict[str, Any]], label_of: dict[str, str],
+                      lexicon: DrugLexicon) -> DoseAnswer:
+    """The template answer of the v2.1 dose route: one line per matched row,
+
+        "<Population> <weight band>: <drug> (<route>) <resolved_dose> <resolved_frequency> for <duration> [Sn]"
+
+    labelled "First choice" / "Second choice" where the rows say so, then a sentence saying the
+    drugs are equal options when several drugs share a line (the AWaRe tables list equal options
+    alphabetically), then the rows' footnotes. Each citation is the verbatim weight-band line of the
+    row's chunk; an "use adult dose" band also cites the adult table's dose line."""
+    lines, citations, missing = [], [], []
+
+    def cite(label: str, quote: str | None, what: str) -> None:
+        if quote is None:
+            missing.append(what)
+        elif {"label": label, "quote": quote} not in citations:
+            citations.append({"label": label, "quote": quote})
+
+    for r in lookup.rows:
+        label = label_of[r["chunk_id"]]
+        labels = [label]
+        cite(label, band_line(r, chunks[r["chunk_id"]]), f"{r['antibiotic']} {r['weight_band']}")
+        adult = (r.get("resolved_from") or "").split("|")[0].strip()
+        if r.get("resolved_rule") == "adult_dose_lookup" and adult in label_of:
+            labels.append(label_of[adult])
+            cite(label_of[adult], adult_dose_line(r, chunks[adult]), f"{r['antibiotic']} adult dose")
+        population = (r["population"] or "patients").replace("_", " ").capitalize()
+        band = r["weight_band"] + (" (adult dose)" if r.get("resolved_rule") == "adult_dose_lookup" else "")
+        regimen = " ".join(x for x in (r["resolved_dose"], r["resolved_frequency"]) if x)
+        duration = f" for {r['duration']}" if r["duration"] else " (duration not stated)"
+        prefix = {"first_choice": "First choice: ", "second_choice": "Second choice: "}.get(r["line"], "")
+        route = f" ({r['route']})" if r["route"] else ""
+        lines.append(f"{prefix}{population} {band}: {r['antibiotic']}{route} {regimen}{duration} "
+                     f"[{', '.join(labels)}].")
+    drugs = {canonical_drug(r["antibiotic"]) for r in lookup.rows}
+    chunk_labels = ", ".join(dict.fromkeys(label_of[r["chunk_id"]] for r in lookup.rows))
+    if len(drugs) > 1 and not any(r["line"] in ("first_choice", "second_choice") for r in lookup.rows):
+        lines.append(f"These are equal treatment options [{chunk_labels}].")
+    if len(lookup.rows) > len(drugs):
+        lines.append(f"Where a drug has two lines, they are alternative regimens [{chunk_labels}].")
+    lines += [f"Note: {c} [{chunk_labels}]" for c in row_caveats(lookup.rows, lexicon)]
+    return DoseAnswer("\n".join(lines), citations, missing)
 
 
 def dose_row_text(row: dict[str, str], label: str) -> str:

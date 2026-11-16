@@ -54,6 +54,7 @@ from src.generate.llm import ChatModel, OllamaClient, OllamaError
 from src.generate.router import (
     DoseLookup,
     DrugLexicon,
+    build_dose_answer,
     build_lexicon,
     detect_personal_advice,
     dose_row_text,
@@ -63,6 +64,11 @@ from src.generate.router import (
 from src.parse.schema import split_text, verifiable_text
 from src.parse.text_utils import normalise_for_match
 from src.retrieve.base import Retriever
+
+# row fields kept in route_detail (the danger check reads the numbers of the selected rows)
+DOSE_ROW_FIELDS = ("antibiotic", "population", "weight_band", "line", "dose", "frequency", "resolved_dose",
+                   "resolved_frequency", "resolved_rule", "resolved_from", "duration", "dose_unit_note", "notes",
+                   "chunk_id")
 
 SYSTEM_PROMPT_V1 = f"""You answer questions about WHO clinical guidelines using ONLY the numbered sources in the user message.
 
@@ -95,8 +101,15 @@ Rules:
 Reply with only a JSON object of this form:
 {{"answer": "<answer text with [S1] labels>", "citations": [{{"label": "S1", "quote": "<verbatim quote>"}}], "refused": false}}"""
 
-SYSTEM_PROMPTS = {"v1": SYSTEM_PROMPT_V1, "v2": SYSTEM_PROMPT_V2}
-SYSTEM_PROMPT = SYSTEM_PROMPT_V2
+_QUOTE_RULE_V2 = ('3. Put the supporting quotes only in "citations": for every label used in "answer", give at least one '
+                  'quote copied character for character from the "Text" of that same source')
+_QUOTE_RULE_V21 = (_QUOTE_RULE_V2 + '. Each quote must be one contiguous line from a single source: do not join lines, '
+                   'table cells or sources into one quote, and use a separate citation for each line you rely on')
+assert _QUOTE_RULE_V2 in SYSTEM_PROMPT_V2
+SYSTEM_PROMPT_V21 = SYSTEM_PROMPT_V2.replace(_QUOTE_RULE_V2, _QUOTE_RULE_V21)
+
+SYSTEM_PROMPTS = {"v1": SYSTEM_PROMPT_V1, "v2": SYSTEM_PROMPT_V2, "v2.1": SYSTEM_PROMPT_V21}
+SYSTEM_PROMPT = SYSTEM_PROMPT_V21
 
 OUTPUT_SCHEMA: dict[str, Any] = {
     "type": "object",
@@ -275,7 +288,7 @@ class Answerer:
             return finish(route=route, route_detail=detail, valid=True, refused=True, refusal_source=refusal_source,
                           answer=text, citations=[], parsed=None)
 
-        if self.config.pipeline == "v2":
+        if self.config.pipeline in ("v2", "v2.1"):
             if detect_personal_advice(question, self.lexicon):
                 return fixed("redirect", REDIRECT_MESSAGE, "redirect")
             missing = ungrounded_drugs(question, [s.record for s in sources], self.lexicon)
@@ -284,15 +297,21 @@ class Answerer:
             lookup = lookup_doses(question, self.lexicon)
             if lookup is not None:
                 detail = {"weight_kg": lookup.weight_kg, "infection": lookup.infection, "drugs": list(lookup.drugs),
-                          "rows": [{k: r[k] for k in ("antibiotic", "population", "weight_band", "line", "resolved_dose",
-                                                      "resolved_frequency", "duration", "chunk_id")}
-                                   for r in lookup.rows]}
+                          "rows": [{k: r.get(k, "") for k in DOSE_ROW_FIELDS} for r in lookup.rows]}
                 if not lookup.rows:
                     return fixed("dose_lookup", REFUSAL_MESSAGE, "dose_no_match", detail)
                 dose_sources = [Source(f"S{i}", cid, None, self.chunks[cid])
                                 for i, cid in enumerate(lookup.chunk_ids(), start=1)]
                 result["sources"] = [{"label": s.label, "chunk_id": s.chunk_id, "score": None} for s in dose_sources]
                 result.update(route="dose_lookup", route_detail=detail)
+                if self.config.pipeline == "v2.1":  # deterministic: no LLM, numbers only from the rows
+                    built = build_dose_answer(lookup, self.chunks, {s.chunk_id: s.label for s in dose_sources},
+                                              self.lexicon)
+                    detail.update(answer_mode="template", missing_quote_lines=built.missing_lines)
+                    parsed = {"answer": built.answer, "citations": built.citations, "refused": False}
+                    return finish(parsed=parsed, valid=True, refused=False, refusal_source=None,
+                                  answer=built.answer, citations=built.citations)
+                detail["answer_mode"] = "llm"
                 return finish(**self._generate(build_dose_prompt(question, lookup, dose_sources), dose_sources, result))
 
         if gate_score < self.config.gate_threshold:

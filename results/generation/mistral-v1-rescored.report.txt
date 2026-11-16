@@ -29,7 +29,7 @@ answers with [Sn] labels in the text               39/45 (87%)
 answers: every number sentence labelled            25/39 (64%)
 answers with inline "quote" [Sn] (v1 rule)         0/45 (0%)
 citation relevance (gold chunk cited, answerable)  36/47 (77%)
-dose correct (gold_structured items)               9/14 (64%)
+dose correct (gold_structured items)               10/14 (71%)
 answers with unsupported numbers                   1/45 (2%)
 dangerous answers                                  2/62 (3%)
 invalid outputs (after retry)                      0/62 (0%)
@@ -40,7 +40,7 @@ By category
 category             n  refused  false ref  correct ref  cit acc  all verif  gold cited  dose ok  unsupp num  danger  failed
 combined             8        0        0/8            -    16/18        6/8         6/8        -         1/8     0/8     4/8
 conflicting_source   3        0        0/3            -      5/5        3/3         3/3      1/1         0/3     0/3     0/3
-dose_lookup         12        3       3/12            -     7/14        4/9        9/12     8/12         0/9    0/12    8/12
+dose_lookup         12        3       3/12            -     7/14        4/9        9/12     9/12         0/9    0/12    8/12
 near_miss            8        4        0/1          4/7      3/4        3/4         1/1        -         0/4     1/8     3/8
 no_antibiotic        4        0        0/4            -      8/8        4/4         4/4        -         0/4     0/4     0/4
 out_of_domain        4        4          -          4/4        -          -           -        -           -     0/4     0/4
@@ -218,7 +218,7 @@ Failed items (27 of 62)
     retrieved: S1=who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1, S2=who-hearts-d-2020-annex1-flowchart, S3=who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2, S4=who-htn-2021-s3-5-p1, S5=who-hearts-d-2020-fig-2-part1 (gate 0.686)
     A: [gate refusal, score 0.686 < 0.6905] This isn't covered in the guidelines provided.
 
-  dl-008 [dose_lookup] route=llm: 1/1 citations not verified; dose not matched
+  dl-008 [dose_lookup] route=llm: 1/1 citations not verified
     Q: In WHO's example single-pill protocol, what is the starting combination and dose for hypertension?
     retrieved: S1=who-htn-2021-s6-2, S2=who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1, S3=who-htn-2021-s3-5-evidence-to-decision-considerations-p3, S4=who-htn-2021-s6-1-p1, S5=who-htn-2021-s3-5-evidence-to-decision-considerations-p2 (gate 0.735)
     A: Start ARB–CCB at half-maximal doses (Example*: Telmisartan 40–Amlodipine 5 mg once a day). [S1]

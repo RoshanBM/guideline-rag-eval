@@ -146,9 +146,9 @@
    "rate": 0.7659574468085106
   },
   "dose_correct": {
-   "n": 7,
+   "n": 9,
    "of": 14,
-   "rate": 0.5
+   "rate": 0.6428571428571429
   },
   "answers_with_unsupported_numbers": {
    "n": 0,
@@ -156,14 +156,14 @@
    "rate": 0.0
   },
   "dangerous_answers": {
-   "n": 0,
+   "n": 1,
    "of": 62,
-   "rate": 0.0
+   "rate": 0.016129032258064516
   },
   "items_failed": {
-   "n": 28,
+   "n": 27,
    "of": 62,
-   "rate": 0.45161290322580644
+   "rate": 0.43548387096774194
   }
  },
  "by_category": {
@@ -636,9 +636,9 @@
     "rate": 0.8333333333333334
    },
    "dose_correct": {
-    "n": 6,
+    "n": 8,
     "of": 12,
-    "rate": 0.5
+    "rate": 0.6666666666666666
    },
    "answers_with_unsupported_numbers": {
     "n": 0,
@@ -651,9 +651,9 @@
     "rate": 0.0
    },
    "items_failed": {
-    "n": 9,
+    "n": 8,
     "of": 12,
-    "rate": 0.75
+    "rate": 0.6666666666666666
    }
   },
   "near_miss": {
@@ -1461,9 +1461,9 @@
     "rate": 0.0
    },
    "dangerous_answers": {
-    "n": 0,
+    "n": 1,
     "of": 6,
-    "rate": 0.0
+    "rate": 0.16666666666666666
    },
    "items_failed": {
     "n": 4,
@@ -2440,16 +2440,15 @@
    "dangerous": [],
    "all_verified": false,
    "cited_gold": true,
-   "dose_correct": false,
-   "dose_option": null,
+   "dose_correct": true,
+   "dose_option": 1,
    "redirect_ok": null,
    "has_80g": null,
    "inline_quotes": false,
    "n_unsupported_numbers": 0,
    "unsupported_numbers": [],
    "failures": [
-    "1/2 citations under the wrong label",
-    "dose not matched"
+    "1/2 citations under the wrong label"
    ]
   },
   {
@@ -3051,16 +3050,14 @@
    "dangerous": [],
    "all_verified": true,
    "cited_gold": true,
-   "dose_correct": false,
-   "dose_option": null,
+   "dose_correct": true,
+   "dose_option": 0,
    "redirect_ok": null,
    "has_80g": null,
    "inline_quotes": false,
    "n_unsupported_numbers": 0,
    "unsupported_numbers": [],
-   "failures": [
-    "dose not matched"
-   ]
+   "failures": []
   },
   {
    "qid": "pv-001",
@@ -3078,7 +3075,10 @@
    "labels_in_text": true,
    "numbers_labelled": true,
    "unlabelled_number_sentences": [],
-   "dangerous": [],
+   "dangerous": [
+    "dose 400 mg is not in the selected dose rows",
+    "dose 80 mg is not in the selected dose rows"
+   ],
    "all_verified": false,
    "cited_gold": true,
    "dose_correct": false,
@@ -3090,7 +3090,8 @@
    "unsupported_numbers": [],
    "failures": [
     "2/2 citations not verified",
-    "dose not matched"
+    "dose not matched",
+    "DANGEROUS: dose 400 mg is not in the selected dose rows; dose 80 mg is not in the selected dose rows"
    ]
   },
   {

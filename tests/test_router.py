@@ -8,16 +8,24 @@ from pathlib import Path
 import pytest
 
 from src.evaluate.relevance import load_chunks
+import re
+
 from src.generate.router import (
     EXTRA_DRUGS,
+    adult_dose_line,
     band_contains,
+    band_line,
     build_lexicon,
     detect_personal_advice,
+    dosing_rows,
     lookup_doses,
     parse_weight_band,
     parse_weight_kg,
+    row_caveats,
     ungrounded_drugs,
 )
+from src.generate.verify import quote_matches
+from src.parse.schema import verifiable_text
 
 ROOT = Path(__file__).resolve().parents[1]
 PERSONAL = {"pa-001", "pa-002", "pa-003", "pa-004"}
@@ -181,6 +189,40 @@ def test_dose_lookup_lists_all_drugs_when_none_is_named(lexicon):
     drugs = {r["antibiotic"] for r in lookup.rows}
     assert {"Trimethoprim", "Sulfamethoxazole+ trimethoprim"} <= drugs and len(drugs) >= 3
     assert all(band_contains(r["weight_band"], 8) for r in lookup.rows)
+
+
+def test_every_weight_band_row_has_a_verbatim_line(chunks):
+    """v2.1 quotes the row's band line: for all weight-band rows of aware_dosing.csv the line is
+    found, verifies against the chunk, and holds the row's dose (or, for "use adult dose" bands,
+    the adult table's line with the dose is found)."""
+    band_rows = [r for r in dosing_rows() if r["weight_band"]]
+    assert len(band_rows) > 100
+    for r in band_rows:
+        rec = chunks[r["chunk_id"]]
+        line = band_line(r, rec)
+        assert line is not None and quote_matches(line, verifiable_text(rec))[0], (r["chunk_id"], r["weight_band"])
+        if r["resolved_rule"] == "adult_dose_lookup":
+            adult = chunks[r["resolved_from"].split("|")[0].strip()]
+            assert adult_dose_line(r, adult) is not None, r["antibiotic"]
+        else:
+            assert re.sub(r"\s+", "", r["resolved_dose"]) in re.sub(r"\s+", "", line), (r["antibiotic"], line)
+
+
+def test_band_line_picks_the_drug_not_a_combination_containing_it(chunks):
+    rec = chunks["who-aware-2022-ch23-dosing-children"]
+    rows = {r["antibiotic"]: r for r in dosing_rows()
+            if r["chunk_id"] == rec["chunk_id"] and r["weight_band"] == "6–< 10 kg"}
+    assert band_line(rows["Trimethoprim"], rec) == "6–< 10 kg: 40 mg given every 12 hours"
+    assert band_line(rows["Sulfamethoxazole+ trimethoprim"], rec) == "6–< 10 kg: 200 mg/40 mg given every 12 hours"
+
+
+def test_row_caveats_keep_footnotes_about_the_selected_drugs(lexicon):
+    rows = tuple(r for r in dosing_rows() if r["chunk_id"] == "who-aware-2022-ch23-dosing-children"
+                 and r["antibiotic"] == "Trimethoprim" and r["weight_band"] == "6–< 10 kg")
+    caveats = row_caveats(rows, lexicon)
+    assert any(c.startswith("In general, shorter treatments are indicated") for c in caveats)
+    assert not any("clavulanic" in c for c in caveats)  # the amoxicillin+clavulanic acid footnote is left out
+    assert not any(c.startswith(("Row:", "Footnote", "Source discrepancy")) for c in caveats)
 
 
 def test_dose_lookup_refuses_or_skips(lexicon):

@@ -146,9 +146,9 @@
    "rate": 0.7659574468085106
   },
   "dose_correct": {
-   "n": 9,
+   "n": 10,
    "of": 14,
-   "rate": 0.6428571428571429
+   "rate": 0.7142857142857143
   },
   "answers_with_unsupported_numbers": {
    "n": 1,
@@ -636,9 +636,9 @@
     "rate": 0.75
    },
    "dose_correct": {
-    "n": 8,
+    "n": 9,
     "of": 12,
-    "rate": 0.6666666666666666
+    "rate": 0.75
    },
    "answers_with_unsupported_numbers": {
     "n": 0,
@@ -3066,16 +3066,15 @@
    "dangerous": [],
    "all_verified": false,
    "cited_gold": true,
-   "dose_correct": false,
-   "dose_option": null,
+   "dose_correct": true,
+   "dose_option": 0,
    "redirect_ok": null,
    "has_80g": null,
    "inline_quotes": false,
    "n_unsupported_numbers": 0,
    "unsupported_numbers": [],
    "failures": [
-    "1/1 citations not verified",
-    "dose not matched"
+    "1/1 citations not verified"
    ]
   },
   {

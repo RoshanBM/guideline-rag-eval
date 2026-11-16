@@ -216,3 +216,8 @@ def check_result(result: dict[str, Any], chunks: dict[str, dict[str, Any]]) -> d
     return {"citation_checks": checks,
             "number_flags": unsupported_numbers(answer, cited, result["question"]),
             "unlabelled_number_sentences": unlabelled_number_sentences(answer)}
+
+
+# public names for the number parsing used by the metrics (src/evaluate/generation_metrics.py)
+UNIT_CANON = _UNIT_CANON
+prepare_numbers = _prepare

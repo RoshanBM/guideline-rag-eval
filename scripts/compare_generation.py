@@ -2,7 +2,7 @@
 
 Usage::
 
-    python scripts/compare_generation.py mistral-v1 mistral-v1-rescored mistral-v2 qwen2.5-7b-v2
+    python scripts/compare_generation.py [mistral-v1-rescored mistral-v2 mistral-v2.1 qwen2.5-7b-v2]
 
 Writes the table to stdout and to ``results/generation/comparison.txt``. A run's metrics file
 lacks the keys that its scoring version did not compute (the original v1 file has no route,
@@ -55,7 +55,7 @@ def cell(r: dict | None) -> str:
 
 
 def main(argv: list[str]) -> int:
-    names = argv or ["mistral-v1", "mistral-v1-rescored", "mistral-v2", "qwen2.5-7b-v2"]
+    names = argv or ["mistral-v1-rescored", "mistral-v2", "mistral-v2.1", "qwen2.5-7b-v2"]
     runs = []
     for n in names:
         path = OUT_DIR / f"{n}.metrics.json"
