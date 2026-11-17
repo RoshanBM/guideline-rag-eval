@@ -62,6 +62,20 @@ def source_matches(source: GoldSource, chunk: dict[str, Any]) -> bool:
     )
 
 
+def relevant_chunk_ids_by_source(
+    item: EvalItem | dict[str, Any], chunks: Iterable[dict[str, Any]]
+) -> list[list[str]]:
+    """For each gold source of ``item`` (in order), the chunk ids (in ``chunks`` order) holding it.
+
+    Used for per-source recall: a source counts as found when any of its chunks is retrieved.
+    A span printed in two chunks (e.g. a footnote shared by the adult and child dosing tables)
+    gives a source with two chunk ids; two sources can also share a chunk.
+    """
+    parsed = item if isinstance(item, EvalItem) else parse_item(item)
+    chunks = list(chunks)
+    return [[c["chunk_id"] for c in chunks if source_matches(src, c)] for src in parsed.gold_sources]
+
+
 def relevant_chunk_ids(item: EvalItem | dict[str, Any], chunks: Iterable[dict[str, Any]]) -> list[str]:
     """Chunk ids (in ``chunks`` order, without duplicates) that contain any gold span of ``item``.
 

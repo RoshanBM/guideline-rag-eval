@@ -1,0 +1,21 @@
+{
+ "bge-base": {
+  "n_answerable": 16,
+  "n_unanswerable": 5,
+  "auroc": 0.95,
+  "auroc_ci95": [
+   0.85,
+   1.0
+  ],
+  "median_top_answerable": 0.7357505,
+  "median_top_unanswerable": 0.652137,
+  "n_missing_scores": 0,
+  "threshold": 0.664867,
+  "max_false_refusal": 0.05,
+  "false_refusal_rate": 0.0,
+  "n_false_refusals": 0,
+  "refusal_rate_unanswerable": 0.6,
+  "n_refused_unanswerable": 3,
+  "is_reranker": false
+ }
+}

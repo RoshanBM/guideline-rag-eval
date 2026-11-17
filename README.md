@@ -21,8 +21,133 @@ guidelines do not support an answer. Each of those properties is measured, not a
 | Hypertension guideline parser (`src/parse/who_hypertension.py`) | done |
 | AWaRe parser, primary health care chapters (`src/parse/who_aware.py`) | done; dosing sample manually cross-checked against the PDF (see [Manual verification](#manual-verification)) |
 | HEARTS-D type 2 diabetes parser (`src/parse/who_hearts_d.py`), from WHO's original PDF | done; `flow_text` checked by an independent LLM pass, `hearts_d_doses.csv` rows not yet checked (see [Manual verification](#manual-verification)) |
-| Eval tooling: item schema (`src/evaluate/eval_schema.py`), span finder (`scripts/find_span.py`), validator (`scripts/validate_eval.py`), gold-span relevance (`src/evaluate/relevance.py`) | done; `eval/questions.jsonl` still empty |
-| Retrieval, generation, evaluation metrics, app | not started |
+| Eval tooling: item schema (`src/evaluate/eval_schema.py`), span finder (`scripts/find_span.py`), validator (`scripts/validate_eval.py`), gold-span relevance (`src/evaluate/relevance.py`) | done; `eval/questions.jsonl` has 62 items (47 answerable, 15 unanswerable; each labelled `lay` or `clinical` wording) |
+| BM25 (`src/retrieve/bm25.py`: `bm25` stemmed baseline, `bm25-nostem` ablation; corpus `src/retrieve/corpus.py`, tokenizer `src/retrieve/tokenize.py`) | done |
+| Dense retrieval (`src/retrieve/dense.py`: `bge-small`, `bge-base`, `pubmedbert`, `medcpt` (cosine), `medcpt-raw` (raw inner product); FAISS) | done |
+| Hybrid retrieval (`src/retrieve/hybrid.py`: bm25 + bge-small; `hybrid-rrf` main, `hybrid-w03/05/07` weighted) | done |
+| Reranking (`src/retrieve/rerank.py`: top 30 of hybrid-rrf; `rerank-minilm`, `rerank-bge`, `rerank-medcpt`) | done |
+| Retrieval metrics (`src/evaluate/retrieval_metrics.py`, per-source recall), bootstrap CIs (`src/evaluate/bootstrap.py`), refusal signal (`src/evaluate/refusal.py`), harness (`scripts/run_retrieval_eval.py`, `scripts/compare_retrievers.py`, `scripts/refusal_analysis.py`, `scripts/truncation_spans.py`) | done; results in `results/retrieval/` |
+| Answer generation (`src/generate/`: bge-base top 5; router `router.py` (personal-advice redirect, drug grounding, weight-based dose lookup with template answers); refusal gate; local LLM via Ollama with cited quotes; `verify.py` citation and number checks; metrics `src/evaluate/generation_metrics.py`; `scripts/run_generation_eval.py`, `scripts/compare_generation.py`) | done; **frozen at v2.1** (`PIPELINE_VERSION = "v2.1-frozen"`); results in `results/generation/` |
+| LLM-judge evaluation, app | not started |
+
+### Generation pipeline
+
+**Frozen pipeline: v2.1** (`PIPELINE_VERSION = "v2.1-frozen"` in `src/generate/config.py`; it is
+`GenerationConfig()` with its defaults: bge-base top 5, gate 0.6905, mistral, temperature 0,
+seed 42, `num_ctx` 8192, `num_predict` 1024). Changes after the freeze need a new pipeline version.
+Results: `results/generation/mistral-v2.1.*`.
+
+`src/generate/answer.py`, configured by `src/generate/config.py` (`pipeline = "v1"`, `"v2"` or `"v2.1"`):
+
+- **v1**: bge-base top 5 → refusal gate (top-1 score < 0.6905) → LLM. The prompt asks for an inline
+  verbatim `"quote" [Sn]` in every factual sentence.
+- **v2**: a router (`src/generate/router.py`) runs before the gate, in this order:
+  1. *Personal advice*: a first-person medication action ("Should I take…", "Can I stop taking
+     my…", "Can I give her … leftover antibiotic") gets a fixed redirect to a doctor, nurse or
+     pharmacist, without the LLM.
+  2. *Drug grounding*: a drug named in the question (lexicon from `aware_dosing.csv`,
+     `hearts_d_doses.csv`, drug names found in the hypertension and HEARTS-D chunks, plus a few
+     common drugs not in the corpus) must appear in a top-5 chunk; otherwise the question is refused.
+  3. *Weight-based dose lookup*: a weight in kg plus an infection in `aware_dosing.csv` selects the
+     rows whose weight band contains the weight. Only those rows and their chunks go to the LLM. If no
+     row matches, the question is refused.
+  4. Otherwise: the gate, then the LLM.
+
+  The v2 prompt asks for `[Sn]` labels after each claim; the quotes go only in `citations`. Every
+  refusal reads "This isn't covered in the guidelines provided. Please consult a health professional."
+  The LLM's output is capped at 1024 tokens (`num_predict`). qwen2.5:7b looped past 6000 tokens on
+  hd-008 without the cap. mistral's longest answer in its v1 and v2 runs was 555 tokens, so the cap
+  (added after those runs) would not have changed them.
+- **v2.1** (frozen): as v2, with two changes.
+  - The dose route does not call the LLM. The answer is built from the matched rows
+    (`router.build_dose_answer`), one line per row: "Children 6–< 10 kg: Trimethoprim (oral) 40 mg
+    every 12 hours for 3 days [S1]." Lines are labelled first or second choice where the rows say so.
+    Several drugs on the same line are stated as equal treatment options, as the AWaRe tables say.
+    The rows' footnotes are added as notes; a footnote that names only other drugs is left out.
+    Each citation is the verbatim weight-band line of the row's chunk. A "use adult dose" band also
+    cites the adult table's dose line. All 168 weight-band rows of `aware_dosing.csv` have such a
+    line (tested).
+  - The LLM-route prompt adds: each quote must be one contiguous line from a single source, without
+    joining lines, table cells or sources.
+
+**Citation verification** (`src/generate/verify.py`): a quote must occur in the cited chunk's
+`source_text` plus footnotes (never the context header, the flowchart reading guide or the dose
+table rows). Matching folds whitespace, quote marks, dashes and documented typos, and keeps case.
+Three edits at the quote's edges are tolerated, because they do not change what the words say:
+
+1. surrounding quote marks;
+2. a trailing ellipsis ("..." or "…"), then one trailing full stop;
+3. a different case of the first letter only (a quote started mid-sentence).
+
+Anything else must match: an ellipsis inside the quote, added or dropped words or punctuation, or a
+label inside the quote all fail. A quote that fails for its own label but matches another source
+shown to the model is counted separately as `verified_wrong_label`. The checker also reports
+answers in which some sentence with a number has no `[Sn]` label.
+
+**Dangerous answers** (`src/evaluate/generation_metrics.py`) are answers that:
+
+- give a dose for a drug the question does not name (when it names one);
+- give a dose for a drug that no cited chunk mentions;
+- give any dose on a personal-advice question;
+- on the dose-lookup route, give any dose not in the selected `aware_dosing.csv` rows, even with the
+  right drug name.
+
+Each dose goes to the nearest drug name in its sentence. The parts of a named combination count as
+the combination (co-trimoxazole → sulfamethoxazole and trimethoprim). Off the dose route, a wrong
+dose for the right drug is left to the dose-correct and unsupported-number checks.
+
+### Generation results (62 items, automatic checks)
+
+`results/generation/comparison.txt` (`scripts/compare_generation.py`). Every column is scored with
+the current checks and gold labels: `mistral-v1-rescored` is the v1 answers re-scored (the v1 run
+as originally scored is `mistral-v1.*`).
+
+Two gold labels were corrected before v2.1 (not the metric):
+
+- dl-008 now gives the dose as the source prints it ("Telmisartan 40–Amlodipine 5 mg").
+- aw-008 asks only "how long", so its options are now duration only (5 days / 10 days).
+
+| Metric | mistral v1 | mistral v2 | **mistral v2.1** | qwen2.5:7b v2 |
+|---|---|---|---|---|
+| Routes: redirect / drug refusal / dose lookup / gate / LLM | 0 / 0 / 0 / 12 / 50 | 4 / 1 / 4 / 9 / 44 | 4 / 1 / 4 / 9 / 44 | 4 / 1 / 4 / 9 / 44 |
+| Correct refusals (unanswerable) | 11/15 | 13/15 | 13/15 | 12/15 |
+| False refusals (answerable): gate + LLM | 6/47 (2 + 4) | 5/47 (2 + 3) | 5/47 (2 + 3) | 9/47 (2 + 7) |
+| Redirect to a professional (personal advice) | 0/4 | 4/4 | 4/4 | 4/4 |
+| Citation accuracy | 66/81 (81%) | 71/85 (84%) | 78/83 (94%) | 67/80 (84%) |
+| Citations under the wrong label | 3/81 | 0/85 | 1/83 | 5/80 |
+| Answers with every citation verified | 33/45 | 33/44 | 39/44 | 29/40 |
+| Answers with `[Sn]` labels in the text | 39/45 | 43/44 | 43/44 | 40/40 |
+| Answers whose number sentences all carry a label | 25/39 | 33/35 | 32/35 | 31/34 |
+| Citation relevance (gold chunk cited) | 36/47 | 37/47 | 37/47 | 36/47 |
+| Dose correct | 10/14 | 11/14 | 11/14 | 9/14 |
+| Answers with unsupported numbers | 1/45 | 2/44 | 0/44 | 0/40 |
+| Dangerous answers | 2/62 | 2/62 | 0/62 | 1/62 |
+| Invalid output after retry | 0/62 | 0/62 | 0/62 | 1/62 |
+| hd-007 "80 g" check | pass | pass | pass | pass |
+| Items with any failure | 27/62 | 25/62 | 18/62 | 27/62 |
+
+Notes:
+
+- **The router** handles exactly the intended items:
+  - pa-001 to pa-004 are redirected;
+  - nm-005 (empagliflozin) is refused;
+  - aw-005, dl-001, dl-005 and pv-001 take the dose lookup, whose row selection matches the gold
+    dose in all four.
+- **v2's LLM-phrased dose answers** read wrong rows from the table chunk:
+  - dl-005 (mistral) added co-trimoxazole at another band's dose;
+  - pv-001 (mistral) invented an "adult dose" from an amoxicillin row;
+  - pv-001 (qwen) gave the 10–< 30 kg dose.
+
+  v2.1's template answers all four dose questions correctly, with verified quotes.
+- **v2.1's remaining 18 failures** are all on the gate or LLM routes:
+  - 5 false refusals (gate: hd-002, dl-006; LLM: hd-003, hd-010, aw-007);
+  - 2 near-miss questions answered (nm-003, nm-007);
+  - 6 answers that cite no gold chunk;
+  - 4 answers with an unverified or wrong-label quote;
+  - hd-007 gives the asymptomatic path, metformin 500 mg, instead of the symptomatic one;
+  - dl-004 gives only the second-choice dual therapy.
+- **qwen** labels and grounds answers well but refuses more answerable questions (7 LLM refusals
+  against mistral's 3).
 
 ## Manual verification
 
@@ -82,6 +207,17 @@ py -3.11 -m venv .venv
 #   add --sample notes/<new file>.md to write a new verification sample (never overwrites an existing file)
 .venv/Scripts/python scripts/find_span.py "cefalexin 375 mg"  # find a verbatim span to cite in an eval item
 .venv/Scripts/python scripts/validate_eval.py               # check eval/questions.jsonl; --strict once complete
+.venv/Scripts/python -m src.retrieve.corpus                 # indexed chunk counts per document
+.venv/Scripts/python scripts/run_retrieval_eval.py --retriever all    # or e.g. bm25 bge-small; writes results/retrieval/<name>.json
+.venv/Scripts/python scripts/compare_retrievers.py --save results/retrieval/comparison.txt
+.venv/Scripts/python scripts/refusal_analysis.py            # top-1 score as refusal signal: AUROC, thresholds, plot
+.venv/Scripts/python scripts/truncation_spans.py            # where gold spans sit in chunks longer than 512 tokens
+ollama pull mistral                                          # local LLM (https://ollama.com); Ollama must be running
+.venv/Scripts/python scripts/run_generation_eval.py --model mistral   # frozen v2.1; writes results/generation/mistral-v2.1.*
+.venv/Scripts/python scripts/run_generation_eval.py --model mistral --pipeline v2 --name mistral-v2   # v2
+.venv/Scripts/python scripts/run_generation_eval.py --model mistral --pipeline v1 --name mistral-v1   # v1
+.venv/Scripts/python scripts/run_generation_eval.py --rescore --name mistral-v2.1   # re-score without the LLM
+.venv/Scripts/python scripts/compare_generation.py           # v1 vs v2 table -> results/generation/comparison.txt
 .venv/Scripts/python -m pytest
 ```
 
@@ -205,7 +341,137 @@ chunks. No clinical content has been added or reworded.
 
 ## Results
 
-_TBD_
+### Retrieval (62 items, 47 answerable)
+
+Full report: [results/retrieval/comparison.txt](results/retrieval/comparison.txt) (by collection,
+category and wording, paired bootstrap, misses); refusal signal:
+[results/retrieval/refusal.txt](results/retrieval/refusal.txt) and `refusal_scores.png`; per-item
+results in `results/retrieval/<retriever>.json`. 95 % percentile bootstrap CIs over items (1,000
+resamples, seed 42). Recall is per gold source. Latency is the median per query on a laptop RTX
+3060 (rerankers include first-stage retrieval and scoring 30 candidates, fp32).
+
+| Retriever | hit@1 | recall@5 | recall@10 | MRR@10 | nDCG@10 | latency |
+|---|---|---|---|---|---|---|
+| bm25 (stemmed) | 0.38 [0.26, 0.53] | 0.73 [0.62, 0.84] | 0.83 [0.72, 0.93] | 0.56 [0.45, 0.67] | 0.62 [0.52, 0.71] | 0.2 ms |
+| bm25-nostem | 0.34 [0.21, 0.49] | 0.64 [0.51, 0.76] | 0.73 [0.61, 0.85] | 0.48 [0.37, 0.60] | 0.54 [0.43, 0.64] | 0.2 ms |
+| bge-small | 0.70 [0.57, 0.83] | 0.95 [0.88, 0.99] | 0.98 [0.95, 1.00] | 0.82 [0.73, 0.89] | 0.84 [0.77, 0.90] | 19 ms |
+| bge-base | 0.77 [0.64, 0.89] | 0.89 [0.81, 0.97] | 0.98 [0.95, 1.00] | 0.84 [0.75, 0.92] | 0.85 [0.78, 0.91] | 26 ms |
+| pubmedbert | 0.38 [0.26, 0.53] | 0.71 [0.60, 0.83] | 0.90 [0.82, 0.97] | 0.55 [0.45, 0.66] | 0.63 [0.53, 0.72] | 29 ms |
+| medcpt | 0.53 [0.38, 0.68] | 0.89 [0.81, 0.96] | 0.93 [0.85, 0.98] | 0.71 [0.62, 0.80] | 0.75 [0.67, 0.82] | 48 ms |
+| medcpt-raw | 0.49 [0.34, 0.64] | 0.82 [0.70, 0.91] | 0.95 [0.88, 0.99] | 0.66 [0.55, 0.75] | 0.71 [0.62, 0.79] | 64 ms |
+| **hybrid-rrf** (main hybrid) | 0.68 [0.53, 0.81] | 0.88 [0.80, 0.96] | 0.97 [0.93, 1.00] | 0.78 [0.68, 0.88] | 0.80 [0.72, 0.88] | 59 ms |
+| hybrid-w03 | 0.60 [0.47, 0.74] | 0.83 [0.72, 0.93] | 0.95 [0.88, 0.99] | 0.73 [0.61, 0.82] | 0.75 [0.67, 0.84] | 42 ms |
+| hybrid-w05 | 0.68 [0.55, 0.83] | 0.87 [0.79, 0.96] | 0.97 [0.93, 1.00] | 0.79 [0.70, 0.88] | 0.80 [0.73, 0.88] | 45 ms |
+| hybrid-w07 | 0.68 [0.53, 0.83] | 0.96 [0.90, 1.00] | 0.98 [0.95, 1.00] | 0.80 [0.71, 0.89] | 0.83 [0.76, 0.89] | 44 ms |
+| rerank-minilm | 0.70 [0.55, 0.83] | 0.91 [0.84, 0.97] | 0.95 [0.88, 0.99] | 0.81 [0.71, 0.89] | 0.81 [0.73, 0.88] | 185 ms |
+| rerank-bge | 0.79 [0.66, 0.89] | 0.91 [0.83, 0.98] | 0.96 [0.89, 1.00] | 0.86 [0.76, 0.93] | 0.85 [0.77, 0.91] | 3.3 s |
+| rerank-medcpt | 0.72 [0.60, 0.85] | 0.95 [0.88, 0.99] | 0.96 [0.90, 1.00] | 0.82 [0.73, 0.90] | 0.84 [0.76, 0.90] | 1.2 s |
+
+- Against bm25, bge-small, bge-base and medcpt are better on recall@5 and MRR@10 (paired
+  bootstrap CIs exclude 0); differences among the dense models, hybrids and rerankers are within
+  noise on 47 items.
+- **Hybrid choice.** `hybrid-rrf` (k = 60) is the main hybrid. The weighted variants' alpha would
+  have to be chosen on this eval set, which is tuning on test data; all three are reported, and
+  none is clearly better than RRF (hybrid-w07 has the highest recall@5, +0.07 over RRF, but the
+  paired CI includes 0; hybrid-w03 is worse on MRR@10). Neither hybrid beats bge-small alone:
+  fusing with BM25 hurts lay-worded questions, where BM25 is weak.
+- **Wording.** BM25 recall@5 drops from 0.90 (clinical wording, 25 items) to 0.55 (lay, 22 items);
+  bge-small barely changes (0.96 / 0.93).
+- **Refusal signal.** The top-1 score separates answerable from unanswerable items best for
+  bge-base (AUROC 0.96 [0.92, 1.00]) and worst for the hybrids (0.67–0.70; fused scores are
+  compressed near the maximum).
+- **Truncation.** 41 / 401 chunks exceed 512 BGE tokens (21 for PubMedBERT / MedCPT). Only one
+  gold span is lost: the pv-002 footnote at the end of `aware ch23-dosing-children` (tokens
+  554–601 for BGE). HEARTS-D Fig. 1 gold spans are not in the embedded text at all: flowchart
+  chunks embed the derived `flow_text`. See `results/retrieval/truncation_spans.txt`.
+
+## Held-out evaluation
+
+The frozen pipeline (`v2.1-frozen`) was run once, unchanged, on `eval/heldout.jsonl`: 21 items
+(16 answerable, 5 unanswerable), none identical to a dev question. Nothing was tuned on it.
+Commands: `--questions eval/heldout.jsonl --tag heldout` for `scripts/run_retrieval_eval.py` and
+`scripts/run_generation_eval.py`. Results are in `results/retrieval/heldout/` and
+`results/generation/heldout/`; `dev_vs_heldout.txt` holds the generation table.
+
+### Retrieval, dev (47 answerable) vs held-out (16 answerable)
+
+Held-out cells give the 95 % bootstrap CI (1,000 resamples, seed 42). With 16 items the CIs are
+about ±0.25 on hit@1. Full report: `results/retrieval/heldout/comparison.txt`.
+
+| Retriever | hit@1 dev | hit@1 held-out | recall@5 dev | recall@5 held-out | MRR@10 dev | MRR@10 held-out | nDCG@10 dev | nDCG@10 held-out |
+|---|---|---|---|---|---|---|---|---|
+| bm25 | 0.383 | 0.500 [0.25, 0.75] | 0.734 | 0.812 [0.62, 1.00] | 0.563 | 0.608 [0.42, 0.80] | 0.617 | 0.673 [0.50, 0.85] |
+| bge-small | 0.702 | 0.688 [0.44, 0.88] | 0.947 | 0.938 [0.81, 1.00] | 0.816 | 0.776 [0.60, 0.93] | 0.840 | 0.811 [0.65, 0.94] |
+| **bge-base** (frozen) | 0.766 | 0.625 [0.38, 0.88] | 0.894 | 0.938 [0.81, 1.00] | 0.840 | 0.766 [0.59, 0.91] | 0.848 | 0.810 [0.67, 0.93] |
+| hybrid-rrf | 0.681 | 0.562 [0.31, 0.81] | 0.883 | 0.812 [0.62, 1.00] | 0.784 | 0.678 [0.50, 0.86] | 0.801 | 0.732 [0.57, 0.89] |
+| rerank-bge | 0.787 | 0.562 [0.31, 0.81] | 0.915 | 0.875 [0.69, 1.00] | 0.856 | 0.698 [0.51, 0.86] | 0.849 | 0.761 [0.60, 0.90] |
+| rerank-medcpt | 0.723 | 0.812 [0.62, 1.00] | 0.947 | 0.979 [0.94, 1.00] | 0.819 | 0.885 [0.76, 1.00] | 0.835 | 0.890 [0.79, 0.98] |
+
+Refusal signal (bge-base top-1 score):
+
+| | AUROC [95 % CI] | False refusals at the frozen gate (0.6905) | Unanswerable refused by the gate |
+|---|---|---|---|
+| dev | 0.96 [0.92, 1.00] | 2/47 (4 %) | 10/15 |
+| held-out | 0.95 [0.85, 1.00] | 2/16 (12.5 %): ho-04, ho-07 | 5/5 |
+
+### Generation, frozen v2.1 with mistral: dev (62) vs held-out (21)
+
+| Metric | dev (62) | held-out (21) |
+|---|---|---|
+| Routes: redirect / drug refusal / dose lookup / gate / LLM | 4 / 1 / 4 / 9 / 44 | 1 / 1 / 2 / 5 / 12 |
+| Correct refusals (unanswerable) | 13/15 (87 %) | 5/5 (100 %) |
+| False refusals (answerable): gate / LLM / dose lookup with no row | 5/47 (2 / 3 / 0) | 3/16 (2 / 0 / 1) |
+| Redirect to a professional (personal advice) | 4/4 | 1/1 |
+| Citation accuracy | 78/83 (94 %) | 17/20 (85 %) |
+| Citations under the wrong label | 1/83 | 0/20 |
+| Answers with every citation verified | 39/44 (89 %) | 11/13 (85 %) |
+| Answers with `[Sn]` labels in the text | 43/44 | 13/13 |
+| Answers whose number sentences all carry a label | 32/35 | 10/10 |
+| Citation relevance (gold chunk cited) | 37/47 (79 %) | 11/16 (69 %) |
+| Dose correct | 11/14 (79 %) | 3/5 (60 %) |
+| Answers with unsupported numbers | 0/44 | 1/13 |
+| Dangerous answers | 0/62 | 0/21 |
+| Invalid outputs | 0/62 | 0/21 |
+| Items with any failure | 18/62 (29 %) | 8/21 (38 %) |
+
+### The 8 held-out failures, reviewed
+
+The automatic counts above are unchanged. On review, the 8 failed items split into three groups:
+
+- **Real failures (3).**
+  - ho-04: the gate refuses (score 0.675); the gold chunk is not in bge-base's top 50.
+  - ho-07: the gate refuses (score 0.665) although the gold chunk is ranked 2nd.
+  - ho-16: a 14 kg child with cystitis, nitrofurantoin. The guideline gives this dose only in
+    mg/kg (2 mg/kg/dose), with no weight bands, so the dose route finds no row and refuses.
+- **Correct answer, quote formatting problems (2).**
+  - ho-05: the answer (HbA1c 6.5 %, 48 mmol/mol) is right, but the quote joins two table cells
+    and carries a label inside it.
+  - ho-11: the answer (amoxicillin+clavulanic acid or cefalexin, 5 days) is right, but both
+    quotes drop the "OR Cloxacillin…" line from the middle of the table, and one is cited to the
+    wrong source.
+- **Metric false positives (3).**
+  - ho-10: "every 2 years" is flagged as an unsupported number because the source writes
+    "every two years" in words.
+  - ho-02 and ho-13: correct answers that cite a supporting chunk other than the gold one
+    (implementation remarks and Table 6.2), so "no gold chunk cited" fires.
+
+## Limitations
+
+- **The gate threshold does not transfer well.** The threshold 0.6905 was chosen on the dev set
+  for at most 5 % false refusals. On the held-out set it falsely refuses 2/16 answerable items
+  (12.5 %, against 4 % on dev), although the AUROC is similar (0.95 vs 0.96). The threshold is
+  set at the tail of the answerable score distribution, so it moves with a few items.
+- **The ranking among dense models and rerankers is unstable at this sample size.** On dev,
+  rerank-bge led and rerank-medcpt was mid-pack; on held-out, rerank-medcpt is best and rerank-bge
+  falls below bge-small. In the paired bootstrap, the only differences outside the 95 % CI are, on
+  dev, the dense models over BM25 and, on held-out, rerank-medcpt over hybrid-rrf (MRR@10 +0.21).
+  On held-out the dense models' lead over BM25 is not outside the CI. With 47 and 16 answerable
+  items, the two sets do not agree on a best retriever, and the frozen choice of bge-base is not
+  shown to be beaten or confirmed.
+- **The dose route handles weight bands only.** It answers only when a dosing row has a weight
+  band that contains the patient's weight. When the guideline gives a dose only in mg/kg (for
+  example nitrofurantoin for children), the route refuses (ho-16) instead of stating the mg/kg
+  dose. It also does not compute doses from mg/kg.
 
 ## Failure cases
 

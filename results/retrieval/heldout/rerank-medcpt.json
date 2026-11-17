@@ -1,0 +1,5870 @@
+{
+ "retriever": "rerank-medcpt",
+ "date": "2026-11-16T14:00:14+05:30",
+ "git_commit": "e52d31d+dirty",
+ "questions": "eval/heldout.jsonl",
+ "questions_sha256": "1db6c03f8e899daff2fd207a270bf98a8edae68f219ddf6387fa4312bbf6bbb7",
+ "n_items": 21,
+ "n_answerable": 16,
+ "n_unanswerable": 5,
+ "n_indexed_chunks": 401,
+ "depth": 50,
+ "metrics_definition": "v2: recall@k per gold source; hit@k, mrr@10, ndcg@k over relevant chunks",
+ "device": "cuda (NVIDIA GeForce RTX 3060 Laptop GPU)",
+ "config": {
+  "first_stage": "hybrid-rrf",
+  "n_candidates": 30,
+  "spec": {
+   "name": "rerank-medcpt",
+   "model": "ncbi/MedCPT-Cross-Encoder",
+   "max_length": 512
+  },
+  "scores": "raw logits (no sigmoid)",
+  "model_load_s": 20.78
+ },
+ "index_build_s": 2.1616,
+ "latency_median_ms": 768.994,
+ "latency_p95_ms": 865.004,
+ "summary": {
+  "overall": {
+   "n": 16,
+   "hit@1": 0.8125,
+   "hit@3": 1.0,
+   "hit@5": 1.0,
+   "hit@10": 1.0,
+   "recall@1": 0.7916666666666666,
+   "recall@3": 0.9791666666666666,
+   "recall@5": 0.9791666666666666,
+   "recall@10": 0.9791666666666666,
+   "mrr@10": 0.8854166666666667,
+   "ndcg@1": 0.8125,
+   "ndcg@3": 0.8902548091460573,
+   "ndcg@5": 0.8902548091460573,
+   "ndcg@10": 0.8902548091460573,
+   "ci95": {
+    "hit@1": [
+     0.625,
+     1.0
+    ],
+    "recall@5": [
+     0.9375,
+     1.0
+    ],
+    "recall@10": [
+     0.9375,
+     1.0
+    ],
+    "mrr@10": [
+     0.7604,
+     1.0
+    ],
+    "ndcg@10": [
+     0.7887,
+     0.9758
+    ]
+   }
+  },
+  "by_category": {
+   "combined": {
+    "n": 1,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.6666666666666666,
+    "recall@3": 0.6666666666666666,
+    "recall@5": 0.6666666666666666,
+    "recall@10": 0.6666666666666666,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 0.6131471927654584,
+    "ndcg@5": 0.6131471927654584,
+    "ndcg@10": 0.6131471927654584,
+    "ci95": {
+     "hit@1": [
+      1.0,
+      1.0
+     ],
+     "recall@5": [
+      0.6667,
+      0.6667
+     ],
+     "recall@10": [
+      0.6667,
+      0.6667
+     ],
+     "mrr@10": [
+      1.0,
+      1.0
+     ],
+     "ndcg@10": [
+      0.6131,
+      0.6131
+     ]
+    }
+   },
+   "dose_lookup": {
+    "n": 5,
+    "hit@1": 0.8,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.8,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.8666666666666666,
+    "ndcg@1": 0.8,
+    "ndcg@3": 0.9,
+    "ndcg@5": 0.9,
+    "ndcg@10": 0.9,
+    "ci95": {
+     "hit@1": [
+      0.4,
+      1.0
+     ],
+     "recall@5": [
+      1.0,
+      1.0
+     ],
+     "recall@10": [
+      1.0,
+      1.0
+     ],
+     "mrr@10": [
+      0.6,
+      1.0
+     ],
+     "ndcg@10": [
+      0.7,
+      1.0
+     ]
+    }
+   },
+   "no_antibiotic": {
+    "n": 2,
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.41666666666666663,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.5654648767857288,
+    "ndcg@5": 0.5654648767857288,
+    "ndcg@10": 0.5654648767857288,
+    "ci95": {
+     "hit@1": [
+      0.0,
+      0.0
+     ],
+     "recall@5": [
+      1.0,
+      1.0
+     ],
+     "recall@10": [
+      1.0,
+      1.0
+     ],
+     "mrr@10": [
+      0.3333,
+      0.5
+     ],
+     "ndcg@10": [
+      0.5,
+      0.6309
+     ]
+    }
+   },
+   "population_variant": {
+    "n": 2,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0,
+    "ci95": {
+     "hit@1": [
+      1.0,
+      1.0
+     ],
+     "recall@5": [
+      1.0,
+      1.0
+     ],
+     "recall@10": [
+      1.0,
+      1.0
+     ],
+     "mrr@10": [
+      1.0,
+      1.0
+     ],
+     "ndcg@10": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "single_rec": {
+    "n": 6,
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0,
+    "ci95": {
+     "hit@1": [
+      1.0,
+      1.0
+     ],
+     "recall@5": [
+      1.0,
+      1.0
+     ],
+     "recall@10": [
+      1.0,
+      1.0
+     ],
+     "mrr@10": [
+      1.0,
+      1.0
+     ],
+     "ndcg@10": [
+      1.0,
+      1.0
+     ]
+    }
+   }
+  },
+  "by_collection": {
+   "aware": {
+    "n": 6,
+    "hit@1": 0.6666666666666666,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.6666666666666666,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.8055555555555557,
+    "ndcg@1": 0.6666666666666666,
+    "ndcg@3": 0.8551549589285763,
+    "ndcg@5": 0.8551549589285763,
+    "ndcg@10": 0.8551549589285763,
+    "ci95": {
+     "hit@1": [
+      0.3333,
+      1.0
+     ],
+     "recall@5": [
+      1.0,
+      1.0
+     ],
+     "recall@10": [
+      1.0,
+      1.0
+     ],
+     "mrr@10": [
+      0.5833,
+      1.0
+     ],
+     "ndcg@10": [
+      0.6885,
+      1.0
+     ]
+    }
+   },
+   "cardiometabolic": {
+    "n": 10,
+    "hit@1": 0.9,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.8666666666666666,
+    "recall@3": 0.9666666666666666,
+    "recall@5": 0.9666666666666666,
+    "recall@10": 0.9666666666666666,
+    "mrr@10": 0.9333333333333333,
+    "ndcg@1": 0.9,
+    "ndcg@3": 0.9113147192765458,
+    "ndcg@5": 0.9113147192765458,
+    "ndcg@10": 0.9113147192765458,
+    "ci95": {
+     "hit@1": [
+      0.7,
+      1.0
+     ],
+     "recall@5": [
+      0.9,
+      1.0
+     ],
+     "recall@10": [
+      0.9,
+      1.0
+     ],
+     "mrr@10": [
+      0.8,
+      1.0
+     ],
+     "ndcg@10": [
+      0.7839,
+      1.0
+     ]
+    }
+   }
+  },
+  "by_wording": {
+   "clinical": {
+    "n": 6,
+    "hit@1": 0.6666666666666666,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.6666666666666666,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.7777777777777777,
+    "ndcg@1": 0.6666666666666666,
+    "ndcg@3": 0.8333333333333334,
+    "ndcg@5": 0.8333333333333334,
+    "ndcg@10": 0.8333333333333334,
+    "ci95": {
+     "hit@1": [
+      0.3333,
+      1.0
+     ],
+     "recall@5": [
+      1.0,
+      1.0
+     ],
+     "recall@10": [
+      1.0,
+      1.0
+     ],
+     "mrr@10": [
+      0.5556,
+      1.0
+     ],
+     "ndcg@10": [
+      0.6667,
+      1.0
+     ]
+    }
+   },
+   "lay": {
+    "n": 10,
+    "hit@1": 0.9,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.8666666666666668,
+    "recall@3": 0.9666666666666668,
+    "recall@5": 0.9666666666666668,
+    "recall@10": 0.9666666666666668,
+    "mrr@10": 0.95,
+    "ndcg@1": 0.9,
+    "ndcg@3": 0.9244076946336917,
+    "ndcg@5": 0.9244076946336917,
+    "ndcg@10": 0.9244076946336917,
+    "ci95": {
+     "hit@1": [
+      0.7,
+      1.0
+     ],
+     "recall@5": [
+      0.9,
+      1.0
+     ],
+     "recall@10": [
+      0.9,
+      1.0
+     ],
+     "mrr@10": [
+      0.85,
+      1.0
+     ],
+     "ndcg@10": [
+      0.8101,
+      1.0
+     ]
+    }
+   }
+  },
+  "bootstrap": {
+   "n_resamples": 1000,
+   "seed": 42,
+   "method": "percentile, items resampled"
+  }
+ },
+ "items": [
+  {
+   "qid": "ho-01",
+   "question": "Do I need to wait for blood test results before starting someone on blood pressure tablets?",
+   "category": "single_rec",
+   "wording": "lay",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 655.845,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 8,
+     "chunk_ids": [
+      "who-htn-2021-rec-02"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-02",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 12.164501,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-rec-02",
+     "score": 12.164501
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "score": 8.313366
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 7.134353
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-to-decision-considerations",
+     "score": 5.708564
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "score": 5.416824
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 5.006364
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 4.822134
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "score": 4.796237
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p2",
+     "score": 4.057559
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-to-decision-considerations",
+     "score": 3.999774
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.031025,
+     "rerank_score": 7.134353
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.030214,
+     "rerank_score": 8.313366
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.030092,
+     "rerank_score": 4.796237
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.029857,
+     "rerank_score": 5.006364
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-to-decision-considerations",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.027912,
+     "rerank_score": 3.999774
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-02",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.027505,
+     "rerank_score": 12.164501
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.027222,
+     "rerank_score": 3.931768
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.027047,
+     "rerank_score": 4.822134
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.026481,
+     "rerank_score": 5.416824
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-to-decision-considerations",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026333,
+     "rerank_score": 5.708564
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-7",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.025859,
+     "rerank_score": -1.138345
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.02578,
+     "rerank_score": 1.606503
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.025278,
+     "rerank_score": 0.452352
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-and-rationale",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.025149,
+     "rerank_score": 3.668775
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-and-rationale",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.024697,
+     "rerank_score": 0.186615
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.024611,
+     "rerank_score": 0.738088
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p2",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.024559,
+     "rerank_score": 4.057559
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.024286,
+     "rerank_score": -15.026372
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.024096,
+     "rerank_score": -7.259694
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.023584,
+     "rerank_score": 3.3563
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-implementation-remarks",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.023001,
+     "rerank_score": 0.162755
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-and-rationale",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.022247,
+     "rerank_score": -8.499205
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.022115,
+     "rerank_score": -10.636424
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-laboratory-tests-patient-microbiology-tests-to-imaging",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.020204,
+     "rerank_score": -15.341623
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-implementation-remarks",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.015873,
+     "rerank_score": 1.61243
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-laboratory-tests-patient-microbiology-tests-to-no-antibiotic-care",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.015625,
+     "rerank_score": -14.312305
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.015385,
+     "rerank_score": -11.120762
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-laboratory-tests-other-tests-to-no-antibiotic-care",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.014925,
+     "rerank_score": -12.514139
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-clinical-presentation-to-patient-microbiology-tests",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.014706,
+     "rerank_score": -15.178378
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-laboratory-tests-patient-microbiology-tests-serological-to-using-microbiology-surveillance-data",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.014493,
+     "rerank_score": -12.876141
+    }
+   ]
+  },
+  {
+   "qid": "ho-02",
+   "question": "Should a cardiovascular risk score be calculated before hypertension treatment is started?",
+   "category": "single_rec",
+   "wording": "clinical",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 723.685,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 10,
+     "chunk_ids": [
+      "who-htn-2021-rec-03"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-03",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 15.797672,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-rec-03",
+     "score": 15.797672
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-implementation-remarks",
+     "score": 15.37706
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 11.381834
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 10.488096
+    },
+    {
+     "chunk_id": "who-htn-2021-s5-5-p2",
+     "score": 9.657133
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-to-decision-considerations",
+     "score": 9.551925
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 9.505453
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 8.193436
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "score": 8.143362
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-and-rationale",
+     "score": 8.124027
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-htn-2021-rec-03",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.031746,
+     "rerank_score": 15.797672
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-implementation-remarks",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031319,
+     "rerank_score": 15.37706
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.030777,
+     "rerank_score": 6.637572
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-and-rationale",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.030622,
+     "rerank_score": 8.124027
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.029551,
+     "rerank_score": 7.731417
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-02",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.029469,
+     "rerank_score": 7.650818
+    },
+    {
+     "chunk_id": "who-htn-2021-s5-5-p2",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.029083,
+     "rerank_score": 9.657133
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.027783,
+     "rerank_score": 6.535553
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.027444,
+     "rerank_score": 10.488096
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.027364,
+     "rerank_score": 8.143362
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.027271,
+     "rerank_score": 4.370182
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-and-rationale",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.026993,
+     "rerank_score": 3.393937
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.026944,
+     "rerank_score": 9.505453
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p2",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.026501,
+     "rerank_score": 4.79214
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-to-decision-considerations",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.026263,
+     "rerank_score": 9.551925
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-2",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.025388,
+     "rerank_score": -12.096035
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.025344,
+     "rerank_score": 5.275681
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-and-rationale",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.024615,
+     "rerank_score": -7.967974
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.024527,
+     "rerank_score": 11.381834
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.024448,
+     "rerank_score": 4.2493
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-to-decision-considerations",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.023689,
+     "rerank_score": -4.715856
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.023434,
+     "rerank_score": 8.193436
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-7",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.023259,
+     "rerank_score": -6.163171
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.022809,
+     "rerank_score": 4.602682
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-to-decision-considerations",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.022801,
+     "rerank_score": -4.196978
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-and-rationale-p1",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.021691,
+     "rerank_score": -7.503637
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-2",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.020939,
+     "rerank_score": -10.890064
+    },
+    {
+     "chunk_id": "who-htn-2021-annex-3",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.020187,
+     "rerank_score": -3.2936
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-08",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.01955,
+     "rerank_score": -4.459653
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.018978,
+     "rerank_score": -9.052034
+    }
+   ]
+  },
+  {
+   "qid": "ho-03",
+   "question": "My patient has angina and is being treated for high blood pressure. What systolic reading should we aim for?",
+   "category": "single_rec",
+   "wording": "lay",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 687.993,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 16,
+     "chunk_ids": [
+      "who-htn-2021-rec-06b"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 4.284738,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": 4.284738
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 4.135147
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": 2.554332
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": 0.041897
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": -0.525389
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "score": -0.757859
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": -0.903415
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": -2.89342
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-implementation-remarks",
+     "score": -3.452443
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-and-rationale",
+     "score": -6.029846
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032522,
+     "rerank_score": 0.041897
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031778,
+     "rerank_score": 4.284738
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.031281,
+     "rerank_score": -0.903415
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.031258,
+     "rerank_score": 4.135147
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.03125,
+     "rerank_score": -0.525389
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.030798,
+     "rerank_score": -9.545883
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-and-rationale",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.02879,
+     "rerank_score": -6.029846
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.028439,
+     "rerank_score": 2.554332
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.027402,
+     "rerank_score": -8.335503
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026398,
+     "rerank_score": -11.624704
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.02628,
+     "rerank_score": -11.901065
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-to-decision-considerations",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.025098,
+     "rerank_score": -11.894011
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.025035,
+     "rerank_score": -0.757859
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.024846,
+     "rerank_score": -12.042471
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.02414,
+     "rerank_score": -2.89342
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-implementation-remarks",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.024017,
+     "rerank_score": -3.452443
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-2",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.023901,
+     "rerank_score": -14.368979
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-and-rationale",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.023059,
+     "rerank_score": -9.713369
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.022166,
+     "rerank_score": -7.572017
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-implementation-remarks",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.022149,
+     "rerank_score": -8.078344
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-1-p1",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.021429,
+     "rerank_score": -13.938375
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-7",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.021298,
+     "rerank_score": -13.113327
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p2",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.020887,
+     "rerank_score": -8.402453
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.015152,
+     "rerank_score": -7.186795
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.014286,
+     "rerank_score": -13.254635
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-and-rationale",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.013889,
+     "rerank_score": -12.003897
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.013699,
+     "rerank_score": -12.516186
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-2",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.013699,
+     "rerank_score": -14.772305
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-p2",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013333,
+     "rerank_score": -12.32933
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-implementation-remarks",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013158,
+     "rerank_score": -12.43261
+    }
+   ]
+  },
+  {
+   "qid": "ho-04",
+   "question": "In WHO's example protocol that starts with a single drug, which drug and dose is used first?",
+   "category": "dose_lookup",
+   "wording": "clinical",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 659.967,
+   "gold_sources": [
+    {
+     "doc_id": "who-htn-2021",
+     "printed_page": 29,
+     "chunk_ids": [
+      "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not"
+     ],
+     "best_rank": 3
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "rank": 3,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.5,
+    "ndcg@5": 0.5,
+    "ndcg@10": 0.5
+   },
+   "top_score": 15.738113,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "score": 15.738113
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "score": 9.196863
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "score": 4.329169
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 3.249844
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "score": 2.483313
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 1.68336
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-04",
+     "score": 0.210024
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-first-choice",
+     "score": 0.194316
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "score": -0.440086
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": -0.829038
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032522,
+     "rerank_score": 2.483313
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.032522,
+     "rerank_score": 15.738113
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.030777,
+     "rerank_score": -0.440086
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p2",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.030077,
+     "rerank_score": -9.864082
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-04",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.029877,
+     "rerank_score": 0.210024
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-evidence-to-decision-considerations-p1",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.029631,
+     "rerank_score": -10.428857
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-evidence-to-decision-considerations-p2",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.029083,
+     "rerank_score": -10.10759
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-05",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.028778,
+     "rerank_score": -1.02447
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-first-choice",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.02837,
+     "rerank_score": 0.194316
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-first-choice",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.027778,
+     "rerank_score": -1.94662
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p2",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.027206,
+     "rerank_score": -0.833563
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.027027,
+     "rerank_score": 9.196863
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-second-choice",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.025808,
+     "rerank_score": -2.606721
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.025487,
+     "rerank_score": -3.041004
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.025047,
+     "rerank_score": 4.329169
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.024697,
+     "rerank_score": 3.249844
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.024688,
+     "rerank_score": 1.68336
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-oropharyngeal-infections-dual-therapy-unspecified-first-choice",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.02425,
+     "rerank_score": -2.108818
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-oropharyngeal-infections-single-therapy-if-unspecified-other",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.024152,
+     "rerank_score": -1.72889
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-dual-unspecified-first-choice",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.024056,
+     "rerank_score": -2.124429
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-second-choice",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.022181,
+     "rerank_score": -3.31136
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-genital-and-anorectal-infections-single-unspecified-other",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.021874,
+     "rerank_score": -2.02668
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-antibiotic-treatment-combination-treatment-to-prevention",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.020305,
+     "rerank_score": -4.786886
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-evidence-to-decision-considerations-p3",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.015873,
+     "rerank_score": -3.747317
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.015625,
+     "rerank_score": -7.405178
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-prevention",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.014085,
+     "rerank_score": -13.345351
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-evidence-to-decision-considerations",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.013333,
+     "rerank_score": -14.684729
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.013158,
+     "rerank_score": -12.029602
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013158,
+     "rerank_score": -0.829038
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-2",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.012658,
+     "rerank_score": -11.247652
+    }
+   ]
+  },
+  {
+   "qid": "ho-05",
+   "question": "What HbA1c result is used to diagnose diabetes?",
+   "category": "single_rec",
+   "wording": "clinical",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 865.004,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 13,
+     "chunk_ids": [
+      "who-hearts-d-2020-table-3"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 12.269829,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "score": 12.269829
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": 11.572504
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 8.555779
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "score": 7.553983
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "score": 7.395105
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-implementation-remarks",
+     "score": 3.837751
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": 3.308709
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 0.684115
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "score": 0.153816
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": -1.357169
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032522,
+     "rerank_score": 7.395105
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.032002,
+     "rerank_score": 8.555779
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.031778,
+     "rerank_score": 11.572504
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.030777,
+     "rerank_score": 0.153816
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.030777,
+     "rerank_score": 12.269829
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.02967,
+     "rerank_score": -3.343801
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.028382,
+     "rerank_score": -4.281704
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.028169,
+     "rerank_score": -4.944809
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.027864,
+     "rerank_score": -1.357169
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.027109,
+     "rerank_score": 7.553983
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.026974,
+     "rerank_score": 0.684115
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.026631,
+     "rerank_score": -3.24806
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.026014,
+     "rerank_score": -4.452567
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.025795,
+     "rerank_score": -8.054284
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.024923,
+     "rerank_score": 3.308709
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-implementation-remarks",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.024697,
+     "rerank_score": 3.837751
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p1",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.024321,
+     "rerank_score": -2.264135
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-antiplatelet-treatment",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.023769,
+     "rerank_score": -9.767817
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-and-rationale",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.02369,
+     "rerank_score": -8.741812
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-what-are-diabetic-foot-problems",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.023133,
+     "rerank_score": -6.623618
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.022333,
+     "rerank_score": -4.492931
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-to-decision-considerations",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.022247,
+     "rerank_score": -8.02289
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.022161,
+     "rerank_score": -11.22788
+    },
+    {
+     "chunk_id": "who-htn-2021-s2-4-p1",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.022054,
+     "rerank_score": -2.673374
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.021749,
+     "rerank_score": -8.339308
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-2",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.021719,
+     "rerank_score": -6.352005
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.021545,
+     "rerank_score": -8.459471
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-neuropathy",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.020887,
+     "rerank_score": -6.554611
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-6",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.020455,
+     "rerank_score": -8.541148
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-to-decision-considerations-p2",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.019872,
+     "rerank_score": -13.800543
+    }
+   ]
+  },
+  {
+   "qid": "ho-06",
+   "question": "Is glibenclamide suitable for a lorry driver with type 2 diabetes?",
+   "category": "population_variant",
+   "wording": "lay",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 683.631,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 15,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 14.162315,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 14.162315
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": -3.00984
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": -6.876923
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": -7.01639
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part2",
+     "score": -7.914981
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": -9.695154
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": -10.945677
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": -11.217163
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "score": -12.396411
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": -12.549445
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032787,
+     "rerank_score": 14.162315
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.030536,
+     "rerank_score": -3.00984
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.02971,
+     "rerank_score": -15.697563
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.029324,
+     "rerank_score": -6.876923
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.029211,
+     "rerank_score": -15.713924
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.028439,
+     "rerank_score": -10.945677
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.027778,
+     "rerank_score": -15.290613
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.027693,
+     "rerank_score": -14.813889
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.027402,
+     "rerank_score": -12.396411
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026999,
+     "rerank_score": -9.695154
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.026882,
+     "rerank_score": -15.453803
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.02629,
+     "rerank_score": -7.01639
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part2",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.02605,
+     "rerank_score": -7.914981
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.025987,
+     "rerank_score": -12.549445
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.025894,
+     "rerank_score": -15.857244
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.025486,
+     "rerank_score": -15.13441
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.024909,
+     "rerank_score": -13.45413
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-6",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.024786,
+     "rerank_score": -15.676595
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-management-of-hyperglycaemic-emergencies",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.024405,
+     "rerank_score": -15.477468
+    },
+    {
+     "chunk_id": "who-htn-2021-s2-4-p1",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.023985,
+     "rerank_score": -14.762211
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-neuropathy",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.02384,
+     "rerank_score": -15.890362
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-8",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.023813,
+     "rerank_score": -15.632121
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-antiplatelet-treatment",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.023158,
+     "rerank_score": -15.684027
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-2",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.022679,
+     "rerank_score": -15.414539
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.022508,
+     "rerank_score": -11.217163
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p1",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.022357,
+     "rerank_score": -15.725583
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.022116,
+     "rerank_score": -15.231436
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-what-are-diabetic-foot-problems",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.021674,
+     "rerank_score": -15.830191
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.021315,
+     "rerank_score": -13.742208
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.021062,
+     "rerank_score": -15.894625
+    }
+   ]
+  },
+  {
+   "qid": "ho-07",
+   "question": "Can metformin be prescribed to someone who drinks heavily?",
+   "category": "population_variant",
+   "wording": "lay",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 721.523,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 14,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 7.426511,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 7.426511
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": -0.891382
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": -3.344949
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": -4.238144
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": -5.475588
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "score": -5.84207
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": -7.151574
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": -7.868741
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-05",
+     "score": -8.456158
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": -8.684549
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032787,
+     "rerank_score": 7.426511
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031498,
+     "rerank_score": -4.238144
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.031258,
+     "rerank_score": -5.475588
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.02895,
+     "rerank_score": -0.891382
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.028083,
+     "rerank_score": -7.151574
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.027799,
+     "rerank_score": -8.684549
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-08",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.026036,
+     "rerank_score": -10.018612
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.025942,
+     "rerank_score": -7.868741
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-antiplatelet-treatment",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.025245,
+     "rerank_score": -11.095959
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.024322,
+     "rerank_score": -5.84207
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.023533,
+     "rerank_score": -11.153439
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-evidence-to-decision-considerations",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.022605,
+     "rerank_score": -15.611912
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-imaging-to-antibiotic-treatment",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.021568,
+     "rerank_score": -15.26787
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-pathophysiology-to-most-likely-pathogens",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.016129,
+     "rerank_score": -15.595706
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-table-14-4",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.015625,
+     "rerank_score": -12.585567
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.015385,
+     "rerank_score": -15.642326
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.015152,
+     "rerank_score": -13.137928
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-evidence-to-decision-considerations-p2",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.015152,
+     "rerank_score": -15.892117
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-p2",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.014706,
+     "rerank_score": -15.345467
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.014493,
+     "rerank_score": -3.344949
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-pathophysiology-to-epidemiology",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.014286,
+     "rerank_score": -15.825158
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-antibiotic-treatment",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.014085,
+     "rerank_score": -14.588788
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-evidence-to-decision-considerations-p2",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.014085,
+     "rerank_score": -15.877784
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-antibiotic-treatment-note-to-prevention",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.013889,
+     "rerank_score": -15.635032
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.013889,
+     "rerank_score": -11.421144
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-05",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.013699,
+     "rerank_score": -8.456158
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-8-evidence-to-decision-considerations-p1",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.013699,
+     "rerank_score": -15.540137
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-and-rationale-p2",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.013514,
+     "rerank_score": -14.442191
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013333,
+     "rerank_score": -15.288742
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-implementation-remarks",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013158,
+     "rerank_score": -15.003142
+    }
+   ]
+  },
+  {
+   "qid": "ho-08",
+   "question": "Once someone's insulin dose is stable, at what HbA1c should they be referred for further intensification?",
+   "category": "single_rec",
+   "wording": "clinical",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 800.008,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 29,
+     "chunk_ids": [
+      "who-hearts-d-2020-annex1-flowchart"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 11.554939,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": 11.554939
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 6.119471
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": 4.752273
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 4.734928
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": -0.002789
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": -0.50897
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": -1.396796
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "score": -2.296742
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "score": -2.807994
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part2",
+     "score": -4.364523
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032787,
+     "rerank_score": 11.554939
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.032002,
+     "rerank_score": 6.119471
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.031054,
+     "rerank_score": -1.396796
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.02967,
+     "rerank_score": -4.90225
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.029412,
+     "rerank_score": -2.807994
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.028898,
+     "rerank_score": 4.734928
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.028531,
+     "rerank_score": -0.002789
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.027651,
+     "rerank_score": -13.761436
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.027072,
+     "rerank_score": -13.482273
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026861,
+     "rerank_score": 4.752273
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-management-of-hyperglycaemic-emergencies",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.026838,
+     "rerank_score": -10.85309
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.025934,
+     "rerank_score": -0.50897
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.024954,
+     "rerank_score": -2.296742
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-7-evidence-to-decision-considerations",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.024892,
+     "rerank_score": -15.189915
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.024767,
+     "rerank_score": -10.513077
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.024642,
+     "rerank_score": -9.277683
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-7",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.023736,
+     "rerank_score": -15.535053
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-implementation-remarks",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.023459,
+     "rerank_score": -8.569042
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.022858,
+     "rerank_score": -9.022102
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p2",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.021852,
+     "rerank_score": -11.031719
+    },
+    {
+     "chunk_id": "who-htn-2021-s5-5-p2",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.021369,
+     "rerank_score": -15.648397
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part2",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.020948,
+     "rerank_score": -4.364523
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.020709,
+     "rerank_score": -15.668636
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.015152,
+     "rerank_score": -13.509605
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.014925,
+     "rerank_score": -9.247429
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-antiplatelet-treatment",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.014286,
+     "rerank_score": -12.887074
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p1",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.013889,
+     "rerank_score": -13.086325
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-first-choice",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.013699,
+     "rerank_score": -15.15424
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013699,
+     "rerank_score": -12.697702
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-second-choice",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013514,
+     "rerank_score": -14.946295
+    }
+   ]
+  },
+  {
+   "qid": "ho-09",
+   "question": "At what blood sugar level should low blood sugar be treated even if the person feels fine?",
+   "category": "single_rec",
+   "wording": "lay",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 709.524,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 18,
+     "chunk_ids": [
+      "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 4.387603,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "score": 4.387603
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "score": 0.954332
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 0.883889
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "score": 0.30627
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": -2.692872
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "score": -2.785435
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "score": -2.787799
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-adults",
+     "score": -2.818336
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "score": -2.995123
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": -3.426905
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032787,
+     "rerank_score": 4.387603
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031281,
+     "rerank_score": 0.30627
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.027746,
+     "rerank_score": -4.592382
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.027652,
+     "rerank_score": 0.883889
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.027444,
+     "rerank_score": -2.995123
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.027253,
+     "rerank_score": -2.787799
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.026541,
+     "rerank_score": -2.692872
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-to-decision-considerations",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.026541,
+     "rerank_score": -13.290848
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-counselling-patients-on-foot-care",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.025397,
+     "rerank_score": -3.638171
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.025125,
+     "rerank_score": -8.617706
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.025026,
+     "rerank_score": -5.176804
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.024688,
+     "rerank_score": -4.834786
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-and-rationale",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.024269,
+     "rerank_score": -8.871734
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-2",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.02374,
+     "rerank_score": -12.216648
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-to-decision-considerations-p1",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.023718,
+     "rerank_score": -11.359718
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p1",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.023098,
+     "rerank_score": 0.954332
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.022833,
+     "rerank_score": -7.014151
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-and-rationale",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.022634,
+     "rerank_score": -9.839036
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.022214,
+     "rerank_score": -3.426905
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.021969,
+     "rerank_score": -9.478325
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.02087,
+     "rerank_score": -5.854668
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-prevention",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.016129,
+     "rerank_score": -5.742126
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-and-rationale-p2",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.015873,
+     "rerank_score": -8.040386
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-adults",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.015625,
+     "rerank_score": -2.818336
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-pathophysiology",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.015385,
+     "rerank_score": -10.090761
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.015385,
+     "rerank_score": -3.755194
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-adults-first-choice",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.014706,
+     "rerank_score": -5.954019
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.014706,
+     "rerank_score": -2.785435
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.014286,
+     "rerank_score": -15.056805
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-table-21-4",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.014085,
+     "rerank_score": -10.660536
+    }
+   ]
+  },
+  {
+   "qid": "ho-10",
+   "question": "How often should the eyes and the feet be checked in someone with diabetes?",
+   "category": "combined",
+   "wording": "lay",
+   "collection": "cardiometabolic",
+   "answerable": true,
+   "latency_ms": 751.628,
+   "gold_sources": [
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 25,
+     "chunk_ids": [
+      "who-hearts-d-2020-fig-2-part3"
+     ],
+     "best_rank": 1
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 25,
+     "chunk_ids": [
+      "who-hearts-d-2020-fig-2-part3"
+     ],
+     "best_rank": 1
+    },
+    {
+     "doc_id": "who-hearts-d-2020",
+     "printed_page": 33,
+     "chunk_ids": [
+      "who-hearts-d-2020-annex2"
+     ],
+     "best_rank": 12
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "rank": 1,
+     "indexed": true
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "rank": 12,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.6666666666666666,
+    "recall@3": 0.6666666666666666,
+    "recall@5": 0.6666666666666666,
+    "recall@10": 0.6666666666666666,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 0.6131471927654584,
+    "ndcg@5": 0.6131471927654584,
+    "ndcg@10": 0.6131471927654584
+   },
+   "top_score": 8.272339,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "score": 8.272339
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "score": 6.020555
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-2",
+     "score": 4.842191
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-assessing-loss-of-protective-sensation-lops-p2",
+     "score": 2.511239
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-counselling-patients-on-foot-care",
+     "score": 0.09323
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "score": -0.022402
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-symptoms",
+     "score": -2.773805
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-assessing-loss-of-protective-sensation-lops-p1",
+     "score": -2.926839
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-what-are-diabetic-foot-problems",
+     "score": -4.915439
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "score": -5.062883
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-counselling-patients-on-foot-care",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032522,
+     "rerank_score": 0.09323
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031025,
+     "rerank_score": -5.062883
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-symptoms",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.029462,
+     "rerank_score": -2.773805
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.028372,
+     "rerank_score": 6.020555
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-examination-of-the-feet",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.028309,
+     "rerank_score": -7.115144
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-what-are-diabetic-foot-problems",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.028191,
+     "rerank_score": -4.915439
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.027263,
+     "rerank_score": 8.272339
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.026398,
+     "rerank_score": -5.909133
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-assessing-loss-of-protective-sensation-lops-p1",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.026254,
+     "rerank_score": -2.926839
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026014,
+     "rerank_score": -10.128572
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.025429,
+     "rerank_score": -0.022402
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-9-all",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.0241,
+     "rerank_score": -15.083474
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.023911,
+     "rerank_score": -8.708054
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-neuropathy",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.023344,
+     "rerank_score": -9.544775
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-keratitis-definition-to-clinical-presentation",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.023317,
+     "rerank_score": -15.605129
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-keratitis-laboratory-tests-patient-microbiology-tests-to-note",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.023237,
+     "rerank_score": -13.436399
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-conjunctivitis-laboratory-tests-patient-microbiology-tests-to-antibiotic-treatment",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.022612,
+     "rerank_score": -15.406834
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.022182,
+     "rerank_score": -12.777651
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p1",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.022054,
+     "rerank_score": -6.828583
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-2",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.02152,
+     "rerank_score": 4.842191
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-antiplatelet-treatment",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.02076,
+     "rerank_score": -10.940272
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.015873,
+     "rerank_score": -6.425818
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-assessing-loss-of-protective-sensation-lops-p2",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.015625,
+     "rerank_score": 2.511239
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.014925,
+     "rerank_score": -11.308525
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-ocular-prophylaxis-topical-treatment-for-neonates",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.014706,
+     "rerank_score": -15.354307
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-8",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.014706,
+     "rerank_score": -7.34751
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-ocular-prophylaxis-topical-treatment-for-neonates-other",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.014286,
+     "rerank_score": -15.555605
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-1",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.014286,
+     "rerank_score": -9.931465
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-endophthalmitis-definition-to-clinical-presentation",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.014085,
+     "rerank_score": -15.581647
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-conjunctivitis-definition-to-clinical-presentation",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013889,
+     "rerank_score": -15.513964
+    }
+   ]
+  },
+  {
+   "qid": "ho-11",
+   "question": "What antibiotics can an adult with mild cellulitis take, and for how long?",
+   "category": "dose_lookup",
+   "wording": "clinical",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 768.994,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 204,
+     "chunk_ids": [
+      "who-aware-2022-ch16-dosing-adults"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-adults",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 14.362074,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-adults",
+     "score": 14.362074
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "score": 12.821039
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-adults",
+     "score": 11.283146
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-periorbital-or-preseptal-cellulitis-laboratory-tests-to-antibiotic-treatment",
+     "score": 8.790715
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "score": 5.896741
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 5.885938
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-note-to-key-messages",
+     "score": 5.818878
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-adults",
+     "score": 5.24356
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-imaging-to-antibiotic-treatment-for-widespread",
+     "score": 5.213619
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-intro-to-definition",
+     "score": 5.026138
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-adults",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032787,
+     "rerank_score": 14.362074
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-adults",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.032258,
+     "rerank_score": 11.283146
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.029877,
+     "rerank_score": -2.858091
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.029631,
+     "rerank_score": -4.314633
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-periorbital-or-preseptal-cellulitis-laboratory-tests-to-antibiotic-treatment",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.028783,
+     "rerank_score": 8.790715
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-noabx-symptomatic-care",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.028373,
+     "rerank_score": -7.00865
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-adults",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.027972,
+     "rerank_score": 5.24356
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.027638,
+     "rerank_score": 12.821039
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-adults-second-choice",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.02758,
+     "rerank_score": -14.862772
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026861,
+     "rerank_score": 5.896741
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-adults",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.026754,
+     "rerank_score": 4.323992
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-imaging-to-antibiotic-treatment-for-widespread",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.026501,
+     "rerank_score": 5.213619
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-adults-second-choice",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.025989,
+     "rerank_score": -2.125564
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-note-to-key-messages",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.025253,
+     "rerank_score": 5.818878
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-adults",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.024201,
+     "rerank_score": 2.513718
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.023793,
+     "rerank_score": 5.885938
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-intro-to-definition",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.022399,
+     "rerank_score": 5.026138
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-second-choice",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.022004,
+     "rerank_score": -4.511534
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-table-10-10",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.021391,
+     "rerank_score": -2.210011
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-ruling-out-tuberculosis-to-antibiotic-treatment",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.020545,
+     "rerank_score": -9.427738
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-periorbital-or-preseptal-cellulitis-definition-to-clinical-presentation",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.015152,
+     "rerank_score": -7.006854
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-high-adults",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.014925,
+     "rerank_score": -10.798317
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.014286,
+     "rerank_score": -1.773965
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.014286,
+     "rerank_score": 2.845619
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.013889,
+     "rerank_score": 2.091363
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-9-all",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.013699,
+     "rerank_score": -11.175686
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-imaging-to-scores-to-determine-disease",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.013699,
+     "rerank_score": -12.896513
+    },
+    {
+     "chunk_id": "who-aware-2022-ch11-dosing-all",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.013514,
+     "rerank_score": -11.27609
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-no-antibiotic-care",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013333,
+     "rerank_score": -0.055174
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-most-likely-pathogens-to-cellulitis",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013333,
+     "rerank_score": -3.781456
+    }
+   ]
+  },
+  {
+   "qid": "ho-12",
+   "question": "If an adult's sinus infection does need antibiotics, what should they take and for how long?",
+   "category": "dose_lookup",
+   "wording": "lay",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 761.504,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 71,
+     "chunk_ids": [
+      "who-aware-2022-ch07-dosing-adults"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-adults",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 14.794634,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-adults",
+     "score": 14.794634
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-key-messages",
+     "score": 13.86488
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-laboratory-tests-other-tests-to-no-antibiotic-care",
+     "score": 13.756386
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-antibiotic-treatment",
+     "score": 12.346335
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "score": 9.837005
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-antibiotic-treatment-to-prevention",
+     "score": 8.870261
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-no-antibiotic-care",
+     "score": 8.723413
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-epidemiology-to-sinusitis-caused-by-antibiotic",
+     "score": 8.533342
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-table-7-2",
+     "score": 8.398705
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-key-messages-to-pathophysiology",
+     "score": 8.047545
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch07-laboratory-tests-other-tests-to-no-antibiotic-care",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032002,
+     "rerank_score": 13.756386
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-adults",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031778,
+     "rerank_score": 14.794634
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-key-messages-to-pathophysiology",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.031778,
+     "rerank_score": 8.047545
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-key-messages",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.030331,
+     "rerank_score": 13.86488
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-clinical-presentation-to-patient-microbiology-tests",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.030077,
+     "rerank_score": 4.044378
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-antibiotic-treatment",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.029911,
+     "rerank_score": 12.346335
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-epidemiology-to-sinusitis-caused-by-antibiotic",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.029206,
+     "rerank_score": 8.533342
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-no-antibiotic-care",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.027757,
+     "rerank_score": 8.723413
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-table-7-2",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.027313,
+     "rerank_score": 8.398705
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-orbital-cellulitis-laboratory-tests-patient-microbiology-to-antibiotic-treatment",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026611,
+     "rerank_score": 1.693092
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-antibiotic-treatment-to-prevention",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.026491,
+     "rerank_score": 8.870261
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.025904,
+     "rerank_score": 9.837005
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-periorbital-or-preseptal-cellulitis-laboratory-tests-to-antibiotic-treatment",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.025487,
+     "rerank_score": 2.273057
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-adults-second-choice",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.024541,
+     "rerank_score": -12.637052
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-adults-second-choice",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.024481,
+     "rerank_score": 5.357452
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-key-messages",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.024152,
+     "rerank_score": 0.729764
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-6-endogenous-adults",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.023769,
+     "rerank_score": -9.228611
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.02298,
+     "rerank_score": -6.953176
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.022873,
+     "rerank_score": -6.502128
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-noabx-symptomatic-care",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.022801,
+     "rerank_score": -10.657732
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-3-gonococcal-conjunctivitis-adults-adolescents-adults-adolescents",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.020621,
+     "rerank_score": -9.543715
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-imaging-to-scores-to-determine-disease",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.014493,
+     "rerank_score": -12.598866
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-adults",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.014286,
+     "rerank_score": -1.586811
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-adults-first-choice",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.014085,
+     "rerank_score": 0.398066
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-evidence-to-decision-considerations",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.014085,
+     "rerank_score": -15.745205
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-clinical-presentation",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.013889,
+     "rerank_score": 4.084586
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-children-second-choice",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.013699,
+     "rerank_score": -12.908967
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-adults-second-choice",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.013514,
+     "rerank_score": -1.407163
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-first-choice",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013514,
+     "rerank_score": -8.254749
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-laboratory-tests-other-tests-to-antibiotic-treatment",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013158,
+     "rerank_score": -13.340176
+    }
+   ]
+  },
+  {
+   "qid": "ho-13",
+   "question": "In a country where rheumatic fever is rare, a patient's sore throat scores 3 on the Centor criteria. Does that mean they need antibiotics?",
+   "category": "no_antibiotic",
+   "wording": "clinical",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 729.378,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 57,
+     "chunk_ids": [
+      "who-aware-2022-ch06-noabx-antibiotic-treatment"
+     ],
+     "best_rank": 3
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-antibiotic-treatment",
+     "rank": 3,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.3333333333333333,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.5,
+    "ndcg@5": 0.5,
+    "ndcg@10": 0.5
+   },
+   "top_score": 15.778029,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch06-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "score": 15.778029
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-table-6-2",
+     "score": 15.764653
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-antibiotic-treatment",
+     "score": 15.380569
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-epidemiology",
+     "score": 15.183022
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-imaging-to-antibiotic-treatment",
+     "score": 15.146456
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-clinical-presentation-to-scoring-symptoms-of-pharyngitis",
+     "score": 14.434378
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-key-messages-to-pathophysiology",
+     "score": 12.257782
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-epidemiology",
+     "score": 11.32131
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-adults-first-choice",
+     "score": 8.073029
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-first-choice",
+     "score": 6.662233
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch06-table-6-2",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032266,
+     "rerank_score": 15.764653
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.032018,
+     "rerank_score": 15.778029
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-antibiotic-treatment",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.032002,
+     "rerank_score": 15.380569
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-epidemiology",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.031754,
+     "rerank_score": 15.183022
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-key-messages-to-pathophysiology",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.030536,
+     "rerank_score": 12.257782
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-epidemiology",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.030536,
+     "rerank_score": 11.32131
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-clinical-presentation-to-scoring-symptoms-of-pharyngitis",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.029631,
+     "rerank_score": 14.434378
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-imaging-to-antibiotic-treatment",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.029631,
+     "rerank_score": 15.146456
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-adults-first-choice",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.028577,
+     "rerank_score": 8.073029
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-first-choice",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.028175,
+     "rerank_score": 6.662233
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-prevention-streptococcus-pyogenes-pharyngitis-rheumatic-fever-to-other-causes-of-bacterial",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.028006,
+     "rerank_score": 5.118413
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-second-choice",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.026709,
+     "rerank_score": 2.064801
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-adults-second-choice",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.026686,
+     "rerank_score": 3.395695
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-key-messages-to-definition",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.026631,
+     "rerank_score": -6.190209
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-2",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.026519,
+     "rerank_score": -7.567111
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-imaging-to-scores-to-determine-disease",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.02632,
+     "rerank_score": -12.836691
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-laboratory-tests-other-tests-to-antibiotic-treatment",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.024548,
+     "rerank_score": -12.869986
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-antibiotic-treatment-to-prevention",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.02439,
+     "rerank_score": -5.141263
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-clinical-presentation-to-patient-microbiology-tests",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.024269,
+     "rerank_score": -13.676999
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-table-6-3",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.02375,
+     "rerank_score": -4.193463
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-community-acquired-pneumonia-caused-by-antibiotic-to-clinical-presentation",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.022962,
+     "rerank_score": -13.291109
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-clinical-presentation-to-abscess",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.022894,
+     "rerank_score": -11.486081
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-noabx-key-messages",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.021279,
+     "rerank_score": -11.240261
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-most-likely-pathogens-to-pharyngitis-caused-by-antibiotic",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.021074,
+     "rerank_score": -7.54685
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-noabx-key-messages",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.020638,
+     "rerank_score": -6.254231
+    },
+    {
+     "chunk_id": "who-aware-2022-ch11-laboratory-tests-patient-microbiology-tests-to-prevention",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.020368,
+     "rerank_score": -15.124589
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-laboratory-tests-patient-microbiology-tests-to-no-antibiotic-care",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.02005,
+     "rerank_score": -11.634823
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-key-messages",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.014085,
+     "rerank_score": 4.41347
+    },
+    {
+     "chunk_id": "who-htn-2021-s2-1-to-2-3",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013514,
+     "rerank_score": -15.828293
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-laboratory-tests-patient-microbiology-tests-to-using-microbiology-surveillance-data",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.012658,
+     "rerank_score": -11.139729
+    }
+   ]
+  },
+  {
+   "qid": "ho-14",
+   "question": "Someone has a very painful socket a few days after a tooth extraction. Should they be given antibiotics?",
+   "category": "no_antibiotic",
+   "wording": "lay",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 808.972,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 86,
+     "chunk_ids": [
+      "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-to-gingivitis"
+     ],
+     "best_rank": 2
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-to-gingivitis",
+     "rank": 2,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 0.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 0.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 0.5,
+    "ndcg@1": 0.0,
+    "ndcg@3": 0.6309297535714575,
+    "ndcg@5": 0.6309297535714575,
+    "ndcg@10": 0.6309297535714575
+   },
+   "top_score": 15.454535,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-treatment-no-antibiotic-care-to-antibiotic-treatment",
+     "score": 15.454535
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-to-gingivitis",
+     "score": 14.984175
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-to-dental-procedures",
+     "score": 9.13485
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-definition-p1",
+     "score": 7.537368
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-3",
+     "score": 5.451935
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-key-messages",
+     "score": 4.164543
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-adults",
+     "score": -3.510474
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-clinical-presentation-to-abscess",
+     "score": -3.611481
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-antibiotic-treatment",
+     "score": -3.837377
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-2",
+     "score": -4.885702
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-to-gingivitis",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032522,
+     "rerank_score": 14.984175
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-treatment-no-antibiotic-care-to-antibiotic-treatment",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.032266,
+     "rerank_score": 15.454535
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-clinical-presentation-to-abscess",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.031025,
+     "rerank_score": -3.611481
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-to-dental-procedures",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.030769,
+     "rerank_score": 9.13485
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-adults",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.028439,
+     "rerank_score": -3.510474
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-children",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.028039,
+     "rerank_score": -6.036957
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-definition-p1",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.02739,
+     "rerank_score": 7.537368
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-treatment-antibiotic-treatment",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.027364,
+     "rerank_score": -3.837377
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-pericoronitis",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.025914,
+     "rerank_score": -7.717891
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-pathophysiology",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.025856,
+     "rerank_score": -10.134159
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.024394,
+     "rerank_score": -12.508705
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-adults",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.024201,
+     "rerank_score": -11.498055
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-definition-p2",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.023407,
+     "rerank_score": -9.64669
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-treatment-dental",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.023259,
+     "rerank_score": -10.73303
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-antibiotic-treatment",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.022483,
+     "rerank_score": -9.465269
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-first-choice",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.021545,
+     "rerank_score": -12.577234
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.02109,
+     "rerank_score": -14.891758
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.02104,
+     "rerank_score": -13.431927
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.020673,
+     "rerank_score": -12.677641
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-adults",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.018706,
+     "rerank_score": -13.743068
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-3",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.016129,
+     "rerank_score": 5.451935
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-key-messages",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.015625,
+     "rerank_score": 4.164543
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-noabx-preventive-antibiotic-use",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.015152,
+     "rerank_score": -5.273129
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-noabx-key-messages",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.014925,
+     "rerank_score": -5.718977
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-point-of-care-tests-and-investigations-to-imaging",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.014286,
+     "rerank_score": -9.710787
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-conditions-that-do-not-require-antibiotic-treatment-periodontitis",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.013889,
+     "rerank_score": -6.376803
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-2",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.013889,
+     "rerank_score": -4.885702
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-post-exposure-prophylaxis-traumatic-wounds-to-note",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.013699,
+     "rerank_score": -11.630169
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-table-6-4",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013514,
+     "rerank_score": -10.36013
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-table-5-2",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013333,
+     "rerank_score": -12.708664
+    }
+   ]
+  },
+  {
+   "qid": "ho-15",
+   "question": "A 17 kg child with a sinus infection needs antibiotics. What dose of amoxicillin, and for how long?",
+   "category": "dose_lookup",
+   "wording": "lay",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 812.555,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 71,
+     "chunk_ids": [
+      "who-aware-2022-ch07-dosing-children"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 15.31333,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "score": 15.31333
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-adults",
+     "score": 11.589338
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-epidemiology-to-sinusitis-caused-by-antibiotic",
+     "score": 9.565525
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-first-choice",
+     "score": 9.32815
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-first-choice",
+     "score": 9.089779
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "score": 7.740611
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-table-7-2",
+     "score": 6.804511
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-antibiotic-treatment",
+     "score": 6.664825
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-second-choice",
+     "score": 5.703701
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-children",
+     "score": 3.925986
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032787,
+     "rerank_score": 15.31333
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031258,
+     "rerank_score": -1.252409
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.030835,
+     "rerank_score": 3.368644
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.030331,
+     "rerank_score": 7.740611
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-children",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.030077,
+     "rerank_score": -1.716359
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.029762,
+     "rerank_score": -1.02104
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.02971,
+     "rerank_score": 2.156948
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.029644,
+     "rerank_score": 3.909201
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-adults",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.029643,
+     "rerank_score": 11.589338
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.02901,
+     "rerank_score": -1.068859
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-dosing-children",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.028175,
+     "rerank_score": 3.925986
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-first-choice",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.027885,
+     "rerank_score": 9.089779
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-epidemiology-to-sinusitis-caused-by-antibiotic",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.02748,
+     "rerank_score": 9.565525
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-table-7-2",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.027397,
+     "rerank_score": 6.804511
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-key-messages-to-pathophysiology",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.026944,
+     "rerank_score": -3.045347
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-first-choice",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.026491,
+     "rerank_score": 9.32815
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-second-choice",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.024481,
+     "rerank_score": 5.703701
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-6-endogenous-children",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.023796,
+     "rerank_score": -9.157009
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-community-acquired-pneumonia-caused-by-antibiotic-to-clinical-presentation",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.023026,
+     "rerank_score": -7.855905
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-congenital-syphilis-children-other",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.023016,
+     "rerank_score": -11.568289
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-laboratory-tests-other-tests-to-no-antibiotic-care",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.022233,
+     "rerank_score": 1.507906
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-3",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.0221,
+     "rerank_score": -8.689205
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-children",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.021989,
+     "rerank_score": -10.360944
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-second-choice",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.02178,
+     "rerank_score": -9.17178
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-antibiotic-treatment",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.021709,
+     "rerank_score": 6.664825
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-table-23-4",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.021664,
+     "rerank_score": -8.950485
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-children-first-choice",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.021529,
+     "rerank_score": -10.527632
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-table-5-2",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.02144,
+     "rerank_score": -3.387267
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-key-messages-to-pathophysiology",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.019709,
+     "rerank_score": 2.578926
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-high-children",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.018968,
+     "rerank_score": -12.055777
+    }
+   ]
+  },
+  {
+   "qid": "ho-16",
+   "question": "A 14 kg child has cystitis. What dose of nitrofurantoin should they have?",
+   "category": "dose_lookup",
+   "wording": "lay",
+   "collection": "aware",
+   "answerable": true,
+   "latency_ms": 810.966,
+   "gold_sources": [
+    {
+     "doc_id": "who-aware-2022",
+     "printed_page": 290,
+     "chunk_ids": [
+      "who-aware-2022-ch23-dosing-children"
+     ],
+     "best_rank": 1
+    }
+   ],
+   "gold": [
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "rank": 1,
+     "indexed": true
+    }
+   ],
+   "metrics": {
+    "hit@1": 1.0,
+    "hit@3": 1.0,
+    "hit@5": 1.0,
+    "hit@10": 1.0,
+    "recall@1": 1.0,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "mrr@10": 1.0,
+    "ndcg@1": 1.0,
+    "ndcg@3": 1.0,
+    "ndcg@5": 1.0,
+    "ndcg@10": 1.0
+   },
+   "top_score": 12.35047,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "score": 12.35047
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-note-to-definition",
+     "score": 9.775119
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-antibiotic-treatment",
+     "score": 9.409911
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "score": 7.686336
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-table-23-4",
+     "score": -1.10341
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-second-choice",
+     "score": -7.104423
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-children-first-choice",
+     "score": -7.936519
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-ophthalmia-neonatorum-i-e-chlamydial-neonates",
+     "score": -7.952765
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-first-choice",
+     "score": -8.317379
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-children",
+     "score": -10.259251
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032787,
+     "rerank_score": 12.35047
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-note-to-definition",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031025,
+     "rerank_score": 9.775119
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-antibiotic-treatment",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.03101,
+     "rerank_score": 9.409911
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.029828,
+     "rerank_score": -13.376202
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.028986,
+     "rerank_score": -12.660126
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-table-23-4",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.02895,
+     "rerank_score": -1.10341
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.027973,
+     "rerank_score": -11.969696
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-6-endogenous-children",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.026901,
+     "rerank_score": -12.743065
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-second-choice",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.026786,
+     "rerank_score": -7.104423
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-children-first-choice",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026748,
+     "rerank_score": -7.936519
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-children",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.026646,
+     "rerank_score": -10.752085
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.026481,
+     "rerank_score": -10.319682
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-6-children-second-choice",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.02642,
+     "rerank_score": -11.530269
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-table-6-4",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.026235,
+     "rerank_score": -11.08386
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-congenital-syphilis-children-other",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.026133,
+     "rerank_score": -14.451921
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-ophthalmia-neonatorum-i-e-chlamydial-neonates",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.026042,
+     "rerank_score": -7.952765
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.025992,
+     "rerank_score": -11.264747
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.025974,
+     "rerank_score": 7.686336
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-table-4-2",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.025463,
+     "rerank_score": -12.229229
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-children",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.025063,
+     "rerank_score": -10.259251
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-table-7-2",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.024383,
+     "rerank_score": -12.097278
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.02414,
+     "rerank_score": -11.900424
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.024098,
+     "rerank_score": -15.37709
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-high-children",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.02404,
+     "rerank_score": -13.087049
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.023709,
+     "rerank_score": -11.181275
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-first-choice",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.023643,
+     "rerank_score": -8.317379
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-second-choice",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.023533,
+     "rerank_score": -10.555042
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-table-5-2",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.023259,
+     "rerank_score": -12.39184
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-3",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.022987,
+     "rerank_score": -12.57087
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-2",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.022862,
+     "rerank_score": -11.873783
+    }
+   ]
+  },
+  {
+   "qid": "ho-u1",
+   "question": "What is the starting dose of amlodipine for a child with high blood pressure?",
+   "category": "near_miss",
+   "wording": "lay",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 806.735,
+   "top_score": 8.799623,
+   "top": [
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "score": 8.799623
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "score": 6.691523
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "score": 4.893467
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "score": 3.893603
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "score": 3.844803
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "score": 2.704513
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "score": 0.717639
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": -0.09388
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-implementation-remarks",
+     "score": -2.205105
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-02",
+     "score": -2.996773
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-htn-2021-s6-2",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032266,
+     "rerank_score": 8.799623
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-2-algorithm-2-initiation-of-treatment-not",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031754,
+     "rerank_score": 6.691523
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01a",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.03031,
+     "rerank_score": 4.893467
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.03031,
+     "rerank_score": 0.717639
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-implementation-remarks",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.030282,
+     "rerank_score": 3.893603
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01b",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.029857,
+     "rerank_score": 3.844803
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.029857,
+     "rerank_score": -6.143206
+    },
+    {
+     "chunk_id": "who-htn-2021-s1",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.028787,
+     "rerank_score": -9.214794
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-evidence-to-decision-considerations-p1",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.027783,
+     "rerank_score": -6.172711
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.027619,
+     "rerank_score": -5.040692
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.027598,
+     "rerank_score": -0.09388
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p2",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.027501,
+     "rerank_score": -6.288816
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.027119,
+     "rerank_score": -6.807383
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.026398,
+     "rerank_score": -15.666388
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p2",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.025914,
+     "rerank_score": -9.866411
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-to-decision-considerations",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.025463,
+     "rerank_score": -14.45792
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.025382,
+     "rerank_score": -5.509736
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-implementation-remarks",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.025063,
+     "rerank_score": -2.205105
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-3-evidence-and-rationale",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.02369,
+     "rerank_score": -12.788746
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-and-rationale",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.023259,
+     "rerank_score": -13.093724
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-02",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.022612,
+     "rerank_score": -2.996773
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-07b",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.022559,
+     "rerank_score": 2.704513
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-7",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.021279,
+     "rerank_score": -13.835348
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-1-p1",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.020604,
+     "rerank_score": -14.156514
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.019804,
+     "rerank_score": -15.8241
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-evidence-to-decision-considerations",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.019139,
+     "rerank_score": -12.122933
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.018978,
+     "rerank_score": -15.217992
+    },
+    {
+     "chunk_id": "who-htn-2021-s4-3-p2",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.014493,
+     "rerank_score": -10.433848
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013889,
+     "rerank_score": -15.875771
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-p2",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013514,
+     "rerank_score": -14.991394
+    }
+   ]
+  },
+  {
+   "qid": "ho-u2",
+   "question": "What HbA1c target should a child with type 1 diabetes aim for?",
+   "category": "near_miss",
+   "wording": "clinical",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 968.357,
+   "top_score": 0.984235,
+   "top": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "score": 0.984235
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "score": 0.249393
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "score": -5.13947
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "score": -6.233443
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "score": -7.262875
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "score": -7.821898
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "score": -8.47168
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "score": -8.650476
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "score": -8.87473
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "score": -9.114218
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-monitoring-of-glycaemic-control",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032787,
+     "rerank_score": 0.984235
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch5",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.032002,
+     "rerank_score": 0.249393
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex1-flowchart",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.030536,
+     "rerank_score": -9.114218
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06c",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.030214,
+     "rerank_score": -7.262875
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-3",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.029851,
+     "rerank_score": -7.821898
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2-blood-glucose-management-protocol-p2",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.029139,
+     "rerank_score": -13.144348
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-1",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.02879,
+     "rerank_score": -11.893707
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-about-part-of-the-hearts-technical-package",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.028446,
+     "rerank_score": -11.787819
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch2",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.028405,
+     "rerank_score": -9.776955
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.027921,
+     "rerank_score": -5.13947
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part3",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.02773,
+     "rerank_score": -10.304172
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p2",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.025816,
+     "rerank_score": -12.29508
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-and-rationale-p2",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.025808,
+     "rerank_score": -13.015767
+    },
+    {
+     "chunk_id": "who-htn-2021-s6-1-p1",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.025487,
+     "rerank_score": -12.624562
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-diabetic-kidney-disease",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.025482,
+     "rerank_score": -11.642646
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06a",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.025275,
+     "rerank_score": -6.233443
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.025038,
+     "rerank_score": -12.730786
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-intro-p2",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.024242,
+     "rerank_score": -14.362405
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-06b",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.024203,
+     "rerank_score": -8.87473
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-acute-complications-of-diabetes-p1",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.02379,
+     "rerank_score": -11.969987
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-fig-2-part1",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.023699,
+     "rerank_score": -8.650476
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch4",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.023615,
+     "rerank_score": -8.47168
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-screening-and-management-of-chronic-complications",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.023533,
+     "rerank_score": -15.512801
+    },
+    {
+     "chunk_id": "who-htn-2021-s1-scope-and-objectives-of-the-hypertension-p1",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.022857,
+     "rerank_score": -15.789025
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch3-microvascular-complications",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.022497,
+     "rerank_score": -14.270786
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-ch1-diagnostic-tests",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.022214,
+     "rerank_score": -9.636005
+    },
+    {
+     "chunk_id": "who-htn-2021-rec-01c",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.021653,
+     "rerank_score": -12.601557
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-6-evidence-and-rationale-p1",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.021279,
+     "rerank_score": -15.622772
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-1-evidence-and-rationale",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.021072,
+     "rerank_score": -14.855057
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-2-implementation-remarks",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.020943,
+     "rerank_score": -11.220478
+    }
+   ]
+  },
+  {
+   "qid": "ho-u3",
+   "question": "What dose of doxycycline is used to treat acne?",
+   "category": "near_miss",
+   "wording": "clinical",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 845.321,
+   "top_score": -0.614047,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-anorectal-infection-unspecified",
+     "score": -0.614047
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-lymphogranuloma-venereum-unspecified",
+     "score": -0.784942
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-uncomplicated-urogenital-infection-unspecified",
+     "score": -2.458155
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-first-choice",
+     "score": -4.611455
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "score": -5.541363
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-dosing-mild-to-moderate-cases-unspecified-second-choice",
+     "score": -5.679096
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-late-syphilis-or-unknown-stage-adults-adolescents-first-choice",
+     "score": -6.414335
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "score": -7.419393
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-second-choice",
+     "score": -8.425926
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-imaging-to-prevention",
+     "score": -8.79558
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-uncomplicated-urogenital-infection-unspecified",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032266,
+     "rerank_score": -2.458155
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-dosing-mild-to-moderate-cases-unspecified-second-choice",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.031281,
+     "rerank_score": -5.679096
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-anorectal-infection-unspecified",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.029911,
+     "rerank_score": -0.614047
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-early-syphilis-adults-and-adolescents-adults-adolescents-first-choice",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.029514,
+     "rerank_score": -7.419393
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-adults-first-choice",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.028893,
+     "rerank_score": -4.611455
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-oropharyngeal-infections-single-therapy-if-unspecified-other",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.028405,
+     "rerank_score": -10.91934
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-dosing-lymphogranuloma-venereum-unspecified",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.028169,
+     "rerank_score": -0.784942
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.027693,
+     "rerank_score": -5.541363
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.026743,
+     "rerank_score": -14.776408
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-oropharyngeal-infections-dual-therapy-unspecified-first-choice",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026501,
+     "rerank_score": -12.373577
+    },
+    {
+     "chunk_id": "who-aware-2022-ch14-dosing-t14-7-children-second-choice",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.026438,
+     "rerank_score": -8.425926
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-neurosyphilis-unspecified-other",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.026357,
+     "rerank_score": -10.940434
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-retreatment-after-treatment-failure-unspecified-other",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.025987,
+     "rerank_score": -12.618631
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-late-syphilis-or-unknown-stage-adults-adolescents-first-choice",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.025914,
+     "rerank_score": -6.414335
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-dosing-oropharyngeal-infections-dual-therapy-unspecified-second-choice",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.025166,
+     "rerank_score": -12.65904
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-imaging-to-prevention",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.024493,
+     "rerank_score": -8.79558
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.024056,
+     "rerank_score": -15.504648
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-table-4-2",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.023306,
+     "rerank_score": -15.672353
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-children",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.022612,
+     "rerank_score": -14.394461
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-5-p1",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.022483,
+     "rerank_score": -15.951634
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-dosing-children-second-choice",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.02152,
+     "rerank_score": -12.162386
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.021391,
+     "rerank_score": -14.515059
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.021279,
+     "rerank_score": -15.675809
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-table-12-3",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.020887,
+     "rerank_score": -15.712521
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-table-8-2",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.020457,
+     "rerank_score": -14.92124
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-high-children",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.020101,
+     "rerank_score": -15.501626
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-children",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.019728,
+     "rerank_score": -15.695351
+    },
+    {
+     "chunk_id": "who-aware-2022-ch15-dosing-low-children",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.018978,
+     "rerank_score": -15.869334
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-adults",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.015385,
+     "rerank_score": -14.745461
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-intro-to-definition",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.015385,
+     "rerank_score": -9.658689
+    }
+   ]
+  },
+  {
+   "qid": "ho-u4",
+   "question": "How should a flare of eczema be treated?",
+   "category": "out_of_domain",
+   "wording": "lay",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 857.811,
+   "top_score": -13.516137,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch07-laboratory-tests-other-tests-to-no-antibiotic-care",
+     "score": -13.516137
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-no-antibiotic-care",
+     "score": -14.560314
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-noabx-blepharitis-antibiotic-treatment",
+     "score": -15.161872
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-imaging-to-prevention",
+     "score": -15.180132
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-antibiotic-treatment-to-prevention",
+     "score": -15.379063
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-note-to-key-messages",
+     "score": -15.413338
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-imaging-to-note",
+     "score": -15.575429
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-antibiotic-treatment",
+     "score": -15.721969
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-key-messages-to-pathophysiology",
+     "score": -15.752897
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-imaging-to-antibiotic-treatment-for-widespread",
+     "score": -15.761442
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch17-imaging-to-note",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.026129,
+     "rerank_score": -15.575429
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-orbital-cellulitis-laboratory-tests-patient-microbiology-to-antibiotic-treatment",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.025486,
+     "rerank_score": -15.908792
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-syphilis-in-pregnancy-pregnant-allergy",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.025475,
+     "rerank_score": -15.983818
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.023927,
+     "rerank_score": -15.917894
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-antibiotic-treatment-to-prevention",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.02343,
+     "rerank_score": -15.379063
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-key-messages-to-pathophysiology",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.023347,
+     "rerank_score": -15.752897
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-imaging-to-prevention",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.022873,
+     "rerank_score": -15.939844
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-note-to-key-messages",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.020945,
+     "rerank_score": -15.413338
+    },
+    {
+     "chunk_id": "who-aware-2022-ch11-laboratory-tests-patient-microbiology-tests-to-prevention",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.020793,
+     "rerank_score": -15.955488
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-imaging-to-antibiotic-treatment",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.020698,
+     "rerank_score": -15.920016
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-imaging-to-antibiotic-treatment-for-widespread",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.016393,
+     "rerank_score": -15.761442
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-note-to-key-messages",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.016393,
+     "rerank_score": -15.928042
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-noabx-blepharitis-antibiotic-treatment",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.015873,
+     "rerank_score": -15.161872
+    },
+    {
+     "chunk_id": "who-aware-2022-ch22-note-to-definition",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.015873,
+     "rerank_score": -15.901769
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-periorbital-or-preseptal-cellulitis-laboratory-tests-to-antibiotic-treatment",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.015625,
+     "rerank_score": -15.883979
+    },
+    {
+     "chunk_id": "who-aware-2022-ch19-note-to-key-messages",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.015625,
+     "rerank_score": -15.923523
+    },
+    {
+     "chunk_id": "who-aware-2022-ch20-note-to-key-messages",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.015385,
+     "rerank_score": -15.908501
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-antibiotic-treatment",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.015152,
+     "rerank_score": -15.721969
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-imaging-to-prevention",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.015152,
+     "rerank_score": -15.180132
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-annex2-counselling-patients-on-foot-care",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.014925,
+     "rerank_score": -15.849791
+    },
+    {
+     "chunk_id": "who-hearts-d-2020-table-7",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.014925,
+     "rerank_score": -15.955763
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-noabx-no-antibiotic-care",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.014706,
+     "rerank_score": -14.560314
+    },
+    {
+     "chunk_id": "who-aware-2022-ch22-imaging-to-prevention",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.014706,
+     "rerank_score": -15.903193
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-key-messages",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.014493,
+     "rerank_score": -15.815596
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-laboratory-tests-other-tests-to-no-antibiotic-care",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.014286,
+     "rerank_score": -13.516137
+    },
+    {
+     "chunk_id": "who-htn-2021-s3-4-p1",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.014286,
+     "rerank_score": -15.780994
+    },
+    {
+     "chunk_id": "who-aware-2022-ch21-dosing-congenital-syphilis-children-other",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.014085,
+     "rerank_score": -15.983421
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-table-7-2",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.013889,
+     "rerank_score": -15.884612
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.013889,
+     "rerank_score": -15.973629
+    },
+    {
+     "chunk_id": "who-aware-2022-ch08-noabx-pericoronitis",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.013699,
+     "rerank_score": -15.923079
+    }
+   ]
+  },
+  {
+   "qid": "ho-u5",
+   "question": "I've had a cough for a week. Can I take some of my husband's amoxicillin?",
+   "category": "personal_advice",
+   "wording": "lay",
+   "collection": null,
+   "answerable": false,
+   "latency_ms": 836.363,
+   "top_score": 2.187586,
+   "top": [
+    {
+     "chunk_id": "who-aware-2022-ch04-noabx-no-antibiotic-care",
+     "score": 2.187586
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-noabx-symptomatic-care",
+     "score": 0.931096
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-key-messages-to-definition",
+     "score": -0.019304
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-community-acquired-pneumonia-caused-by-antibiotic-to-clinical-presentation",
+     "score": -1.614931
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-ruling-out-tuberculosis-to-antibiotic-treatment",
+     "score": -3.209703
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "score": -3.333292
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-no-antibiotic-care",
+     "score": -3.368644
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-dosing-mild-to-moderate-cases-unspecified-first-choice",
+     "score": -3.695431
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "score": -4.818501
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "score": -5.219869
+    }
+   ],
+   "candidates": [
+    {
+     "chunk_id": "who-aware-2022-ch12-noabx-symptomatic-care",
+     "first_stage_rank": 1,
+     "first_stage_score": 0.032522,
+     "rerank_score": 0.931096
+    },
+    {
+     "chunk_id": "who-aware-2022-ch04-noabx-no-antibiotic-care",
+     "first_stage_rank": 2,
+     "first_stage_score": 0.032018,
+     "rerank_score": 2.187586
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-community-acquired-pneumonia-caused-by-antibiotic-to-clinical-presentation",
+     "first_stage_rank": 3,
+     "first_stage_score": 0.030536,
+     "rerank_score": -1.614931
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-key-messages-to-definition",
+     "first_stage_rank": 4,
+     "first_stage_score": 0.028405,
+     "rerank_score": -0.019304
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-key-messages-to-pathophysiology",
+     "first_stage_rank": 5,
+     "first_stage_score": 0.027651,
+     "rerank_score": -9.217958
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-second-choice",
+     "first_stage_rank": 6,
+     "first_stage_score": 0.026399,
+     "rerank_score": -4.818501
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-epidemiology-to-sinusitis-caused-by-antibiotic",
+     "first_stage_rank": 7,
+     "first_stage_score": 0.026398,
+     "rerank_score": -9.085136
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-most-likely-pathogens-to-clinical-presentation",
+     "first_stage_rank": 8,
+     "first_stage_score": 0.026389,
+     "rerank_score": -6.087139
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-4-adults-first-choice",
+     "first_stage_rank": 9,
+     "first_stage_score": 0.026263,
+     "rerank_score": -5.219869
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-adults",
+     "first_stage_rank": 10,
+     "first_stage_score": 0.026145,
+     "rerank_score": -9.416559
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-dosing-t12-5-children",
+     "first_stage_rank": 11,
+     "first_stage_score": 0.025694,
+     "rerank_score": -3.333292
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-children-second-choice",
+     "first_stage_rank": 12,
+     "first_stage_score": 0.025579,
+     "rerank_score": -9.479361
+    },
+    {
+     "chunk_id": "who-aware-2022-ch07-dosing-children",
+     "first_stage_rank": 13,
+     "first_stage_score": 0.025562,
+     "rerank_score": -9.501948
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-children",
+     "first_stage_rank": 14,
+     "first_stage_score": 0.025152,
+     "rerank_score": -10.212891
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-adults-first-choice",
+     "first_stage_rank": 15,
+     "first_stage_score": 0.024585,
+     "rerank_score": -7.274016
+    },
+    {
+     "chunk_id": "who-aware-2022-ch12-ruling-out-tuberculosis-to-antibiotic-treatment",
+     "first_stage_rank": 16,
+     "first_stage_score": 0.024527,
+     "rerank_score": -3.209703
+    },
+    {
+     "chunk_id": "who-aware-2022-ch06-noabx-no-antibiotic-care",
+     "first_stage_rank": 17,
+     "first_stage_score": 0.024449,
+     "rerank_score": -3.368644
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-dosing-adults-second-choice",
+     "first_stage_rank": 18,
+     "first_stage_score": 0.024128,
+     "rerank_score": -7.305253
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-adults",
+     "first_stage_rank": 19,
+     "first_stage_score": 0.023718,
+     "rerank_score": -12.127178
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-children",
+     "first_stage_rank": 20,
+     "first_stage_score": 0.02369,
+     "rerank_score": -12.949863
+    },
+    {
+     "chunk_id": "who-aware-2022-ch09-dosing-children",
+     "first_stage_rank": 21,
+     "first_stage_score": 0.023582,
+     "rerank_score": -12.221189
+    },
+    {
+     "chunk_id": "who-aware-2022-ch13-dosing-mild-to-moderate-cases-unspecified-first-choice",
+     "first_stage_rank": 22,
+     "first_stage_score": 0.023457,
+     "rerank_score": -3.695431
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-children",
+     "first_stage_rank": 23,
+     "first_stage_score": 0.023404,
+     "rerank_score": -13.786345
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-adults",
+     "first_stage_rank": 24,
+     "first_stage_score": 0.022948,
+     "rerank_score": -10.536222
+    },
+    {
+     "chunk_id": "who-aware-2022-ch23-dosing-children",
+     "first_stage_rank": 25,
+     "first_stage_score": 0.022593,
+     "rerank_score": -10.930578
+    },
+    {
+     "chunk_id": "who-aware-2022-ch05-key-messages-to-pathophysiology",
+     "first_stage_rank": 26,
+     "first_stage_score": 0.022296,
+     "rerank_score": -8.274666
+    },
+    {
+     "chunk_id": "who-aware-2022-ch18-dosing-adults",
+     "first_stage_rank": 27,
+     "first_stage_score": 0.021482,
+     "rerank_score": -13.095263
+    },
+    {
+     "chunk_id": "who-aware-2022-ch17-dosing-adults",
+     "first_stage_rank": 28,
+     "first_stage_score": 0.021203,
+     "rerank_score": -12.712321
+    },
+    {
+     "chunk_id": "who-aware-2022-ch10-dosing-t10-13-adults",
+     "first_stage_rank": 29,
+     "first_stage_score": 0.021137,
+     "rerank_score": -10.595416
+    },
+    {
+     "chunk_id": "who-aware-2022-ch16-dosing-adults",
+     "first_stage_rank": 30,
+     "first_stage_score": 0.020971,
+     "rerank_score": -11.825345
+    }
+   ]
+  }
+ ]
+}
