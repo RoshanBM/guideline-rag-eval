@@ -1,0 +1,31 @@
+{
+ "judge_model": "qwen2.5:7b",
+ "model_info": {
+  "model": "qwen2.5:7b",
+  "details": {
+   "parent_model": "",
+   "format": "gguf",
+   "family": "qwen2",
+   "families": [
+    "qwen2"
+   ],
+   "parameter_size": "7.6B",
+   "quantization_level": "Q4_K_M"
+  },
+  "modified_at": "2026-11-15T15:34:28.30236+05:30",
+  "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+ },
+ "options": {
+  "temperature": 0.0,
+  "seed": 42,
+  "num_ctx": 12288,
+  "num_predict": 2048
+ },
+ "max_retries": 1,
+ "system_prompt": "You check whether an answer about WHO clinical guidelines is faithful to the sources it cites.\n\nUse ONLY the numbered sources in the user message. Do not use your own medical knowledge, and do not judge whether the answer is clinically correct: only whether the sources back it.\n\nSteps:\n1. Split the answer into claims. A claim is one statement of fact or recommendation (including numbers, drugs, doses, populations, conditions and strength of recommendation). Ignore the [S1]-style labels when splitting, and do not treat them as claims.\n2. Label each claim:\n   - \"supported\": a source states it, or it follows directly from what a source states (a reasonable paraphrase counts; a broader generalisation does not). A claim is supported if ANY source supports it, whatever label the answer attached to it.\n   - \"unsupported\": no source states it, but nothing in the sources contradicts it.\n   - \"contradicted\": a source says otherwise, or the claim invents a specific detail that no source gives (for example a dose, drug, number, threshold or population).\n3. Give the overall label:\n   - \"faithful\": every claim is supported.\n   - \"partial\": at least one claim is unsupported, and no claim is contradicted.\n   - \"no\": at least one claim is contradicted.\n\nReply with only a JSON object of this form:\n{\"claims\": [{\"claim\": \"<the claim>\", \"label\": \"supported\", \"sources\": [\"S1\"], \"reason\": \"<short reason>\"}], \"overall\": \"faithful\"}\nFor an unsupported or contradicted claim, \"sources\" may be empty.",
+ "sheet": "notes/faithfulness_labels.csv",
+ "sheet_sha256": "9c22af1428b8d419d59bb2235988e30e548f4f1cb0ed0ff98412877157629a9a",
+ "git_commit": "e52d31d+dirty",
+ "date": "2026-11-17T13:04:14+05:30",
+ "n_items": 30
+}

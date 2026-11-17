@@ -1,0 +1,5 @@
+Refusal signal: top-1 score, 16 answerable vs 5 unanswerable items. AUROC CI: stratified bootstrap, 1,000 resamples, seed 42. Threshold chosen on this eval set (optimistic).
+
+retriever      AUROC [95% CI]  median top-1 ans  median top-1 unans  threshold (FRR<=5%)  false refusals  unanswerable refused
+------------------------------------------------------------------------------------------------------------------------------
+bge-base   0.950 [0.85, 1.00]            0.7358              0.6521               0.6649     0/16 (0.0%)           3/5 (60.0%)

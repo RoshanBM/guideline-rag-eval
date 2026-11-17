@@ -1,0 +1,112 @@
+Questions: eval/heldout.jsonl (sha256 1db6c03f8e89), 21 items, 16 answerable. Commits: e52d31d+dirty
+Metrics: v2: recall@k per gold source; hit@k, mrr@10, ndcg@k over relevant chunks. CIs: 95% percentile bootstrap, 1,000 resamples, seed 42.
+
+Overall
+retriever       n               hit@1            recall@5           recall@10              MRR@10             nDCG@10   lat ms  build s                                     device
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+bm25           16  0.500 [0.25, 0.75]  0.812 [0.62, 1.00]  0.875 [0.69, 1.00]  0.608 [0.42, 0.80]  0.673 [0.50, 0.85]     0.20     0.30                                        cpu
+bge-small      16  0.688 [0.44, 0.88]  0.938 [0.81, 1.00]  0.938 [0.81, 1.00]  0.776 [0.60, 0.93]  0.811 [0.65, 0.94]    16.39     1.83  cuda (NVIDIA GeForce RTX 3060 Laptop GPU)
+bge-base       16  0.625 [0.38, 0.88]  0.938 [0.81, 1.00]  0.938 [0.81, 1.00]  0.766 [0.59, 0.91]  0.810 [0.67, 0.93]    15.37     4.91  cuda (NVIDIA GeForce RTX 3060 Laptop GPU)
+hybrid-rrf     16  0.562 [0.31, 0.81]  0.812 [0.62, 1.00]  0.917 [0.77, 1.00]  0.678 [0.50, 0.86]  0.732 [0.57, 0.89]    17.52     2.16  cuda (NVIDIA GeForce RTX 3060 Laptop GPU)
+rerank-bge     16  0.562 [0.31, 0.81]  0.875 [0.69, 1.00]  0.938 [0.81, 1.00]  0.698 [0.51, 0.86]  0.761 [0.60, 0.90]  2254.98     2.16  cuda (NVIDIA GeForce RTX 3060 Laptop GPU)
+rerank-medcpt  16  0.812 [0.62, 1.00]  0.979 [0.94, 1.00]  0.979 [0.94, 1.00]  0.885 [0.76, 1.00]  0.890 [0.79, 0.98]   768.99     2.16  cuda (NVIDIA GeForce RTX 3060 Laptop GPU)
+
+By collection
+collection       retriever       n               hit@1            recall@5           recall@10              MRR@10             nDCG@10
+--------------------------------------------------------------------------------------------------------------------------------------
+aware            bm25            6  0.667 [0.33, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.783 [0.52, 1.00]  0.836 [0.63, 1.00]
+aware            bge-small       6  0.667 [0.33, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.806 [0.58, 1.00]  0.855 [0.69, 1.00]
+aware            bge-base        6  0.667 [0.33, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.833 [0.67, 1.00]  0.877 [0.75, 1.00]
+aware            hybrid-rrf      6  0.667 [0.33, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.806 [0.58, 1.00]  0.855 [0.69, 1.00]
+aware            rerank-bge      6  0.667 [0.33, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.833 [0.67, 1.00]  0.877 [0.75, 1.00]
+aware            rerank-medcpt   6  0.667 [0.33, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.806 [0.58, 1.00]  0.855 [0.69, 1.00]
+cardiometabolic  bm25           10  0.400 [0.10, 0.70]  0.700 [0.40, 1.00]  0.800 [0.50, 1.00]  0.503 [0.25, 0.77]  0.574 [0.32, 0.80]
+cardiometabolic  bge-small      10  0.700 [0.40, 1.00]  0.900 [0.70, 1.00]  0.900 [0.70, 1.00]  0.758 [0.48, 1.00]  0.785 [0.54, 0.98]
+cardiometabolic  bge-base       10  0.600 [0.30, 0.90]  0.900 [0.70, 1.00]  0.900 [0.70, 1.00]  0.725 [0.47, 0.93]  0.769 [0.53, 0.94]
+cardiometabolic  hybrid-rrf     10  0.500 [0.20, 0.80]  0.700 [0.40, 0.90]  0.867 [0.67, 1.00]  0.601 [0.34, 0.84]  0.658 [0.43, 0.86]
+cardiometabolic  rerank-bge     10  0.500 [0.20, 0.80]  0.800 [0.50, 1.00]  0.900 [0.70, 1.00]  0.617 [0.37, 0.85]  0.691 [0.47, 0.90]
+cardiometabolic  rerank-medcpt  10  0.900 [0.70, 1.00]  0.967 [0.90, 1.00]  0.967 [0.90, 1.00]  0.933 [0.80, 1.00]  0.911 [0.78, 1.00]
+
+By category
+category            retriever      n               hit@1            recall@5           recall@10              MRR@10             nDCG@10
+----------------------------------------------------------------------------------------------------------------------------------------
+combined            bm25           1  0.000 [0.00, 0.00]  0.000 [0.00, 0.00]  0.000 [0.00, 0.00]  0.000 [0.00, 0.00]  0.000 [0.00, 0.00]
+combined            bge-small      1  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.920 [0.92, 0.92]
+combined            bge-base       1  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]
+combined            hybrid-rrf     1  0.000 [0.00, 0.00]  0.000 [0.00, 0.00]  0.667 [0.67, 0.67]  0.143 [0.14, 0.14]  0.204 [0.20, 0.20]
+combined            rerank-bge     1  0.000 [0.00, 0.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.500 [0.50, 0.50]  0.693 [0.69, 0.69]
+combined            rerank-medcpt  1  1.000 [1.00, 1.00]  0.667 [0.67, 0.67]  0.667 [0.67, 0.67]  1.000 [1.00, 1.00]  0.613 [0.61, 0.61]
+dose_lookup         bm25           5  0.600 [0.20, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.707 [0.39, 1.00]  0.777 [0.53, 1.00]
+dose_lookup         bge-small      5  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]
+dose_lookup         bge-base       5  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]
+dose_lookup         hybrid-rrf     5  0.600 [0.20, 1.00]  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]  0.700 [0.30, 1.00]  0.726 [0.33, 1.00]
+dose_lookup         rerank-bge     5  0.600 [0.20, 1.00]  0.800 [0.40, 1.00]  0.800 [0.40, 1.00]  0.700 [0.30, 1.00]  0.726 [0.33, 1.00]
+dose_lookup         rerank-medcpt  5  0.800 [0.40, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.867 [0.60, 1.00]  0.900 [0.70, 1.00]
+no_antibiotic       bm25           2  0.500 [0.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.750 [0.50, 1.00]  0.815 [0.63, 1.00]
+no_antibiotic       bge-small      2  0.000 [0.00, 0.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.417 [0.33, 0.50]  0.565 [0.50, 0.63]
+no_antibiotic       bge-base       2  0.000 [0.00, 0.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.500 [0.50, 0.50]  0.631 [0.63, 0.63]
+no_antibiotic       hybrid-rrf     2  0.500 [0.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.667 [0.33, 1.00]  0.750 [0.50, 1.00]
+no_antibiotic       rerank-bge     2  0.500 [0.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.750 [0.50, 1.00]  0.815 [0.63, 1.00]
+no_antibiotic       rerank-medcpt  2  0.000 [0.00, 0.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.417 [0.33, 0.50]  0.565 [0.50, 0.63]
+population_variant  bm25           2  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]
+population_variant  bge-small      2  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]
+population_variant  bge-base       2  0.500 [0.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.750 [0.50, 1.00]  0.815 [0.63, 1.00]
+population_variant  hybrid-rrf     2  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]
+population_variant  rerank-bge     2  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]
+population_variant  rerank-medcpt  2  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]
+single_rec          bm25           6  0.333 [0.00, 0.67]  0.667 [0.33, 1.00]  0.833 [0.50, 1.00]  0.450 [0.16, 0.76]  0.541 [0.29, 0.81]
+single_rec          bge-small      6  0.667 [0.33, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.764 [0.50, 1.00]  0.822 [0.62, 1.00]
+single_rec          bge-base       6  0.667 [0.33, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  0.792 [0.54, 1.00]  0.844 [0.65, 1.00]
+single_rec          hybrid-rrf     6  0.500 [0.17, 0.83]  0.833 [0.50, 1.00]  1.000 [1.00, 1.00]  0.644 [0.33, 0.92]  0.729 [0.49, 0.94]
+single_rec          rerank-bge     6  0.500 [0.17, 0.83]  0.833 [0.50, 1.00]  1.000 [1.00, 1.00]  0.611 [0.33, 0.88]  0.703 [0.49, 0.91]
+single_rec          rerank-medcpt  6  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]  1.000 [1.00, 1.00]
+
+By question wording (lay = everyday terms instead of the guideline's terminology)
+wording   retriever       n            recall@5              MRR@10               hit@1
+---------------------------------------------------------------------------------------
+clinical  bm25            6  0.833 [0.50, 1.00]  0.556 [0.31, 0.86]  0.333 [0.00, 0.83]
+clinical  bge-small       6  0.833 [0.50, 1.00]  0.486 [0.21, 0.83]  0.333 [0.00, 0.83]
+clinical  bge-base        6  0.833 [0.50, 1.00]  0.542 [0.25, 0.83]  0.333 [0.00, 0.83]
+clinical  hybrid-rrf      6  0.833 [0.50, 1.00]  0.589 [0.26, 0.89]  0.500 [0.17, 0.83]
+clinical  rerank-bge      6  0.833 [0.50, 1.00]  0.583 [0.25, 0.88]  0.500 [0.17, 0.83]
+clinical  rerank-medcpt   6  1.000 [1.00, 1.00]  0.778 [0.56, 1.00]  0.667 [0.33, 1.00]
+lay       bm25           10  0.800 [0.50, 1.00]  0.640 [0.36, 0.92]  0.600 [0.30, 0.90]
+lay       bge-small      10  1.000 [1.00, 1.00]  0.950 [0.85, 1.00]  0.900 [0.70, 1.00]
+lay       bge-base       10  1.000 [1.00, 1.00]  0.900 [0.75, 1.00]  0.800 [0.50, 1.00]
+lay       hybrid-rrf     10  0.800 [0.50, 1.00]  0.731 [0.51, 0.95]  0.600 [0.30, 0.90]
+lay       rerank-bge     10  0.900 [0.70, 1.00]  0.767 [0.57, 0.95]  0.600 [0.30, 0.90]
+lay       rerank-medcpt  10  0.967 [0.90, 1.00]  0.950 [0.85, 1.00]  0.900 [0.70, 1.00]
+
+Paired bootstrap, A minus B (same items, same resamples; * = CI excludes 0)
+A - B                             hit@1 diff [95% CI]     recall@5 diff [95% CI]       mrr@10 diff [95% CI]
+-----------------------------------------------------------------------------------------------------------
+bge-small - bm25            +0.188 [-0.062, +0.438]    +0.125 [-0.125, +0.375]    +0.168 [-0.031, +0.390]  
+bge-base - bm25             +0.125 [-0.188, +0.375]    +0.125 [-0.125, +0.375]    +0.157 [-0.063, +0.384]  
+hybrid-rrf - bge-small      -0.125 [-0.375, +0.127]    -0.125 [-0.312, +0.000]    -0.098 [-0.284, +0.077]  
+hybrid-rrf - bm25           +0.062 [+0.000, +0.188]    +0.000 [-0.188, +0.188]    +0.069 [-0.027, +0.182]  
+rerank-bge - hybrid-rrf     +0.000 [-0.250, +0.250]    +0.062 [+0.000, +0.188]    +0.020 [-0.138, +0.171]  
+rerank-medcpt - hybrid-rrf  +0.250 [+0.000, +0.500]    +0.167 [+0.000, +0.354]    +0.208 [+0.031, +0.384] *
+
+Missed by every retriever at k=10 (0):
+
+Every retriever finds some but not all gold sources in the top 10 (0):
+
+Dense beats bm25 by the largest margin (best dense model's 1/rank minus bm25's; first relevant chunk, top 50):
+  ho-10 [combined] margin +0.969  How often should the eyes and the feet be checked in someone with diabetes?
+    first relevant rank: bm25 32; bge-small 1; bge-base 1
+  ho-01 [single_rec] margin +0.967  Do I need to wait for blood test results before starting someone on blood pressure tablets?
+    first relevant rank: bm25 30; bge-small 1; bge-base 1
+  ho-03 [single_rec] margin +0.800  My patient has angina and is being treated for high blood pressure. What systolic reading should we aim for?
+    first relevant rank: bm25 5; bge-small 1; bge-base 1
+  ho-12 [dose_lookup] margin +0.800  If an adult's sinus infection does need antibiotics, what should they take and for how long?
+    first relevant rank: bm25 5; bge-small 1; bge-base 1
+  ho-02 [single_rec] margin +0.167  Should a cardiovascular risk score be calculated before hypertension treatment is started?
+    first relevant rank: bm25 3; bge-small 3; bge-base 2
+  ho-05 [single_rec] margin +0.083  What HbA1c result is used to diagnose diabetes?
+    first relevant rank: bm25 6; bge-small 4; bge-base 4
+
+bm25 beats every dense model by the largest margin (bm25's 1/rank minus the best dense):
+  ho-14 [no_antibiotic] margin +0.500  Someone has a very painful socket a few days after a tooth extraction. Should they be given antibiotics?
+    first relevant rank: bm25 1; bge-small 2; bge-base 2
+  ho-04 [dose_lookup] margin +0.313  In WHO's example protocol that starts with a single drug, which drug and dose is used first?
+    first relevant rank: bm25 3; bge-small 49; bge-base -

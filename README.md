@@ -385,6 +385,94 @@ resamples, seed 42). Recall is per gold source. Latency is the median per query 
   554–601 for BGE). HEARTS-D Fig. 1 gold spans are not in the embedded text at all: flowchart
   chunks embed the derived `flow_text`. See `results/retrieval/truncation_spans.txt`.
 
+## Held-out evaluation
+
+The frozen pipeline (`v2.1-frozen`) was run once, unchanged, on `eval/heldout.jsonl`: 21 items
+(16 answerable, 5 unanswerable), none identical to a dev question. Nothing was tuned on it.
+Commands: `--questions eval/heldout.jsonl --tag heldout` for `scripts/run_retrieval_eval.py` and
+`scripts/run_generation_eval.py`. Results are in `results/retrieval/heldout/` and
+`results/generation/heldout/`; `dev_vs_heldout.txt` holds the generation table.
+
+### Retrieval, dev (47 answerable) vs held-out (16 answerable)
+
+Held-out cells give the 95 % bootstrap CI (1,000 resamples, seed 42). With 16 items the CIs are
+about ±0.25 on hit@1. Full report: `results/retrieval/heldout/comparison.txt`.
+
+| Retriever | hit@1 dev | hit@1 held-out | recall@5 dev | recall@5 held-out | MRR@10 dev | MRR@10 held-out | nDCG@10 dev | nDCG@10 held-out |
+|---|---|---|---|---|---|---|---|---|
+| bm25 | 0.383 | 0.500 [0.25, 0.75] | 0.734 | 0.812 [0.62, 1.00] | 0.563 | 0.608 [0.42, 0.80] | 0.617 | 0.673 [0.50, 0.85] |
+| bge-small | 0.702 | 0.688 [0.44, 0.88] | 0.947 | 0.938 [0.81, 1.00] | 0.816 | 0.776 [0.60, 0.93] | 0.840 | 0.811 [0.65, 0.94] |
+| **bge-base** (frozen) | 0.766 | 0.625 [0.38, 0.88] | 0.894 | 0.938 [0.81, 1.00] | 0.840 | 0.766 [0.59, 0.91] | 0.848 | 0.810 [0.67, 0.93] |
+| hybrid-rrf | 0.681 | 0.562 [0.31, 0.81] | 0.883 | 0.812 [0.62, 1.00] | 0.784 | 0.678 [0.50, 0.86] | 0.801 | 0.732 [0.57, 0.89] |
+| rerank-bge | 0.787 | 0.562 [0.31, 0.81] | 0.915 | 0.875 [0.69, 1.00] | 0.856 | 0.698 [0.51, 0.86] | 0.849 | 0.761 [0.60, 0.90] |
+| rerank-medcpt | 0.723 | 0.812 [0.62, 1.00] | 0.947 | 0.979 [0.94, 1.00] | 0.819 | 0.885 [0.76, 1.00] | 0.835 | 0.890 [0.79, 0.98] |
+
+Refusal signal (bge-base top-1 score):
+
+| | AUROC [95 % CI] | False refusals at the frozen gate (0.6905) | Unanswerable refused by the gate |
+|---|---|---|---|
+| dev | 0.96 [0.92, 1.00] | 2/47 (4 %) | 10/15 |
+| held-out | 0.95 [0.85, 1.00] | 2/16 (12.5 %): ho-04, ho-07 | 5/5 |
+
+### Generation, frozen v2.1 with mistral: dev (62) vs held-out (21)
+
+| Metric | dev (62) | held-out (21) |
+|---|---|---|
+| Routes: redirect / drug refusal / dose lookup / gate / LLM | 4 / 1 / 4 / 9 / 44 | 1 / 1 / 2 / 5 / 12 |
+| Correct refusals (unanswerable) | 13/15 (87 %) | 5/5 (100 %) |
+| False refusals (answerable): gate / LLM / dose lookup with no row | 5/47 (2 / 3 / 0) | 3/16 (2 / 0 / 1) |
+| Redirect to a professional (personal advice) | 4/4 | 1/1 |
+| Citation accuracy | 78/83 (94 %) | 17/20 (85 %) |
+| Citations under the wrong label | 1/83 | 0/20 |
+| Answers with every citation verified | 39/44 (89 %) | 11/13 (85 %) |
+| Answers with `[Sn]` labels in the text | 43/44 | 13/13 |
+| Answers whose number sentences all carry a label | 32/35 | 10/10 |
+| Citation relevance (gold chunk cited) | 37/47 (79 %) | 11/16 (69 %) |
+| Dose correct | 11/14 (79 %) | 3/5 (60 %) |
+| Answers with unsupported numbers | 0/44 | 1/13 |
+| Dangerous answers | 0/62 | 0/21 |
+| Invalid outputs | 0/62 | 0/21 |
+| Items with any failure | 18/62 (29 %) | 8/21 (38 %) |
+
+### The 8 held-out failures, reviewed
+
+The automatic counts above are unchanged. On review, the 8 failed items split into three groups:
+
+- **Real failures (3).**
+  - ho-04: the gate refuses (score 0.675); the gold chunk is not in bge-base's top 50.
+  - ho-07: the gate refuses (score 0.665) although the gold chunk is ranked 2nd.
+  - ho-16: a 14 kg child with cystitis, nitrofurantoin. The guideline gives this dose only in
+    mg/kg (2 mg/kg/dose), with no weight bands, so the dose route finds no row and refuses.
+- **Correct answer, quote formatting problems (2).**
+  - ho-05: the answer (HbA1c 6.5 %, 48 mmol/mol) is right, but the quote joins two table cells
+    and carries a label inside it.
+  - ho-11: the answer (amoxicillin+clavulanic acid or cefalexin, 5 days) is right, but both
+    quotes drop the "OR Cloxacillin…" line from the middle of the table, and one is cited to the
+    wrong source.
+- **Metric false positives (3).**
+  - ho-10: "every 2 years" is flagged as an unsupported number because the source writes
+    "every two years" in words.
+  - ho-02 and ho-13: correct answers that cite a supporting chunk other than the gold one
+    (implementation remarks and Table 6.2), so "no gold chunk cited" fires.
+
+## Limitations
+
+- **The gate threshold does not transfer well.** The threshold 0.6905 was chosen on the dev set
+  for at most 5 % false refusals. On the held-out set it falsely refuses 2/16 answerable items
+  (12.5 %, against 4 % on dev), although the AUROC is similar (0.95 vs 0.96). The threshold is
+  set at the tail of the answerable score distribution, so it moves with a few items.
+- **The ranking among dense models and rerankers is unstable at this sample size.** On dev,
+  rerank-bge led and rerank-medcpt was mid-pack; on held-out, rerank-medcpt is best and rerank-bge
+  falls below bge-small. In the paired bootstrap, the only differences outside the 95 % CI are, on
+  dev, the dense models over BM25 and, on held-out, rerank-medcpt over hybrid-rrf (MRR@10 +0.21).
+  On held-out the dense models' lead over BM25 is not outside the CI. With 47 and 16 answerable
+  items, the two sets do not agree on a best retriever, and the frozen choice of bge-base is not
+  shown to be beaten or confirmed.
+- **The dose route handles weight bands only.** It answers only when a dosing row has a weight
+  band that contains the patient's weight. When the guideline gives a dose only in mg/kg (for
+  example nitrofurantoin for children), the route refuses (ho-16) instead of stating the mg/kg
+  dose. It also does not compute doses from mg/kg.
+
 ## Failure cases
 
 _TBD_

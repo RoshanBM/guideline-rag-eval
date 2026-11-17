@@ -5,6 +5,10 @@ Usage::
     python scripts/run_generation_eval.py [--model mistral] [--pipeline v2] [--name mistral-v2]
                                           [--questions eval/questions.jsonl] [--out-dir results/generation]
                                           [--qids hd-007 aw-001] [--rescore [--out-name NAME]]
+                                          [--tag heldout]
+
+``--tag`` writes to ``<out-dir>/<tag>/`` (held-out set: ``--questions eval/heldout.jsonl --tag
+heldout`` -> ``results/generation/heldout/``).
 
 For each item it calls ``src/generate/answer.Answerer`` (bge-base top 5; v2: router, then refusal
 gate; Ollama), checks citations and numbers (``src/generate/verify.py``) and writes one JSON line
@@ -311,9 +315,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--min-free-gb", type=float, default=2.0,
                     help="stop (resumably) when free disk space drops below this many GB")
     ap.add_argument("--fresh", action="store_true", help="discard saved progress and start again")
+    ap.add_argument("--tag", default=None,
+                    help="write to <out-dir>/<tag>/ (e.g. --questions eval/heldout.jsonl --tag heldout)")
     args = ap.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
+    if args.tag:
+        args.out_dir = args.out_dir / args.tag
 
     config = defaults.with_(model=args.model, num_gpu=args.num_gpu, pipeline=args.pipeline)
     all_items = [parse_item(json.loads(line)) for line in args.questions.read_text(encoding="utf-8").splitlines() if line]

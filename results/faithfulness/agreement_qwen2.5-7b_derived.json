@@ -1,0 +1,94 @@
+{
+ "judgements": "qwen2.5-7b.jsonl",
+ "use": "derived_overall",
+ "n": 30,
+ "percent_agreement": 0.7333,
+ "categories": [
+  "no",
+  "partial",
+  "yes"
+ ],
+ "confusion_rows_human_cols_judge": [
+  [
+   2,
+   1,
+   4
+  ],
+  [
+   0,
+   1,
+   1
+  ],
+  [
+   0,
+   2,
+   19
+  ]
+ ],
+ "kappa": {
+  "value": 0.3583,
+  "ci95": [
+   0.0,
+   0.6591
+  ],
+  "undefined_resamples": 0
+ },
+ "kappa_linear": {
+  "value": 0.3836,
+  "ci95": [
+   -0.0227,
+   0.7059
+  ],
+  "undefined_resamples": 0
+ },
+ "percent_agreement_ci95": [
+  0.5667,
+  0.8667
+ ],
+ "skipped": {
+  "no human label": [],
+  "no valid judgement": []
+ },
+ "disagreements": [
+  {
+   "item_id": "aw-004",
+   "human": "partial",
+   "judge": "yes"
+  },
+  {
+   "item_id": "cmb-002",
+   "human": "no",
+   "judge": "partial"
+  },
+  {
+   "item_id": "dl-004",
+   "human": "no",
+   "judge": "yes"
+  },
+  {
+   "item_id": "hd-007",
+   "human": "no",
+   "judge": "yes"
+  },
+  {
+   "item_id": "hd-011",
+   "human": "yes",
+   "judge": "partial"
+  },
+  {
+   "item_id": "htn-002",
+   "human": "yes",
+   "judge": "partial"
+  },
+  {
+   "item_id": "htn-003",
+   "human": "no",
+   "judge": "yes"
+  },
+  {
+   "item_id": "pv-003",
+   "human": "no",
+   "judge": "yes"
+  }
+ ]
+}

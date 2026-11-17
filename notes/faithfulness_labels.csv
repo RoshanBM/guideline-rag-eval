@@ -1,0 +1,500 @@
+﻿item_id,question,answer,source_1_label,source_1_quote,source_1_text,source_2_label,source_2_quote,source_2_text,source_3_label,source_3_quote,source_3_text,source_4_label,source_4_quote,source_4_text,faithful,correct,comment
+aw-001,An adult has had a cough with green phlegm for a week and no signs of pneumonia. Are antibiotics indicated?,"Antibiotics are not needed for most cases [S1, S4].",S1,Antibiotics are not needed for most cases.,"• Antibiotics are not needed for most cases.
+• Yellow/green colour of the sputum does not indicate bacterial infection and the need for antibiotics.",S4,Antibiotics are not needed in the great majority of cases.,"• Antibiotics are not needed in the great majority of cases.
+• Yellow/green coloured nasal discharge alone is not a sign of bacterial infection and not an indication for antibiotic treatment.",,,,,,,yes,partial,"Claim matches S1. Correct but incomplete: does not say acute bronchitis is not an indication or that green sputum does not mean bacterial infection, which was the point of the question."
+aw-002,Does a 4-year-old with a mild ear infection need antibiotics?,"Antibiotics are not needed for most cases of a 4-year-old with a mild ear infection. Symptomatic treatment alone is appropriate [S1]. Most non-severe cases of acute otitis media can be managed symptomatically and do not require antibiotic treatment, especially in children older than 2 years [S2].",S1,Antibiotics are not needed for most cases.,"• Antibiotics are not needed for most cases.
+• Symptomatic treatment alone (pain and fever control with close follow up) is appropriate in mild cases especially in children > 2 years.",S2,"Most non-severe cases of acute otitis media can be managed symptomatically and do not require antibiotic treatment, especially in children older than 2 years.","Most non-severe cases of acute otitis media can be managed symptomatically and do not require antibiotic treatment, especially in children older than 2 years.
+The great majority of cases usually resolve spontaneously over a few days with no need for antibiotic treatment and the risk of complications (e.g. acute mastoiditis) is very low. Reassessment could be considered if symptoms do not improve over 3 days.",,,,,,,yes,yes,Both claims stated in S1 and S2.
+aw-003,Should antibiotics be given to settle toothache before a dental procedure?,"Antibiotics should not be given to settle toothache before a dental procedure [S1, S2].",S1,Antibiotics should not be used before a dental procedure to decrease inflammation or to cure toothache.,"• Antibiotics are not needed for dental pain, which can be treated with analgesics or a dental procedure if appropriate.
+• Antibiotics should not be used before a dental procedure to decrease inflammation or to cure toothache.
+• Antibiotics are not needed before most dental procedures to prevent surgical site infections.",S2,Antibiotics are normally only required for the treatment of spreading infections.,"Dental bacterial infections are rarely self-limiting and may rapidly become life-threatening if left untreated. Most dental infection and pain are amenable to treatment by removal of the cause and drainage of the infection using a dental procedure, such as extraction of the tooth. Removal of the cause of the infection using a dental procedure is usually the quickest and safest way of resolving the problem, and is essential to avoid the risk of rapidly spreading and potentially life-threatening infection. Antibiotics are normally only required for the treatment of spreading infections.
+No antibiotic care
+Most dental infections are characterized by some level of dental pain and, while adequate pain control should always be offered, the prescription of medications alone is not usually appropriate.
+Caries, pulpal disease and dental abscesses are best treated with a dental procedure to remove the source of the problem; using painkillers alone is suboptimal as the condition can progress to a life-threatening spreading infection.
+Ibuprofen and paracetamol are first choice painkillers for dental pain (Table 8.2). In the case of severe pain, ibuprofen and paracetamol may work better when taken in combination.
+Caution should be exercised as the incidence of paracetamol (acetaminophen) overdose in relation to dental pain is relatively high. Opioid painkillers should be avoided as they offer no benefit for this sort of pain and are associated with the risk of substance misuse.
+Oral antiseptics
+Regular use of mouthwashes with an antiseptic product (e.g. chlorhexidine) is not required for the control of dental infections. Such products could be considered in case of acute exacerbations of periodontal disease. Of note, no formulation of oral antiseptics is currently included in the EML and EMLc and rinsing with saline (salty water) is usually adequate as well as being cheaper and more readily available. Caution should be exercised with the use of chlorhexidine mouthwash in patients following extractions or treatment of alveolar osteitis (dry socket following dental extraction) as it has been associated with anaphylaxis.
+Dental procedures
+Dental procedures are usually the quickest and safest solutions for dental pain and infection.
+Commonly performed dental procedures are briefly described in Table 8.3. Detailed information on these procedures is beyond the scope of this chapter.",,,,,,,yes,yes,Directly stated in S1.
+aw-004,"What are the antibiotic options for an adult with an uncomplicated lower urinary tract infection, and for how long?","Adults with an uncomplicated lower urinary tract infection can be treated with amoxicillin+clavulanic acid (500 mg + 125 mg given every 8 hours), nitrofurantoin (100 mg given every 12 hours or 50 mg given every 6 hours), sulfamethoxazole+trimethoprim (800 mg + 160 mg given every 12 hours), or trimethoprim (200 mg given every 12 hours) [S1]. The treatment duration is 3-5 days for adults [S1].",S1,"Adults | Total treatment duration
+Amoxicillin+clavulanic acid (oral): 500 mg + 125 mg given every 8 hours | 3–5 days","Table 23.5 – Empiric antibiotic treatment for lower urinary tract infections
+Important
+Where more than one antibiotic is recommended for an infection, they are listed in alphabetical order and they should be considered equal treatment options, unless otherwise indicated.
+Adults | Total treatment duration
+Amoxicillin+clavulanic acid (oral): 500 mg + 125 mg given every 8 hours | 3–5 days
+Nitrofurantoin (oral):
+• 100 mg given every 12 hours (modified-release formulation)
+• 50 mg given every 6 hours (immediate-release formulation) | 5 days
+Sulfamethoxazole+ trimethoprim (oral): 800 mg + 160 mg given every 12 hours | 3 days
+Trimethoprim (oral): 200 mg given every 12 hours | 3 days
+Note. All dosages are for normal renal and hepatic function.
+a Amoxicillin+clavulanic acid: Escherichia coliresistance rates to amoxicillin+clavulanic acid are lower than to amoxicillin alone. This combination still has activity against some extended-spectrum beta-lactamase-producing isolates and it can be considered an acceptable option, particularly in young children.
+b Resistance to sulfamethoxazole+trimethoprim is high in many settings (232,233). It is ineffective against most isolates producing extended-spectrum beta-lactamases. It is not recommended in the first trimester of pregnancy.
+d In general, shorter treatments are indicated for children or non-pregnant women (3–5 days depending on the antibiotic), while longer treatments are indicated for pregnant women (usually 5 days) or men (usually 7 days).",S1,"Nitrofurantoin (oral):
+• 100 mg given every 12 hours (modified-release formulation)
+• 50 mg given every 6 hours (immediate-release formulation) | 5 days","Table 23.5 – Empiric antibiotic treatment for lower urinary tract infections
+Important
+Where more than one antibiotic is recommended for an infection, they are listed in alphabetical order and they should be considered equal treatment options, unless otherwise indicated.
+Adults | Total treatment duration
+Amoxicillin+clavulanic acid (oral): 500 mg + 125 mg given every 8 hours | 3–5 days
+Nitrofurantoin (oral):
+• 100 mg given every 12 hours (modified-release formulation)
+• 50 mg given every 6 hours (immediate-release formulation) | 5 days
+Sulfamethoxazole+ trimethoprim (oral): 800 mg + 160 mg given every 12 hours | 3 days
+Trimethoprim (oral): 200 mg given every 12 hours | 3 days
+Note. All dosages are for normal renal and hepatic function.
+a Amoxicillin+clavulanic acid: Escherichia coliresistance rates to amoxicillin+clavulanic acid are lower than to amoxicillin alone. This combination still has activity against some extended-spectrum beta-lactamase-producing isolates and it can be considered an acceptable option, particularly in young children.
+b Resistance to sulfamethoxazole+trimethoprim is high in many settings (232,233). It is ineffective against most isolates producing extended-spectrum beta-lactamases. It is not recommended in the first trimester of pregnancy.
+d In general, shorter treatments are indicated for children or non-pregnant women (3–5 days depending on the antibiotic), while longer treatments are indicated for pregnant women (usually 5 days) or men (usually 7 days).",S1,Sulfamethoxazole+ trimethoprim (oral): 800 mg + 160 mg given every 12 hours | 3 days,"Table 23.5 – Empiric antibiotic treatment for lower urinary tract infections
+Important
+Where more than one antibiotic is recommended for an infection, they are listed in alphabetical order and they should be considered equal treatment options, unless otherwise indicated.
+Adults | Total treatment duration
+Amoxicillin+clavulanic acid (oral): 500 mg + 125 mg given every 8 hours | 3–5 days
+Nitrofurantoin (oral):
+• 100 mg given every 12 hours (modified-release formulation)
+• 50 mg given every 6 hours (immediate-release formulation) | 5 days
+Sulfamethoxazole+ trimethoprim (oral): 800 mg + 160 mg given every 12 hours | 3 days
+Trimethoprim (oral): 200 mg given every 12 hours | 3 days
+Note. All dosages are for normal renal and hepatic function.
+a Amoxicillin+clavulanic acid: Escherichia coliresistance rates to amoxicillin+clavulanic acid are lower than to amoxicillin alone. This combination still has activity against some extended-spectrum beta-lactamase-producing isolates and it can be considered an acceptable option, particularly in young children.
+b Resistance to sulfamethoxazole+trimethoprim is high in many settings (232,233). It is ineffective against most isolates producing extended-spectrum beta-lactamases. It is not recommended in the first trimester of pregnancy.
+d In general, shorter treatments are indicated for children or non-pregnant women (3–5 days depending on the antibiotic), while longer treatments are indicated for pregnant women (usually 5 days) or men (usually 7 days).",S1,Trimethoprim (oral): 200 mg given every 12 hours | 3 days,"Table 23.5 – Empiric antibiotic treatment for lower urinary tract infections
+Important
+Where more than one antibiotic is recommended for an infection, they are listed in alphabetical order and they should be considered equal treatment options, unless otherwise indicated.
+Adults | Total treatment duration
+Amoxicillin+clavulanic acid (oral): 500 mg + 125 mg given every 8 hours | 3–5 days
+Nitrofurantoin (oral):
+• 100 mg given every 12 hours (modified-release formulation)
+• 50 mg given every 6 hours (immediate-release formulation) | 5 days
+Sulfamethoxazole+ trimethoprim (oral): 800 mg + 160 mg given every 12 hours | 3 days
+Trimethoprim (oral): 200 mg given every 12 hours | 3 days
+Note. All dosages are for normal renal and hepatic function.
+a Amoxicillin+clavulanic acid: Escherichia coliresistance rates to amoxicillin+clavulanic acid are lower than to amoxicillin alone. This combination still has activity against some extended-spectrum beta-lactamase-producing isolates and it can be considered an acceptable option, particularly in young children.
+b Resistance to sulfamethoxazole+trimethoprim is high in many settings (232,233). It is ineffective against most isolates producing extended-spectrum beta-lactamases. It is not recommended in the first trimester of pregnancy.
+d In general, shorter treatments are indicated for children or non-pregnant women (3–5 days depending on the antibiotic), while longer treatments are indicated for pregnant women (usually 5 days) or men (usually 7 days).",partial,partial,"Drugs and doses all in S1. 'The treatment duration is 3-5 days for adults' over-generalises: S1 gives a duration per drug (3-5, 5, 3, 3 days) and footnote d says men usually 7 days. Nitrofurantoin formulations not named."
+aw-006,"A pregnant woman with early syphilis is allergic to penicillin. What are the alternatives, and do they protect the baby?","The alternatives for a pregnant woman with early syphilis who is allergic to penicillin are ceftriaxone 1 g for 10–14 days [S1] or doxycycline (oral) 100 mg every 12 hours for 14 days (except in pregnant women) [S3]. Neither of these options completely cross the placental barrier, so only the mother is treated, not the fetus [S1].",S1,Alternative options (not in the EML) in case of allergy to penicillin (or stock-outs): Ceftriaxone 1 g for 10–14 days,"Table 21.5 – Antibiotic treatment for syphilis by stage of the disease as indicated in the most recent WHO guidelines for the treatment of syphilis (210) Please check the WHO website regularly for possible updates
+Type of infection | Treatment
+Syphilis in pregnancy | Early syphilis
+Alternative options (not in the EML) in case of allergy to penicillin (or stock-outs):
+Ceftriaxone 1 g for 10–14 days
+Azithromycin (2 g single dose) or erythromycin (500 mg every 6 hours for 14 days) can also be used but neither of them crosses the placental barrier completely, therefore only the mother is treated, not the fetus.
+Late syphilis or unknown stage
+Alternative option (not in the EML) in case of allergy to penicillin (or stock-outs): Erythromycin 500 mg every 6 hours for 30 days, but this does not treat the fetus since erythromycin does not cross the placental barrier completely, therefore only the mother is treated.
+EML: Model List of Essential Medicines; IM: intramuscular; IU: international units; IV: intravenous;
+Note. All dosages are for normal renal and hepatic function.",S3,"Alternative options in case of allergy to penicillin or stock-outs are indicated in the 2016 WHO guidelines but these are not included in the EML for this indication. These alternatives are doxycycline (oral) 100 mg every 12 hours (except in pregnant women) for 14 days, or ceftriaxone 1 g (IM) for 10–14 days","Table 21.5 – Antibiotic treatment for syphilis by stage of the disease as indicated in the most recent WHO guidelines for the treatment of syphilis (210) Please check the WHO website regularly for possible updates
+Type of infection | Treatment | Total treatment duration
+Early syphilis (adults and adolescents)
+Early syphilis includes primary, secondary and early latent syphilis of no more than 2 years duration | First choice
+Benzathine benzylpenicillin (IM): 2.4 million IU (≈ 1.8 g) | Benzathine benzylpenicillin: single dose
+Procaine benzylpenicillin: 10–14 days
+EML: Model List of Essential Medicines; IM: intramuscular; IU: international units; IV: intravenous;
+Note. All dosages are for normal renal and hepatic function.
+a Alternative options in case of allergy to penicillin or stock-outs are indicated in the 2016 WHO guidelines but these are not included in the EML for this indication. These alternatives are doxycycline (oral) 100 mg every 12 hours (except in pregnant women) for 14 days, or ceftriaxone 1 g (IM) for 10–14 days (210). In special circumstances (i.e. when susceptibility is likely, based on local epidemiology) azithromycin 2 g (oral) as a single dose can be given. If penicillin cannot be used, doxycycline is the preferred choice (except in pregnant women) because of its lower cost and oral administration (210).",,,,,,,no,no,DANGEROUS. Recommends doxycycline for a pregnant woman although S3 says 'except in pregnant women'. Claims ceftriaxone and doxycycline do not cross the placenta; S1 says this of azithromycin and erythromycin only. Omits azithromycin/erythromycin. Not caught by the automatic danger check.
+cmb-001,"Someone with type 2 diabetes had a heart attack two years ago. Besides their diabetes tablets, should they be on aspirin and a statin?",They should be on aspirin and a statin [S2].,S2,"Statins are recommended for all people with type 2 diabetes 40 years old or older, but only if this does not negatively impact access to glucose-lowering and blood pressure-lowering medication.","Glibenclamide
+Glibenclamide is not recommended in:
+• people aged 60 years or older
+• people with severe liver disease
+• in patients for whom hypoglycaemia is a concern (people who are at risk of falls, who have impaired awareness of hypoglycaemia, who live alone)
+• people who drive or operate machinery as part of their job.
+Intensification of treatment when metformin and sulfonylurea fail to control glycaemia:
+• Refer for insulin treatment or add human insulin to oral medication (Annex 1).
+• If insulin is unsuitable, a DPP-4 inhibitor, SGLT-2 inhibitor or a thiazolidinedione (TZD) may be added, but these are not recommended for routine use due to high cost and, with the exception of SGLT-2 inhibitors, uncertain benefit.
+Control of blood pressure and blood lipids
+Blood pressure should be measured at every visit.
+Hypertension treatment is indicated in people with diabetes when systolic blood pressure ≥130 mmHg or diastolic blood pressure ≥80 mmHg. Statins are recommended for all people with type 2 diabetes 40 years old or older, but only if this does not negatively impact access to glucose-lowering and blood pressure-lowering medication.
+Referral criteria
+Criteria for referral to higher levels of care are presented in Section 4.
+1 Insulin analogues are not recommended for routine use as they are substantially more costly than human insulin and there is considerable uncertainty over their benefits, especially in people with type 2 diabetes.
+2 Insulin treatment could be unsuitable when it is more costly than oral agents, or when circumstances make its use difficult (e.g. persons who live alone and are dependent on others to inject them with insulin).",,,,,,,,,,partial,partial,Statin claim supported by S2 (age 40+). Aspirin claim is not in any cited source. Correct overall but drops the conditions (aspirin 75-100 mg after a CVD event with no major bleeding; statin if aged 40+).
+cmb-002,"My diabetic patient's blood pressure is 150/95. Should I treat it, and which drugs can I start with?","Treatment should be considered for the patient due to their high blood pressure (130-139 mmHg) and the presence of diabetes mellitus [S1]. Initiation of pharmacological antihypertensive treatment can start with a two-drug combination therapy, preferably in a single-pill combination (ACE/ARB, dihydropyridine CCB, thiazide-like agents) [S5]. However, glibenclamide is not recommended for the patient due to their age or other risk factors [S4].",S1,"WHO suggests pharmacological antihypertensive treatment of individuals without cardiovascular disease but with high cardiovascular risk, diabetes mellitus, or chronic kidney disease, and systolic blood pressure of 130–139 mmHg.","1. RECOMMENDATION ON BLOOD PRESSURE THRESHOLD FOR INITIATION OF PHARMACOLOGICAL TREATMENT
+WHO suggests pharmacological antihypertensive treatment of individuals without cardiovascular disease but with high cardiovascular risk, diabetes mellitus, or chronic kidney disease, and systolic blood pressure of 130–139 mmHg.
+Strong recommendation, moderate- to high-certainty evidence",S5,"Treat adults with BP ≥140 mmHg or ≥90 (SBP ≥130 mmHg for those with CVD, DM, CKD).","Graphic summaries of the guideline recommendations are presented below in an algorithmic approach (Figs 3 and 4). This maps the recommendations to a patient-care pathway.
+Fig. 3 An approach for starting treatment with a single-pill combination
+Treat adults with BP ≥140 mmHg or ≥90 (SBP ≥130 mmHg for those with CVD, DM, CKD).
+Start two-drug combination therapy, preferably in a single-pill combination (ACE/ARB, dihydropyridine CCB, thiazide-like agents).
+Treatment targets: <140/90 mmHg (SBP <130 mmHg for high-risk patients with CVD, DM, CKD).
+Follow up monthly after initiation or a change in antihypertensive medications until patient reaches BP target. Follow up every 3–6 months for patients with BP under control.
+Pharmacological treatment to be initiated under the following circumstances:
+• A diagnosis of HTN has already been made.
+• Initiation of pharmacological HTN treatment should start no later than four weeks after diagnosis of HTN.
+• If BP level is high or there is accompanying evidence of end organ damage, initiation of treatment should be started without delay.
+• Patient should be counselled about starting medication therapy.
+• Basic laboratory testing (electrolytes, creatinine, lipogram, glucose, HbA1C, urine dipstick, and ECG) to occur as long as it does not delay treatment.
+• A CV risk assessment can be conducted immediately (as long as it does not delay initiation of treatment) or at a later visit.
+• Consider using diuretics or CCB in patients 65 years or older, or those of African or Afro-Caribbean descent, beta-blockers (BBs) post MI, ACEis/ARBs in those with DM, heart failure or CKD.",S4,,"Glibenclamide
+Glibenclamide is not recommended in:
+• people aged 60 years or older
+• people with severe liver disease
+• in patients for whom hypoglycaemia is a concern (people who are at risk of falls, who have impaired awareness of hypoglycaemia, who live alone)
+• people who drive or operate machinery as part of their job.
+Intensification of treatment when metformin and sulfonylurea fail to control glycaemia:
+• Refer for insulin treatment or add human insulin to oral medication (Annex 1).
+• If insulin is unsuitable, a DPP-4 inhibitor, SGLT-2 inhibitor or a thiazolidinedione (TZD) may be added, but these are not recommended for routine use due to high cost and, with the exception of SGLT-2 inhibitors, uncertain benefit.
+Control of blood pressure and blood lipids
+Blood pressure should be measured at every visit.
+Hypertension treatment is indicated in people with diabetes when systolic blood pressure ≥130 mmHg or diastolic blood pressure ≥80 mmHg. Statins are recommended for all people with type 2 diabetes 40 years old or older, but only if this does not negatively impact access to glucose-lowering and blood pressure-lowering medication.
+Referral criteria
+Criteria for referral to higher levels of care are presented in Section 4.
+1 Insulin analogues are not recommended for routine use as they are substantially more costly than human insulin and there is considerable uncertainty over their benefits, especially in people with type 2 diabetes.
+2 Insulin treatment could be unsuitable when it is more costly than oral agents, or when circumstances make its use difficult (e.g. persons who live alone and are dependent on others to inject them with insulin).",,,,no,partial,"Says the patient's BP is '130-139 mmHg' (it is 150/95) and that glibenclamide is not recommended 'due to their age or other risk factors', inventing patient attributes. Combination therapy with the three classes is supported by S5. Treat-and-drug-classes conclusion is right, reasoning is wrong."
+cmb-003,"After starting someone on blood pressure tablets, how often should they be seen, and when can visits be spaced out?","WHO suggests a monthly follow up after initiation or a change in antihypertensive medications until patients reach target [S4]. However, WHO suggests a follow up every 3–6 months for patients whose blood pressure is under control [S1].",S4,"7. RECOMMENDATION ON FREQUENCY OF ASSESSMENT
+WHO suggests a monthly follow up after initiation or a change in antihypertensive medications until patients reach target.","7. RECOMMENDATION ON FREQUENCY OF ASSESSMENT
+WHO suggests a monthly follow up after initiation or a change in antihypertensive medications until patients reach target.
+Conditional recommendation, low-certainty evidence",S1,"7. RECOMMENDATION ON FREQUENCY OF ASSESSMENT
+WHO suggests a follow up every 3–6 months for patients whose blood pressure is under control.","7. RECOMMENDATION ON FREQUENCY OF ASSESSMENT
+WHO suggests a follow up every 3–6 months for patients whose blood pressure is under control.
+Conditional recommendation, low-certainty evidence",,,,,,,yes,yes,Both recommendations quoted from S4 and S1.
+cmb-006,"How is sugar control checked if an HbA1c test isn't available, and what level counts as good control?","If HbA1c isn't available, FPG values and a combination of FPG and postprandial plasma glucose (2 hours after breakfast) can be used to assess glycaemic control [S1]. A good control is an FPG value of ≤7.0 mmol/L (126mg/dL) and a postprandial PG value of ≤9.0 mmol/L (160 mg/dL) [S1, S3].",S1,If HbA1c is not available: • Fasting plasma glucose (FPG) values can be used to assess glycaemic control and inform treatment. • Most informative is a glucose profile with several pre- and postprandial measurements throughout the day.,"Glycated haemoglobin (HbA1c) is commonly used in clinical practice to monitor glycaemic control, as it provides a measure of average plasma glucose over the preceding 8 to 12 weeks.
+If HbA1c is not available:
+• Fasting plasma glucose (FPG) values can be used to assess glycaemic control and inform treatment.
+• More informative is a combination of FPG and postprandial plasma glucose (2 hours after breakfast).
+• Most informative is a glucose profile with several pre- and postprandial measurements throughout the day.
+• The least informative is random plasma glucose (RPG).
+Targets for glycaemic control
+Blood glucose values closer to normal substantially reduce the risk of microvascular complications. The downside of tight blood glucose control is a potentially dangerous side-effect of the treatment (hypoglycaemia). It is recognized that an individualized approach is preferred when setting treatment targets. Patients with a short life expectancy and those with advanced complications or serious comorbidities are unlikely to benefit from efforts to achieve near-normal glycaemia.
+• The majority of patients can be expected to aim for an HbA1c of 7.0% (53 mmol/mol).
+• The HbA1c target can be relaxed (e.g. to <8% or <64 mmol/mol) in people with frequent severe hypoglycaemia, advanced complications or low life-expectancy.
+• Patients treated with diet, physical activity and metformin (very low risk of hypoglycaemia) should be encouraged to achieve a lower HbA1c target.
+• If HbA1c measurement is not available or there is concern over its validity, an FPG value of ≤7.0 mmol/L (126mg/dL) and a postprandial PG value of ≤9.0 mmol/L (160 mg/dL) can serve as surrogates.",S3,"If HbA1c measurement is not available or there is concern over its validity, an FPG value of ≤7.0 mmol/L (126mg/dL) and a postprandial PG value of ≤9.0 mmol/L (160 mg/dL) can serve as surrogates.","A monitoring system to assess the effectiveness of diabetes management should include regular monitoring of biochemical parameters and occurrence of complications due to diabetes.
+Biochemical parameters:
+• Glycated haemoglobin (HbA1c) provides a measure of average plasma glucose over the preceding 8 to 12 weeks. The majority of patients can be expected to aim for a HbA1c of ≤7.0% (53 mmol/mol)
+• If HbA1c measurement is not available or there is concern over its validity, an FPG value of ≤7.0 mmol/L (126mg/dL) and a postprandial PG value of ≤9.0 mmol/L (160 mg/dL) can serve as surrogates.",,,,,,,yes,yes,"Methods in S1, surrogate targets in S3; calling the surrogates 'good control' is a fair paraphrase."
+cs-001,Someone has just been diagnosed with type 2 diabetes with a fasting glucose of 9 mmol/L. How long should diet and exercise be tried before starting metformin?,"Review in 1 month and counsel on diet and physical activity [S1]. If goal not achieved, begin metformin 500 mg daily [S1].",S1,"REVIEW IN 1 MONTH (or immediately if symptoms appear)
+IF goal not achieved BEGIN METFORMIN 500 mg daily","Fig. 1 Protocol for control of blood glucose in type 2 diabetes*
+TEST ADULTS who have symptoms of diabetes with fasting or random plasma glucose (FPG or RPG) TEST ASYMPTOMATIC ADULTS who are 40+ years old and BMI ≥25 (FPG)
+FPG ≥7 mmol/L and <18 mmol/L or RPG ≥11.1 mmol/L IF ASYMPTOMATIC repeat test on subsequent day
+Counsel on diet and physical activity and adherence to medicines at all visits
+REVIEW IN 1 MONTH (or immediately if symptoms appear)
+IF goal not achieved BEGIN METFORMIN 500 mg daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved INCREASE METFORMIN to 1000 mg 1 x daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved INCREASE METFORMIN to 1000 mg 2 x daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved ADD gliclazide 80 mg 1 x daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved ADD gliclazide 80 mg 2 x daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved despite adherence to medication and diet and physical activity, REFER to higher level of care or BEGIN INSULIN (see insulin protocol)
+FPG ≥15 mmol/L and SYMPTOMATIC or FPG/RPG >18 mmol/L, regardless of symptoms
+TEST urine ketones
+Urine ketones ≥2+
+Urine ketones <2+
+REFER to higher level of care
+GIVE METFORMIN 1000 mg 2 x daily and GLICLAZIDE 80 g 2 x daily Counsel on diet, physical activity and adherence to medication
+REVIEW in 3–5 days
+No improvement
+Improvement
+REFER to higher level of care
+CONTINUE treatment
+REVIEW in 2–3 months
+IF goal achieved or frequent hypoglycaemia, consider reducing or stopping gliclazide in people who were on 2000 mg metformin and 160 mg gliclazide from diagnosis REVIEW IN 1 MONTH
+IF goal NOT achieved
+REFER to higher level of care
+* Derived from WHO-PEN 2013",,,,,,,,,,yes,partial,"Faithful to Fig. 1. Misses that Fig. 2 says 3 months, which is the point of this conflicting-source item."
+dl-004,What antibiotics treat uncomplicated genital gonorrhoea when no local resistance data are available?,"Cefixime (oral): 400 mg AND Azithromycin (oral): 1 g [S4] or Cefixime (oral): 400 mg [S2] or Ceftriaxone (IM): 250 mg [S2, S3]",S4,"Genital and anorectal infections (dual therapy) | Second choice
+Cefixime (oral): 400 mg AND
+Azithromycin (oral): 1 g
+IM: intramuscular.
+Note. All dosages are for normal renal and hepatic function.
+a Dual therapy should be given if no reliable local data on resistance are available.","Table 20.3 – Antibiotic treatment for gonococcal infection as indicated in the 2016 WHO guidelines for the treatment of gonorrhoea (89)
+Important
+WHO is currently revising treatment recommendations and dosages (please check the WHO website regularly for possible updates).
+Where more than one antibiotic is recommended for an infection, they are listed in alphabetical order and they should be considered equal treatment options, unless otherwise indicated.
+Type of gonococcal infection | Treatment | Total treatment duration
+Genital and anorectal infections (dual therapy) | Second choice
+Cefixime (oral): 400 mg AND
+Azithromycin (oral): 1 g | Single dose
+IM: intramuscular.
+Note. All dosages are for normal renal and hepatic function.
+a Dual therapy should be given if no reliable local data on resistance are available.",S2,"Genital and anorectal infections (single therapy), if local resistance data confirm susceptibility to the antibiotic | Cefixime (oral): 400 mg","Table 20.3 – Antibiotic treatment for gonococcal infection as indicated in the 2016 WHO guidelines for the treatment of gonorrhoea (89)
+Important
+WHO is currently revising treatment recommendations and dosages (please check the WHO website regularly for possible updates).
+Where more than one antibiotic is recommended for an infection, they are listed in alphabetical order and they should be considered equal treatment options, unless otherwise indicated.
+Type of gonococcal infection | Treatment | Total treatment duration
+Genital and anorectal infections (single therapy), if local resistance data confirm susceptibility to the antibiotic | Cefixime (oral): 400 mg
+OR
+Ceftriaxone (IM): 250 mg
+OR
+Spectinomycin (IM): 2 g | Single dose
+IM: intramuscular.
+Note. All dosages are for normal renal and hepatic function.
+b A single dose of 500 mg or 1 g of ceftriaxone (IM) is recommended in some international guidelines (207–209).",S3,"Oropharyngeal infections (single therapy), if local resistance data confirm susceptibility to the antibiotic | Ceftriaxone (IM): 250 mg","Table 20.3 – Antibiotic treatment for gonococcal infection as indicated in the 2016 WHO guidelines for the treatment of gonorrhoea (89)
+Important
+WHO is currently revising treatment recommendations and dosages (please check the WHO website regularly for possible updates).
+Where more than one antibiotic is recommended for an infection, they are listed in alphabetical order and they should be considered equal treatment options, unless otherwise indicated.
+Type of gonococcal infection | Treatment | Total treatment duration
+Oropharyngeal infections (single therapy), if local resistance data confirm susceptibility to the antibiotic | Ceftriaxone (IM): 250 mg | Single dose
+IM: intramuscular.
+Note. All dosages are for normal renal and hepatic function.
+b A single dose of 500 mg or 1 g of ceftriaxone (IM) is recommended in some international guidelines (207–209).
+c Do not use spectinomycin to treat cases of oropharyngeal infection.",,,,no,no,"Offers single therapy (cefixime or ceftriaxone alone), which S2 restricts to when local resistance data confirm susceptibility; the question says no data and footnote a says dual therapy should be given. Omits the first-choice ceftriaxone + azithromycin. Ceftriaxone row cited is oropharyngeal (S3)."
+dl-007,Someone with diabetes is unconscious with very low blood sugar. What should be given?,"Give hypertonic glucose (dextrose) intravenously (20–50 mL of 50% glucose over 1–3 minutes) [S2]. Follow by a small meal with complex carbohydrate [S2]. Discuss hypoglycaemia risk factors with the patient (skipping meals, physical activity more intense than usual, alcohol ingestion) and adjust medication if necessary [S2].",S2,"• Unconscious patients, those with plasma glucose ≤2.8 mmol/L (50 mg/dL) and those unable to to ingest drink should be given hypertonic glucose (dextrose) intravenously (20–50 mL of 50% glucose over 1–3 minutes).","• Follow by a small meal with complex carbohydrate.
+• Unconscious patients, those with plasma glucose ≤2.8 mmol/L (50 mg/dL) and those unable to to ingest drink should be given hypertonic glucose (dextrose) intravenously (20–50 mL of 50% glucose over 1–3 minutes). If this concentration is not available, substitute with any hypertonic glucose solution.
+• Food should be provided as soon as the patient is able to ingest food safely.
+• Discuss hypoglycaemia risk factors with the patient (skipping meals, physical activity more intense than usual, alcohol ingestion) and adjust medication if necessary.
+Hyperglycaemic emergencies
+Diabetic ketoacidosis (DKA) and hyperosmolar hyperglycaemic state (HHS) are life-threatening conditions with somewhat different biochemical features (Table 5). Although uncommon, DKA can occur in people with type 2 diabetes.
+Symptoms and signs of DKA and HHS:
+• Frequent symptoms and signs of DKA are nausea, vomiting and abdominal pain.
+• Severe cases of DKA can present with Kussmaul’s breathing.
+• Changes in sensorium in DKA range from alertness to stupor or coma, depending on the severity.
+• Patients with HHS typically present with altered consciousness (stupor or coma).",S2,• Follow by a small meal with complex carbohydrate.,"• Follow by a small meal with complex carbohydrate.
+• Unconscious patients, those with plasma glucose ≤2.8 mmol/L (50 mg/dL) and those unable to to ingest drink should be given hypertonic glucose (dextrose) intravenously (20–50 mL of 50% glucose over 1–3 minutes). If this concentration is not available, substitute with any hypertonic glucose solution.
+• Food should be provided as soon as the patient is able to ingest food safely.
+• Discuss hypoglycaemia risk factors with the patient (skipping meals, physical activity more intense than usual, alcohol ingestion) and adjust medication if necessary.
+Hyperglycaemic emergencies
+Diabetic ketoacidosis (DKA) and hyperosmolar hyperglycaemic state (HHS) are life-threatening conditions with somewhat different biochemical features (Table 5). Although uncommon, DKA can occur in people with type 2 diabetes.
+Symptoms and signs of DKA and HHS:
+• Frequent symptoms and signs of DKA are nausea, vomiting and abdominal pain.
+• Severe cases of DKA can present with Kussmaul’s breathing.
+• Changes in sensorium in DKA range from alertness to stupor or coma, depending on the severity.
+• Patients with HHS typically present with altered consciousness (stupor or coma).",S2,"Discuss hypoglycaemia risk factors with the patient (skipping meals, physical activity more intense than usual, alcohol ingestion) and adjust medication if necessary.","• Follow by a small meal with complex carbohydrate.
+• Unconscious patients, those with plasma glucose ≤2.8 mmol/L (50 mg/dL) and those unable to to ingest drink should be given hypertonic glucose (dextrose) intravenously (20–50 mL of 50% glucose over 1–3 minutes). If this concentration is not available, substitute with any hypertonic glucose solution.
+• Food should be provided as soon as the patient is able to ingest food safely.
+• Discuss hypoglycaemia risk factors with the patient (skipping meals, physical activity more intense than usual, alcohol ingestion) and adjust medication if necessary.
+Hyperglycaemic emergencies
+Diabetic ketoacidosis (DKA) and hyperosmolar hyperglycaemic state (HHS) are life-threatening conditions with somewhat different biochemical features (Table 5). Although uncommon, DKA can occur in people with type 2 diabetes.
+Symptoms and signs of DKA and HHS:
+• Frequent symptoms and signs of DKA are nausea, vomiting and abdominal pain.
+• Severe cases of DKA can present with Kussmaul’s breathing.
+• Changes in sensorium in DKA range from alertness to stupor or coma, depending on the severity.
+• Patients with HHS typically present with altered consciousness (stupor or coma).",,,,yes,yes,All three claims in S2.
+dl-008,"In WHO's example single-pill protocol, what is the starting combination and dose for hypertension?",Start Telmisartan 40–Amlodipine 5 mg once a day [S1],S1,Start ARB–CCB at half-maximal doses (Example*: Telmisartan 40–Amlodipine 5 mg** once a day).,"Two examples of suggested drug and dose-specific protocols are presented below (Figs 5 and 6). These should be viewed as examples and other approaches are possible.
+Algorithm 1: Initiation of treatment with a single-pill combination
+• Beginning treatment with two antihypertensive drugs from different classes is recommended when baseline BP is ≥20/10 mmHg above goal, and should be considered when baseline BP is ≥140/90 mmHg.
+• Drugs affecting the renin–angiotensin system (ACEis, ARBs, and aliskiren) have been associated with serious fetal toxicity, including renal and cardiac abnormalities and death; they are contraindicated for use during pregnancy.
+Fig. 5 Algorithm 1
+Start ARB–CCB at half-maximal doses (Example*: Telmisartan 40–Amlodipine 5 mg** once a day).
+Recheck BP in 4–6 weeks; if BP is at goal, follow up in 3–6 months.
+If BP is not at goal, increase ARB–CCB (double the dose to Telmisartan 80–Amlodipine 10 mg once a day).
+Recheck BP in 4–6 weeks; if BP is at goal, follow up in 3–6 months.
+If BP is not at goal, add a thiazide/thiazide-like diuretic at half-maximal dose (hydrochlorothiazide 25 mg or chlorthalidone 12.5 mg once a day).
+Recheck BP in 4–6 weeks; if BP is at goal, follow up in 3–6 months.
+If BP is not at goal, increase the thiazide/thiazide-like diuretic (double the dose to hydrochlorothiazide 50 mg or chlorthalidone 25 mg once a day).
+Recheck BP in 4–6 weeks; if BP is at goal, follow up in 3–6 months.
+If BP is not at goal, refer to a specialist.
+NOTE: Monitor potassium and kidney function when starting or changing the dose of ACEi/ARB or thiazide/thiazide-like diuretic, if testing is readily available and does not delay treatment.
+This protocol is contraindicated for women who are or could become pregnant. Neither an ACEI or ARB should be given to pregnant women.
+* The medications mentioned serve as examples and can be replaced with any two medications from any of the three drug classes (ACEis/ARBs, CCBs or thiazide/thiazide-like diuretics). Start two individual pills or, if available, both in a single-pill combination (fixed-dose combination).
+** Can be replaced with other individual pills or, if available, other single-pill combinations (fixed-dose combinations).",,,,,,,,,,yes,yes,Matches S1 exactly.
+hd-007,A newly diagnosed adult has a random glucose of 20 mmol/L and urine ketones below 2+. What treatment should be started?,"Counsel on diet and physical activity and adherence to medicines at all visits [S1]. Review in 3 months [S1]. If goal not achieved, BEGIN METFORMIN 500 mg once daily [S1].",S1,TEST ADULTS who have symptoms of diabetes with fasting or random plasma glucose (FPG or RPG) TEST ASYMPTOMATIC ADULTS who are 40+ years old and BMI ≥25 (FPG) FPG ≥7 mmol/L and <18 mmol/L or RPG ≥11.1 mmol/L IF ASYMPTOMATIC repeat test on subsequent day Counsel on diet and physical activity and adherence to medicines at all visits REVIEW IN 1 MONTH (or immediately if symptoms appear) IF goal not achieved BEGIN METFORMIN 500 mg daily,"Fig. 1 Protocol for control of blood glucose in type 2 diabetes*
+TEST ADULTS who have symptoms of diabetes with fasting or random plasma glucose (FPG or RPG) TEST ASYMPTOMATIC ADULTS who are 40+ years old and BMI ≥25 (FPG)
+FPG ≥7 mmol/L and <18 mmol/L or RPG ≥11.1 mmol/L IF ASYMPTOMATIC repeat test on subsequent day
+Counsel on diet and physical activity and adherence to medicines at all visits
+REVIEW IN 1 MONTH (or immediately if symptoms appear)
+IF goal not achieved BEGIN METFORMIN 500 mg daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved INCREASE METFORMIN to 1000 mg 1 x daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved INCREASE METFORMIN to 1000 mg 2 x daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved ADD gliclazide 80 mg 1 x daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved ADD gliclazide 80 mg 2 x daily
+IF SYMPTOMATIC and FPG ≥15 mmol/L
+REVIEW IN 3 MONTHS (or immediately if symptoms appear)
+IF goal not achieved despite adherence to medication and diet and physical activity, REFER to higher level of care or BEGIN INSULIN (see insulin protocol)
+FPG ≥15 mmol/L and SYMPTOMATIC or FPG/RPG >18 mmol/L, regardless of symptoms
+TEST urine ketones
+Urine ketones ≥2+
+Urine ketones <2+
+REFER to higher level of care
+GIVE METFORMIN 1000 mg 2 x daily and GLICLAZIDE 80 g 2 x daily Counsel on diet, physical activity and adherence to medication
+REVIEW in 3–5 days
+No improvement
+Improvement
+REFER to higher level of care
+CONTINUE treatment
+REVIEW in 2–3 months
+IF goal achieved or frequent hypoglycaemia, consider reducing or stopping gliclazide in people who were on 2000 mg metformin and 160 mg gliclazide from diagnosis REVIEW IN 1 MONTH
+IF goal NOT achieved
+REFER to higher level of care
+* Derived from WHO-PEN 2013",,,,,,,,,,no,no,'Review in 3 months' before metformin contradicts S1 (Fig. 1 says 1 month). Gives the routine pathway for a patient with RPG 20 mmol/L; Fig. 1 sends RPG >18 to the ketone branch (metformin 1000 mg 2x + gliclazide). Would undertreat.
+hd-008,How should insulin be started in type 2 diabetes when tablets aren't enough?,"Start with 10 units intermediate-acting insulin (NPH) at bedtime, continue metformin and sulfonylurea. Counsel patient on hypoglycaemia and on symptoms of hyperglycaemia. [S1]",S1,START with 10 units intermediate-acting insulin (NPH) at bedtime Continue metformin and sulfonylurea Counsel patient on hypoglycaemia Counsel patient on symptoms of hyperglycaemia,"START with 10 units intermediate-acting insulin (NPH) at bedtime Continue metformin and sulfonylurea Counsel patient on hypoglycaemia Counsel patient on symptoms of hyperglycaemia
+REVIEW in 3 days
+IF FBG >7 mmol/L INCREASE INSULIN dosage by 1–2 units
+REVIEW in 3 days
+CONTINUE INCREASING DOSAGE by 1–2 units at 3-day intervals until FBG = 4–7 mmol/L Do not increase insulin if nocturnal hypoglycaemia occurs
+IF FBG <4mmol/L or if nocturnal hypoglycaemia occurs REDUCE INSULIN by 1–2 units
+IF FBG 4–7 mmol/L and daytime hypoglycaemia occurs REDUCE morning gliclazide by 40 mg STOP morning gliclazide if daytime hypoglycaemia continues
+IF FBG >7mmol/L AND nocturnal hypoglycaemia occurs, REFER to higher level of care
+IF stabilized REVIEW with HbA1c in 3 months
+IF HbA1c >7.5% REFER to higher level of care for intensification",,,,,,,,,,yes,partial,Fully supported by S1. Answers how to start but omits the review in 3 days and 1-2 unit titration that are part of the protocol.
+hd-011,Which people with type 2 diabetes should be offered a statin?,All people with type 2 diabetes 40 years old or older should be offered a statin [S5].,S5,Statins are recommended for all patients of 40 years of age and older with diabetes.,"Microvascular complications
+Foot problems in diabetes
+Diabetes dramatically increases the risk of lower extremity amputation. Diabetic foot lesions often result from simultaneous presence of several risk factors, with peripheral diabetic neuropathy playing a central role. It leads to an insensitive and sometimes deformed foot, which can cause an abnormal walking pattern and abnormal biomechanical loading of the foot. The resulting high pressure in some areas of the foot leads to the formation of calluses, further increase in abnormal loading and eventually ulceration.
+A diabetic foot ulcer is a localized injury to the skin and/or underlying tissue below the ankle. People with diabetes often have peripheral artery disease as a result of accelerated atherosclerosis. Consequent ischemia impairs wound healing. Many diabetic foot ulcers occur in patients with combined neuropathy and ischaemia and are most often caused by trauma from inappropriate footwear and/or walking barefoot with insensitive feet. Disruption of protective skin allows for colonization of subcutaneous tissues by microbes and in many cases the wound becomes clinically infected, requiring antimicrobial treatment and often some form of surgical intervention.
+Annex 2 provides details on prevention, assessment and management of diabetic foot.
+Macrovascular complications
+Coronary heart disease, cerebrovascular disease and peripheral vascular disease are a major cause of morbidity and mortality in people with diabetes.
+Risk factors for CVD
+• age
+• family history of CVD
+• overweight and obesity
+• chronic kidney disease
+• hypertension
+• dyslipidaemia
+• smoking
+• prior CVD event
+Blood pressure control
+Blood pressure lowering in people with diabetes reduces the risk of microvascular and macrovascular complications. Control of blood pressure in people with diabetes often requires more than one medication. Thiazide diuretics and ACE inhibitors are recommended to achieve a target blood pressure of <130/80 mmHg. If this is not achievable, refer to a higher level of care. Other protocols from HEARTS-E are also an option.
+Control of blood lipids
+Some improvement in lipid profile can be achieved with a healthy diet and physical activity. Statins can reduce the risk of CVD events in people with diabetes. Statins are recommended for all patients of 40 years of age and older with diabetes. If this is not feasible, use statins in patients at highest risk of CVD events (e.g. patients with CVD, patients with nephropathy and/or patients with a high risk on a CVD risk prediction chart).",,,,,,,,,,yes,yes,S5 says 'Statins are recommended for all patients of 40 years of age and older with diabetes'.
+ho-01,Do I need to wait for blood test results before starting someone on blood pressure tablets?,"Starting blood pressure tablets does not necessarily require waiting for blood test results, but testing should be done as long as it does not delay treatment [S1, S4]. However, if testing is not possible due to additional costs or lack of access to laboratories and ECG, treatment should not be delayed and testing can be done subsequently [S2].",S1,"When starting pharmacological therapy for hypertension, WHO suggests obtaining tests to screen for comorbidities and secondary hypertension, but only when testing does not delay or impede starting treatment.","2. RECOMMENDATION ON LABORATORY TESTING
+When starting pharmacological therapy for hypertension, WHO suggests obtaining tests to screen for comorbidities and secondary hypertension, but only when testing does not delay or impede starting treatment.
+Conditional recommendation, low-certainty evidence",S4,"Basic laboratory testing (electrolytes, creatinine, lipogram, glucose, HbA1C, urine dipstick, and ECG) to occur as long as it does not delay treatment.","Fig. 4 An approach for starting treatment not using a single-pill combination (i.e. with monotherapy or free combination therapy)
+Treat adults with BP ≥140 mmHg or ≥90 (SBP ≥130 mmHg for those with CVD, DM, CKD).
+Start with medications from any of the following three classes of pharmacological antihypertensive medications as an initial treatment: 1) thiazide and thiazide-like agents, 2) ACEi/ARB, and 3) long-acting dihydropyridine CCB.
+Treatment targets: <140/90 mmHg (SBP <130 mmHg for high-risk patients with CVD, DM, CKD).
+Follow up monthly after initiation or a change in antihypertensive medications until patient reaches target. Follow up every 3–6 months for patients with BP under control.
+Pharmacological treatment to be initiated under the following circumstances:
+• A diagnosis of HTN has already been made.
+• Initiation of pharmacological HTN treatment should start no later than four weeks after diagnosis of HTN.
+• If BP level is high or there is accompanying evidence of end organ damage, initiation of treatment should be started without delay.
+• Patient should be counselled about starting medication therapy.
+• Basic laboratory testing (electrolytes, creatinine, lipogram, glucose, HbA1C, urine dipstick, and ECG) to occur as long as it does not delay treatment.
+• A CV risk assessment can be conducted immediately (as long as it does not delay initiation of treatment) or at a later visit.
+• Consider using diuretics or CCB in patients 65 years or older, or those of African or Afro-Caribbean descent, beta-blockers (BBs) post MI, ACEis/ARBs in those with DM, heart failure or CKD.",S2,,"Implementation remarks:
+• Suggested tests include serum electrolytes and creatinine, lipid panel, HbA1C or fasting glucose, urine dipstick, and electrocardiogram (ECG).
+• In low-resourced areas or non-clinical settings, where testing may not be possible because of additional costs, and lack of access to laboratories and ECG, treatment should not be delayed, and testing can be done subsequently.
+• Some medicines, such as long-acting dihydropyridine calcium-channel blockers (CCBs) are more suitable for initiation without testing, compared to diuretics or angiotensin-converting enzyme inhibitors (ACEi)/angiotensin-II receptor blockers (ARBs).",,,,yes,yes,"Supported by S1, S4 and S2 (testing must not delay treatment; can be done later)."
+ho-03,My patient has angina and is being treated for high blood pressure. What systolic reading should we aim for?,"We aim for a target systolic blood pressure treatment goal of <130 mmHg for patients with hypertension and known cardiovascular disease (CVD) [S1]. For high-risk patients with hypertension (those with high CVD risk, diabetes mellitus, chronic kidney disease), the target is also <130 mmHg [S2].",S1,WHO recommends a target systolic blood pressure treatment goal of <130 mmHg in patients with hypertension and known cardiovascular disease (CVD).,"6. RECOMMENDATION ON TARGET BLOOD PRESSURES
+WHO recommends a target systolic blood pressure treatment goal of <130 mmHg in patients with hypertension and known cardiovascular disease (CVD).
+Strong recommendation, moderate-certainty evidence",S2,"WHO suggests a target systolic blood pressure treatment goal of <130 mmHg in high-risk patients with hypertension (those with high CVD risk, diabetes mellitus, chronic kidney disease).","6. RECOMMENDATION ON TARGET BLOOD PRESSURES
+WHO suggests a target systolic blood pressure treatment goal of <130 mmHg in high-risk patients with hypertension (those with high CVD risk, diabetes mellitus, chronic kidney disease).
+Conditional recommendation, moderate-certainty evidence",,,,,,,yes,yes,Both targets stated in S1 and S2.
+ho-05,What HbA1c result is used to diagnose diabetes?,HbA1c result used to diagnose diabetes is 6.5% (48 mmol/mol) [S4],S4,HbA1c 6.5% (48 mmol/mol) [Table 3],"Table 3 Diagnostic criteria for diabetes
+Measurement | Diagnostic cut-off value | Comment
+Fasting venous or capillary** plasma glucose | ≥7.0 mmol/L (126 mg/dL) | Least costly but difficulties with ensuring a fasting state
+2-hour post-load venous plasma glucose | ≥11.1 mmol/L (200 mg/dL) | Cumbersome and costly, difficulties with ensuring a fasting state
+2-hour post-load capillary** plasma glucose | ≥12.2 mmol/L (220 mg/dL) | Cumbersome and costly, difficulties with ensuring a fasting state
+Random plasma glucose | ≥11.1 mmol/L (200 mg/dL) | To be used only in the presence of symptoms
+HbA1c*** | 6.5% (48 mmol/mol) | • Less intra-individual variability than plasma glucose • Does not require the fasting state but substantially more costly than glucose measurements • Is an indirect method • Can be inaccurate in some conditions (haemoglobinopathies, renal failure, some anaemias, conditions with rapid red blood cell turnover)
+* Overnight fast of 8–14 hours.
+** If laboratory measurement is not available, point of care, (“finger stick”) devices can be used (they report glucose values in capillary plasma).
+*** Plasma glucose is preferred in people with symptoms who are suspected of having type 1 diabetes.",,,,,,,,,,yes,yes,Value in S4 (Table 3). Quote is badly formatted but the claim is supported.
+ho-08,"Once someone's insulin dose is stable, at what HbA1c should they be referred for further intensification?","Refer to higher level of care for intensification if HbA1c >7.5% [S1, S4].",S1,IF HbA1c >7.5% REFER to higher level of care for intensification,"START with 10 units intermediate-acting insulin (NPH) at bedtime Continue metformin and sulfonylurea Counsel patient on hypoglycaemia Counsel patient on symptoms of hyperglycaemia
+REVIEW in 3 days
+IF FBG >7 mmol/L INCREASE INSULIN dosage by 1–2 units
+REVIEW in 3 days
+CONTINUE INCREASING DOSAGE by 1–2 units at 3-day intervals until FBG = 4–7 mmol/L Do not increase insulin if nocturnal hypoglycaemia occurs
+IF FBG <4mmol/L or if nocturnal hypoglycaemia occurs REDUCE INSULIN by 1–2 units
+IF FBG 4–7 mmol/L and daytime hypoglycaemia occurs REDUCE morning gliclazide by 40 mg STOP morning gliclazide if daytime hypoglycaemia continues
+IF FBG >7mmol/L AND nocturnal hypoglycaemia occurs, REFER to higher level of care
+IF stabilized REVIEW with HbA1c in 3 months
+IF HbA1c >7.5% REFER to higher level of care for intensification",S4,A monitoring system to assess the effectiveness of diabetes management should include regular monitoring of biochemical parameters and occurrence of complications due to diabetes. Biochemical parameters: • Glycated haemoglobin (HbA1c) provides a measure of average plasma glucose over the preceding 8 to 12 weeks. The majority of patients can be expected to aim for a HbA1c of ≤7.0% (53 mmol/mol),"A monitoring system to assess the effectiveness of diabetes management should include regular monitoring of biochemical parameters and occurrence of complications due to diabetes.
+Biochemical parameters:
+• Glycated haemoglobin (HbA1c) provides a measure of average plasma glucose over the preceding 8 to 12 weeks. The majority of patients can be expected to aim for a HbA1c of ≤7.0% (53 mmol/mol)
+• If HbA1c measurement is not available or there is concern over its validity, an FPG value of ≤7.0 mmol/L (126mg/dL) and a postprandial PG value of ≤9.0 mmol/L (160 mg/dL) can serve as surrogates.",,,,,,,yes,yes,Stated in S1.
+ho-10,How often should the eyes and the feet be checked in someone with diabetes?,The eyes should be checked every 2 years or as per ophthalmologist recommendation [S1]. The feet should be examined at every visit [S1].,S1,"SCREENING FOR CHRONIC COMPLICATIONS
+• Measure blood pressure at every scheduled visit, review medication as per hypertension protocol
+• REFER for dilated-pupil retinal exam upon diagnosis, and every two years thereafter, or as per ophthalmologist recommendation
+• Examine feet for ulcers at every visit.","Fig. 2 Type 2 diabetes management protocol derived from WHO-PEN
+SCREENING FOR CHRONIC COMPLICATIONS
+• Measure blood pressure at every scheduled visit, review medication as per hypertension protocol • REFER for dilated-pupil retinal exam upon diagnosis, and every two years thereafter, or as per ophthalmologist recommendation • Examine feet for ulcers at every visit. REFER to higher level of care if ulcer present • Assess risk of lower limb amputation annually (foot pulses, sensory neuropathy by monofilament, presence of healed or open ulcers, calluses). REFER to higher level of care if ulcer present or pulse absent • Test for proteinuria annually. REFER to higher level of care if positive.
+MANAGEMENT OF ACUTE COMPLICATIONS Severe hypoglycaemia (plasma glucose <50 mg/dl or 2.8 mmol/l) or signs: • If conscious, give a sugar-sweetened drink • If unconscious, give 20–50 mI of 50% glucose (dextrose) IV over 1–3 minutes. Severe hyperglycaemia (plasma glucose >18 mmol/l (325 mg/dl) and urine ketone 2+) or signs and symptoms of severe hyperglycaemia: • Set up intravenous drip 0.9% NaCI 1 litre in 2 hours; continue at 1 litre every 4 hours, REFER to hospital.
+Goal for glycaemic control | Plasma glucose**
+Fasting | ≤7.0 mmol/l (126mg/dl)†
+19 February 2018
+** HbA1c should be used where available.
+† Consider less stringent glycaemic control in patients with frequent severe hypoglycaemia, advanced complications, serious comorbidities and/or limited life expectancy.",,,,,,,,,,yes,partial,'Every 2 years' = source's 'every two years'; feet at every visit in S1. Omits the first eye exam at diagnosis and the annual amputation-risk foot assessment.
+ho-13,"In a country where rheumatic fever is rare, a patient's sore throat scores 3 on the Centor criteria. Does that mean they need antibiotics?",Antibiotic treatment can be withheld even in cases of likely Streptococcus pyogenes pharyngitis in countries with a low prevalence of rheumatic fever [S1].,S1,"In countries with a low prevalence of rheumatic fever, antibiotic treatment can be withheld even in cases of likely Streptococcus pyogenes pharyngitis","Table 6.2 – Centor score for the clinical assessment of pharyngitis
+Relevant signs and symptoms | Points
+Fever > 38.0 °C | 1
+No cough | 1
+Tender anterior cervical lymphadenitis | 1
+Tonsillar exudates | 1
+Total score | Likelihood of Streptococcus pyogenes infection (%)
+0 | 1–2.5
+1 | 5–10
+2 | 11–17
+3 | 28–35
+4 | 51–53
+Centor score 0 – 1 – 2 | • Streptococcus pyogenes pharyngitis unlikely
+• Give symptomatic treatment only
+Centor score 3 – 4 | • Score suggestive of Streptococcus pyogenes pharyngitis
+• In countries with a low prevalence of rheumatic fever, antibiotic treatment can be withheld even in cases of likely Streptococcus pyogenes pharyngitis
+• In countries with medium to high prevalence of rheumatic fever, antibiotic treatment is recommended as it reduces the likelihood of developing rheumatic fever by around two thirds.",,,,,,,,,,yes,yes,"Stated in S1 (Table 6.2) for low rheumatic-fever settings, which the question specifies."
+htn-002,My patient had a heart attack last year and their systolic pressure usually sits at about 134. Should they be on antihypertensives under the WHO guideline?,"This patient should be on antihypertensives according to S1 and S4, but S2 and S5 suggest a lower target blood pressure. They should consult a health professional about their treatment.",S1,WHO recommends pharmacological antihypertensive treatment of individuals with existing cardiovascular disease and systolic blood pressure of 130–139 mmHg.,"1. RECOMMENDATION ON BLOOD PRESSURE THRESHOLD FOR INITIATION OF PHARMACOLOGICAL TREATMENT
+WHO recommends pharmacological antihypertensive treatment of individuals with existing cardiovascular disease and systolic blood pressure of 130–139 mmHg.
+Strong recommendation, moderate- to high-certainty evidence",S4,"WHO suggests pharmacological antihypertensive treatment of individuals without cardiovascular disease but with high cardiovascular risk, diabetes mellitus, or chronic kidney disease, and systolic blood pressure of 130–139 mmHg.","1. RECOMMENDATION ON BLOOD PRESSURE THRESHOLD FOR INITIATION OF PHARMACOLOGICAL TREATMENT
+WHO suggests pharmacological antihypertensive treatment of individuals without cardiovascular disease but with high cardiovascular risk, diabetes mellitus, or chronic kidney disease, and systolic blood pressure of 130–139 mmHg.
+Strong recommendation, moderate- to high-certainty evidence",S2,,"6. RECOMMENDATION ON TARGET BLOOD PRESSURES
+WHO recommends a target systolic blood pressure treatment goal of <130 mmHg in patients with hypertension and known cardiovascular disease (CVD).
+Strong recommendation, moderate-certainty evidence",S5,,"6. RECOMMENDATION ON TARGET BLOOD PRESSURES
+WHO suggests a target systolic blood pressure treatment goal of <130 mmHg in high-risk patients with hypertension (those with high CVD risk, diabetes mellitus, chronic kidney disease).
+Conditional recommendation, moderate-certainty evidence",yes,yes,Treatment claim supported by S1 and target by S2. Citing S4 (people without CVD) is a misattribution but S1 supports the claim. Unnecessary 'consult a health professional' for a clinician question.
+htn-003,How strong is the WHO recommendation to treat people with diabetes but no cardiovascular disease whose systolic pressure is 130 to 139 mmHg?,"WHO suggests pharmacological antihypertensive treatment of individuals without cardiovascular disease but with high cardiovascular risk, diabetes mellitus, or chronic kidney disease, and systolic blood pressure of 130–139 mmHg [S1]. However, it recommends a target systolic blood pressure treatment goal of <130 mmHg in high-risk patients with hypertension (those with high CVD risk, diabetes mellitus, chronic kidney disease) [S2]. This recommendation conflicts.",S1,"WHO suggests pharmacological antihypertensive treatment of individuals without cardiovascular disease but with high cardiovascular risk, diabetes mellitus, or chronic kidney disease, and systolic blood pressure of 130–139 mmHg.","1. RECOMMENDATION ON BLOOD PRESSURE THRESHOLD FOR INITIATION OF PHARMACOLOGICAL TREATMENT
+WHO suggests pharmacological antihypertensive treatment of individuals without cardiovascular disease but with high cardiovascular risk, diabetes mellitus, or chronic kidney disease, and systolic blood pressure of 130–139 mmHg.
+Strong recommendation, moderate- to high-certainty evidence",S2,"WHO suggests a target systolic blood pressure treatment goal of <130 mmHg in high-risk patients with hypertension (those with high CVD risk, diabetes mellitus, chronic kidney disease).","6. RECOMMENDATION ON TARGET BLOOD PRESSURES
+WHO suggests a target systolic blood pressure treatment goal of <130 mmHg in high-risk patients with hypertension (those with high CVD risk, diabetes mellitus, chronic kidney disease).
+Conditional recommendation, moderate-certainty evidence",,,,,,,no,no,"Says WHO 'recommends' the <130 target; S2 says 'suggests' (conditional). Claims the two recommendations conflict, which the sources do not say. Never states the strength asked for (conditional), and misses the real discrepancy (box printed 'Strong')."
+htn-006,What blood pressure should I aim for in someone with hypertension and no other health conditions?,WHO recommends a target blood pressure treatment goal of <140/90 mmHg in all patients with hypertension without comorbidities [S1].,S1,WHO recommends a target blood pressure treatment goal of <140/90 mmHg in all patients with hypertension without comorbidities.,"6. RECOMMENDATION ON TARGET BLOOD PRESSURES
+WHO recommends a target blood pressure treatment goal of <140/90 mmHg in all patients with hypertension without comorbidities.
+Strong recommendation, moderate-certainty evidence",,,,,,,,,,yes,yes,Verbatim from S1.
+htn-007,"Once a patient's blood pressure is under control, how often should they be followed up?","WHO suggests a monthly follow up after initiation or a change in antihypertensive medications until patients reach target [S4]. After that, WHO suggests a follow up every 3–6 months for patients whose blood pressure is under control [S1].",S4,"7. RECOMMENDATION ON FREQUENCY OF ASSESSMENT WHO suggests a monthly follow up after initiation or a change in antihypertensive medications until patients reach target. Conditional recommendation, low-certainty evidence","7. RECOMMENDATION ON FREQUENCY OF ASSESSMENT
+WHO suggests a monthly follow up after initiation or a change in antihypertensive medications until patients reach target.
+Conditional recommendation, low-certainty evidence",S1,"7. RECOMMENDATION ON FREQUENCY OF ASSESSMENT WHO suggests a follow up every 3–6 months for patients whose blood pressure is under control. Conditional recommendation, low-certainty evidence","7. RECOMMENDATION ON FREQUENCY OF ASSESSMENT
+WHO suggests a follow up every 3–6 months for patients whose blood pressure is under control.
+Conditional recommendation, low-certainty evidence",,,,,,,yes,yes,Both claims in S4 and S1; answers the question (every 3-6 months).
+htn-008,Can a nurse or pharmacist start someone on blood pressure medication?,"A nurse or pharmacist can start someone on blood pressure medication if they have proper training, prescribing authority, specific management protocols, and physician oversight [S1]. The treatment should start no later than four weeks following diagnosis of hypertension [S3].",S1,"WHO suggests that pharmacological treatment of hypertension can be provided by nonphysician professionals such as pharmacists and nurses, as long as the following conditions are met: proper training, prescribing authority, specific management protocols and physician oversight.","8. RECOMMENDATION ON TREATMENT BY NONPHYSICIAN PROFESSIONALS
+WHO suggests that pharmacological treatment of hypertension can be provided by nonphysician professionals such as pharmacists and nurses, as long as the following conditions are met: proper training, prescribing authority, specific management protocols and physician oversight.
+Conditional recommendation, low-certainty evidence",S3,"Initiation of pharmacological hypertension (HTN) treatment should start no later than four weeks following diagnosis of HTN. If blood pressure level is high (e.g. systolic ≥160 mmHg or diastolic ≥100 mmHg) or there is accompanying evidence of end organ damage, initiation of treatment should be started without delay.","Implementation remarks:
+• Initiation of pharmacological hypertension (HTN) treatment should start no later than four weeks following diagnosis of HTN. If blood pressure level is high (e.g. systolic ≥160 mmHg or diastolic ≥100 mmHg) or there is accompanying evidence of end organ damage, initiation of treatment should be started without delay.",,,,,,,yes,yes,Conditions in S1; extra four-weeks sentence supported by S3.
+na-001,My sinuses are blocked and I'm blowing out green snot. Does that mean I need antibiotics?,"Antibiotics are not needed in the great majority of cases of sinusitis, even when the nasal discharge is yellow/green [S1, S2].",S1,Antibiotics are not needed in the great majority of cases.,"• Antibiotics are not needed in the great majority of cases.
+• Yellow/green coloured nasal discharge alone is not a sign of bacterial infection and not an indication for antibiotic treatment.",S2,Yellow/green colour of nasal discharge alone is not a sign of bacterial infection and is not an indication for antibiotic treatment.,Yellow/green colour of nasal discharge alone is not a sign of bacterial infection and is not an indication for antibiotic treatment.,,,,,,,yes,yes,Supported by S1 and S2.
+pv-002,How long should a man with a bladder infection take antibiotics compared with a woman who isn't pregnant?,"Adults (men and non-pregnant women) should receive antibiotics for 3-5 days, while pregnant women should receive antibiotics for 5 days [S1, S3].",S1,"Adults | Total treatment duration
+Amoxicillin+clavulanic acid (oral): 500 mg + 125 mg given every 8 hours | 3–5 days","Table 23.5 – Empiric antibiotic treatment for lower urinary tract infections
+Important
+Where more than one antibiotic is recommended for an infection, they are listed in alphabetical order and they should be considered equal treatment options, unless otherwise indicated.
+Adults | Total treatment duration
+Amoxicillin+clavulanic acid (oral): 500 mg + 125 mg given every 8 hours | 3–5 days
+Nitrofurantoin (oral):
+• 100 mg given every 12 hours (modified-release formulation)
+• 50 mg given every 6 hours (immediate-release formulation) | 5 days
+Sulfamethoxazole+ trimethoprim (oral): 800 mg + 160 mg given every 12 hours | 3 days
+Trimethoprim (oral): 200 mg given every 12 hours | 3 days
+Note. All dosages are for normal renal and hepatic function.
+a Amoxicillin+clavulanic acid: Escherichia coliresistance rates to amoxicillin+clavulanic acid are lower than to amoxicillin alone. This combination still has activity against some extended-spectrum beta-lactamase-producing isolates and it can be considered an acceptable option, particularly in young children.
+b Resistance to sulfamethoxazole+trimethoprim is high in many settings (232,233). It is ineffective against most isolates producing extended-spectrum beta-lactamases. It is not recommended in the first trimester of pregnancy.
+d In general, shorter treatments are indicated for children or non-pregnant women (3–5 days depending on the antibiotic), while longer treatments are indicated for pregnant women (usually 5 days) or men (usually 7 days).",S3,"Treatment duration is influenced by the antibiotic used, the age and sex of the patient, and for women by the presence of pregnancy.","Antibiotic treatment is usually given empirically if there are compatible signs and symptoms of a UTI AND a positive test (urinalysis or urine culture). If diagnostic tests cannot be performed, treatment may be given based on clinical presentation alone. If a urine culture is performed, empiric treatment should be reassessed once the results of susceptibility testing are available.
+Clinical improvement should be within 48–72 hours of starting treatment. In general, antibiotics shorten the duration of symptoms by about 2 days (225). Efforts to reduce patient self-medication with antibiotics should be made as self-medication is still very common in some settings (226).
+Local patterns of AMR, mostly to Escherichia coli, should be considered when available but interpreted with caution. In most cases, the summary prevalence of resistance reported by hospital microbiology laboratories will probably not be representative of first infections in the primary health care setting and may overestimate the true prevalence of resistance for lower UTIs because of selection bias. Most urine cultures are done on patients who have relapsed after their first empiric treatment and are being re-treated or have underlying reason for a higher risk of resistant infections. Most lower UTIs in patients who are not at risk of complications are still caused by pathogens that are susceptible to commonly used antibiotics. However, patterns of resistance based on good quality local data when available and on individual risk factors (e.g. previous urine culture results and recent antibiotic exposure) should be considered (227–229). In particular, Escherichia coli may have varying levels of resistance to first-choice antibiotics (230) and resistance is associated with higher rates of clinical failure (15).
+Nitrofurantoin for 5 days is the main antibiotic recommended for acute cystitis. However, the paediatric formulation (syrup) may not be widely available and is currently expensive, even in high-income settings. Nitrofurantoin still has activity against most isolates producing ESBL (231).
+Different empiric antibiotic options for treating lower UTIs are shown in Table 23.5.
+Treatment duration is influenced by the antibiotic used, the age and sex of the patient, and for women by the presence of pregnancy.",,,,,,,no,no,Says men should have 3-5 days; footnote d in S1 says men usually 7 days. Wrong answer to the question asked.
+pv-003,An elderly patient with diabetes keeps having bad hypos. Should their sugar target be as strict as everyone else's?,"The guidelines do not specify if an elderly patient with diabetes who keeps having bad hypos should have a stricter sugar target than others. However, it is mentioned that hypoglycaemia is a concern in elderly patients, particularly those who are at risk of falls, who have impaired awareness of hypoglycaemia, who live alone, or who drive or operate machinery as part of their job [S1]. It is also stated that severe hypoglycaemia is defined as hypoglycaemia during which the patient is unable to self-treat by ingestion of carbohydrates, and it should be managed even if there are no symptoms and signs, with plasma glucose typically defined at ≤3.9 mmol/L (70 mg/dL) [S2].",S1,Glibenclamide is not recommended in: • people aged 60 years or older,"Glibenclamide
+Glibenclamide is not recommended in:
+• people aged 60 years or older
+• people with severe liver disease
+• in patients for whom hypoglycaemia is a concern (people who are at risk of falls, who have impaired awareness of hypoglycaemia, who live alone)
+• people who drive or operate machinery as part of their job.
+Intensification of treatment when metformin and sulfonylurea fail to control glycaemia:
+• Refer for insulin treatment or add human insulin to oral medication (Annex 1).
+• If insulin is unsuitable, a DPP-4 inhibitor, SGLT-2 inhibitor or a thiazolidinedione (TZD) may be added, but these are not recommended for routine use due to high cost and, with the exception of SGLT-2 inhibitors, uncertain benefit.
+Control of blood pressure and blood lipids
+Blood pressure should be measured at every visit.
+Hypertension treatment is indicated in people with diabetes when systolic blood pressure ≥130 mmHg or diastolic blood pressure ≥80 mmHg. Statins are recommended for all people with type 2 diabetes 40 years old or older, but only if this does not negatively impact access to glucose-lowering and blood pressure-lowering medication.
+Referral criteria
+Criteria for referral to higher levels of care are presented in Section 4.
+1 Insulin analogues are not recommended for routine use as they are substantially more costly than human insulin and there is considerable uncertainty over their benefits, especially in people with type 2 diabetes.
+2 Insulin treatment could be unsuitable when it is more costly than oral agents, or when circumstances make its use difficult (e.g. persons who live alone and are dependent on others to inject them with insulin).",S2,"Hypoglycaemia is managed by ingestion of carbohydrate if the patient is able to swallow, or by i.v. administration of hypertonic glucose. • If the patient is able to ingest food or drink, they should ingest 15–20 g of glucose. If glucose is not available, give oral carbohydrate that contains 15–20 g of rapidly absorbing forms of glucose (e.g. sugar-sweetened soft drink, 1–2 teaspoons of sugar, 5–6 hard candies, cup of milk).","Two important acute complications are hypoglycaemia and hyperglycaemic emergencies.
+Hypoglycaemia
+Hypoglycaemia (abnormally low blood glucose) is a frequent iatrogenic complication in diabetic patients, occurring particularly in patients receiving sulfonylurea or insulin. It can cause loss of consciousness and coma and is potentially life-threatening. Severe hypoglycaemia is defined as hypoglycaemia, during which the patient is unable to self-treat by ingestion of carbohydrates. There is no universally agreed plasma glucose cut-off point for hypoglycaemia, as symptoms and signs can occur at different thresholds. It is most frequently defined at plasma glucose of ≤3.9 mmol/L (70 mg/dL), when it should be managed even if there are no symptoms and signs.
+Management of hypoglycaemia
+Hypoglycaemia is managed by ingestion of carbohydrate if the patient is able to swallow, or by i.v. administration of hypertonic glucose.
+• If the patient is able to ingest food or drink, they should ingest 15–20 g of glucose. If glucose is not available, give oral carbohydrate that contains 15–20 g of rapidly absorbing forms of glucose (e.g. sugar-sweetened soft drink, 1–2 teaspoons of sugar, 5–6 hard candies, cup of milk). Plasma glucose levels typically increase by 2.8 mmol/l (50 mg/dL) within ~15 minutes; repeat the treatment if hypoglycaemia persists.
+• If rapidly absorbing glucose is not available, it can be substituted by any foods containing carbohydrate (e.g. bread, rice, potato).
+1 Intramuscular injection of glucagon can also resolve hypoglycaemia, but it is rarely available in primary care.",,,,,,,no,no,"Says the guidelines do not specify; HEARTS D says the HbA1c target can be relaxed (e.g. <8%) with frequent severe hypoglycaemia (chunk not cited). Turns the glibenclamide exclusions in S1 into general statements about elderly patients, and attributes the <=3.9 mmol/L threshold to severe hypoglycaemia, which S2 defines differently."

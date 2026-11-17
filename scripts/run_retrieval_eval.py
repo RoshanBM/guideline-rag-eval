@@ -5,6 +5,10 @@ Usage::
     python scripts/run_retrieval_eval.py --retriever bm25 [bm25-nostem bge-small ... | all]
                                          [--no-stem] [--questions eval/questions.jsonl]
                                          [--chunks-dir data/chunks] [--out-dir results/retrieval]
+                                         [--tag heldout]
+
+``--tag`` writes to ``<out-dir>/<tag>/`` (held-out set: ``--questions eval/heldout.jsonl --tag
+heldout`` -> ``results/retrieval/heldout/``).
 
 Retrievers are the names in ``src/retrieve/registry.py``: ``bm25`` (stemmed baseline),
 ``bm25-nostem`` (ablation; ``--retriever bm25 --no-stem`` is the same), ``bge-small``,
@@ -311,10 +315,14 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--no-stem", action="store_true", help="use the unstemmed BM25 (bm25 -> bm25-nostem)")
     ap.add_argument("--questions", type=Path, default=QUESTIONS_PATH)
     ap.add_argument("--chunks-dir", type=Path, default=CHUNKS_DIR)
-    ap.add_argument("--out-dir", type=Path, default=OUT_DIR)
+    ap.add_argument("--out-dir", type=Path, default=None, help=f"default {rel_path(OUT_DIR)}[/<tag>]")
+    ap.add_argument("--tag", default=None,
+                    help="write to <out-dir>/<tag>/ (e.g. --questions eval/heldout.jsonl --tag heldout)")
     args = ap.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")  # questions contain ≥, – etc.
+    args.out_dir = (args.out_dir or OUT_DIR) / args.tag if args.tag else (args.out_dir or OUT_DIR)
+    args.out_dir.mkdir(parents=True, exist_ok=True)
 
     names = list(RETRIEVER_NAMES) if "all" in args.retriever else args.retriever
     if args.no_stem:

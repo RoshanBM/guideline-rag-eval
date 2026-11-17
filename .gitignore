@@ -21,3 +21,6 @@ eval/questions_draft*.jsonl
 
 # Retrieval indexes (rebuilt from data/chunks/)
 data/index/
+
+# Faithfulness labelling guide (local notes for the labeller)
+notes/faithfulness_labelling_guide.md

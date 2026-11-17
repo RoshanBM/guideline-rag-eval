@@ -1,0 +1,20 @@
+Judge qwen2.5-7b (derived_overall) vs human 'faithful' labels, n = 30
+percent agreement      0.733 [0.5667, 0.8667]
+Cohen's kappa          0.358 [0.0, 0.6591]
+linear-weighted kappa  0.384 [-0.0227, 0.7059]
+(95 % percentile bootstrap over items, 1,000 resamples, seed 42)
+
+confusion (rows = human, columns = judge)
+                 no  partial      yes
+no                2        1        4
+partial           0        1        1
+yes               0        2       19
+
+disagree aw-004: human partial, judge yes
+disagree cmb-002: human no, judge partial
+disagree dl-004: human no, judge yes
+disagree hd-007: human no, judge yes
+disagree hd-011: human yes, judge partial
+disagree htn-002: human yes, judge partial
+disagree htn-003: human no, judge yes
+disagree pv-003: human no, judge yes
